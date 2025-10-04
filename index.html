@@ -45,7 +45,7 @@
         
         /* Clock/Date styles (Replaces text-5xl/7xl, font-extrabold/light, text-white/gray-400) */
         #clock {
-            font-size: 4rem; /* Increased mobile size */
+            font-size: 4.5rem; /* Increased mobile size */
             font-weight: 800; /* font-extrabold */
             color: #ffffff;
             margin-bottom: 0.5rem; /* mb-2 */
@@ -59,8 +59,9 @@
         
         /* Shortcuts Grid (Replaces grid, grid-cols-x, gap-x) */
         #shortcuts-grid {
+            /* 3 columns on mobile now! */
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr)); /* grid-cols-2 */
+            grid-template-columns: repeat(3, minmax(0, 1fr)); 
             gap: 0.75rem; /* gap-6 */
             width: 100%;
             justify-content: center;
@@ -95,8 +96,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 2.25rem; /* Reduced for mobile */
-            height: 2.25rem; /* Reduced for mobile */
+            width: 3rem; /* Reduced for mobile */
+            height: 3rem; /* Reduced for mobile */
             transition: background-color 0.2s, transform 0.2s;
         }
         .icon-circle:hover {
@@ -122,11 +123,13 @@
         /* Media Queries (Replaces sm:, md:, lg: prefixes) */
         @media (min-width: 640px) { /* sm breakpoint */
             #shortcuts-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr)); /* grid-cols-3 */
+                /* We keep 3 columns here for consistency with the new mobile default, 
+                   but could increase this to 4 or 5 if desired later. */
+                grid-template-columns: repeat(4, minmax(0, 1fr)); 
             }
             .icon-circle {
-                width: 3rem; /* Reduced for tablet */
-                height: 3rem; /* Reduced for tablet */
+                width: 4rem; /* Reduced for tablet */
+                height: 4rem; /* Reduced for tablet */
             }
             .icon-circle svg {
                 width: 2.5rem; /* sm:w-10 */
@@ -139,19 +142,19 @@
         
         @media (min-width: 768px) { /* md breakpoint */
             #clock {
-                font-size: 9rem; /* Increased desktop size */
+                font-size: 7rem; /* Increased desktop size */
             }
             #date {
                 font-size: 2.5rem; /* md:text-xl */
             }
             #shortcuts-grid {
-                grid-template-columns: repeat(4, minmax(0, 1fr)); /* grid-cols-4 */
+                grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 columns on medium screens */
             }
         }
         
         @media (min-width: 1024px) { /* lg breakpoint */
             #shortcuts-grid {
-                grid-template-columns: repeat(6, minmax(0, 1fr)); /* grid-cols-6 */
+                grid-template-columns: repeat(6, minmax(0, 1fr)); /* 6 columns on large screens */
             }
         }
     </style>
