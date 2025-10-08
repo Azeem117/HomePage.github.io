@@ -1,411 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HomePage</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>HomePage</title>
 
-    <style>
-      /* CRITICAL INLINED CSS FOR MAXIMUM SPEED */
+		<style>
+			/* CRITICAL INLINED CSS FOR MAXIMUM SPEED */
 
-      /* Base styles (Replaces Tailwind utilities like bg-black, text-gray-100, min-h-screen) */
-      body {
-        font-family: "Inter", system-ui, sans-serif; /* Rely on system font for instant load */
-        background-color: #000000;
-        color: #f3f4f6;
-        transition: background-color 0.3s, color 0.3s;
-        min-height: 100vh;
-        padding: 1rem; /* p-4 */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-      }
+			/* Base styles (Replaces Tailwind utilities like bg-black, text-gray-100, min-h-screen) */
+			body {
+				font-family: "Inter", system-ui, sans-serif; /* Rely on system font for instant load */
+				background-color: #000000;
+				color: #f3f4f6;
+				transition: background-color 0.3s, color 0.3s;
+				min-height: 100vh;
+				padding: 1rem; /* p-4 */
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				margin: 0;
+			}
 
-      /* Header/Main alignment (Replaces w-full, max-w-4xl/5xl, mb-12, mt-12, flex-grow) */
-      header,
-      main {
-        width: 100%;
-      }
-      header {
-        max-width: 48rem; /* Equivalent to max-w-4xl */
-        margin-top: 3rem; /* mt-12 */
-        margin-bottom: 3rem; /* mb-12 */
-        text-align: center;
-      }
-      main {
-        /* Default max-width for smaller screens */
-        max-width: 40rem;
-        flex-grow: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+			/* Header/Main alignment (Only for main now) */
+			main {
+				width: 100%;
+				/* Default max-width for smaller screens */
+				max-width: 40rem;
+				flex-grow: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
 
-      /* Clock/Date styles */
-      #clock {
-        font-size: 2.5rem; /* Increased mobile size */
-        font-weight: 800; /* font-extrabold */
-        color: #ffffff;
-        margin-bottom: 0.5rem; /* mb-2 */
-        letter-spacing: -0.05em; /* tracking-tighter */
-      }
-      #date {
-        font-size: 0.75rem; /* text-lg */
-        font-weight: 400; /* font-light */
-        color: #9ca3af; /* text-gray-400 */
-      }
+			/* Clock/Date styles (REMOVED) */
 
-      /* Shortcuts Grid (Mobile default: 3 columns) */
-      #shortcuts-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.75rem; /* gap-3 */
-        width: 100%;
-        justify-content: center;
-      }
+			/* Shortcuts Grid (Mobile default: 3 columns) */
+			#shortcuts-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 0.75rem; /* gap-3 */
+				width: 100%;
+				justify-content: center;
+			}
 
-      /* Shortcut Item */
-      .shortcut-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 0.5rem;
-        border-radius: 0.75rem; /* rounded-xl */
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-        text-decoration: none;
-        color: inherit;
-      }
-      .shortcut-item:hover {
-        transform: scale(1.02);
-        background-color: rgba(
-          255,
-          255,
-          255,
-          0.05
-        ); /* subtle hover background */
-      }
-      .shortcut-item:active {
-        transform: scale(0.98);
-      }
+			/* Shortcut Item */
+			.shortcut-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				padding: 1rem 0.5rem;
+				border-radius: 0.75rem; /* rounded-xl */
+				cursor: pointer;
+				transition: all 0.2s ease-in-out;
+				text-decoration: none;
+				color: inherit;
+			}
+			.shortcut-item:hover {
+				transform: scale(1.02);
+				background-color: rgba(
+					255,
+					255,
+					255,
+					0.05
+				); /* subtle hover background */
+			}
+			.shortcut-item:active {
+				transform: scale(0.98);
+			}
 
-      /* Icon Circle */
-      .icon-circle {
-        background-color: #4b5563;
-        padding: 0.75rem;
-        border-radius: 9999px; /* rounded-full */
-        margin-bottom: 0.5rem;
-        box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 3.5rem; /* Mobile size */
-        height: 3.5rem;
-        transition: background-color 0.2s, transform 0.2s;
-      }
-      .icon-circle:hover {
-        background-color: #10b981; /* emerald-500 */
-        transform: scale(1.05);
-      }
-      .shortcut-item:hover .icon-circle {
-        box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
-      }
-      .icon-circle svg {
-        width: 1.5rem;
-        height: 1.5rem;
-      }
+			/* Icon Circle */
+			.icon-circle {
+				background-color: #4b5563;
+				padding: 0.75rem;
+				border-radius: 9999px; /* rounded-full */
+				margin-bottom: 0.5rem;
+				box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.2);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 3.5rem; /* Mobile size */
+				height: 3.5rem;
+				transition: background-color 0.2s, transform 0.2s;
+			}
+			.icon-circle:hover {
+				background-color: #10b981; /* emerald-500 */
+				transform: scale(1.05);
+			}
+			.shortcut-item:hover .icon-circle {
+				box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+			}
+			.icon-circle svg {
+				width: 1.5rem;
+				height: 1.5rem;
+			}
 
-      /* Label */
-      .shortcut-item span {
-        font-size: 0.75rem; /* text-xs/sm */
-        font-weight: 500; /* font-medium */
-        color: #d1d5db; /* text-gray-300 */
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 100%;
-        text-align: center;
-      }
+			/* Label */
+			.shortcut-item span {
+				font-size: 0.75rem; /* text-xs/sm */
+				font-weight: 500; /* font-medium */
+				color: #d1d5db; /* text-gray-300 */
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				width: 100%;
+				text-align: center;
+			}
 
-      /* Media Queries (Responsive Design) */
+			/* Media Queries (Responsive Design) */
 
-      /* Tablet/Small Desktop (min-width: 768px - md breakpoint) */
-      @media (min-width: 768px) {
-        main {
-          max-width: 60rem; /* Wide enough for 4 columns */
-        }
-        #clock {
-          font-size: 6rem;
-        }
-        #date {
-          font-size: 1.25rem;
-        }
-        #shortcuts-grid {
-          grid-template-columns: repeat(
-            4,
-            minmax(0, 1fr)
-          ); /* 4 columns on medium screens */
-          gap: 1rem; /* increased gap */
-        }
-        .icon-circle {
-          width: 4rem;
-          height: 4rem;
-        }
-        .icon-circle svg {
-          width: 2rem;
-          height: 2rem;
-        }
-        .shortcut-item span {
-          font-size: 0.875rem; /* text-sm */
-        }
-      }
+			/* Tablet/Small Desktop (min-width: 768px - md breakpoint) */
+			@media (min-width: 768px) {
+				main {
+					max-width: 60rem; /* Wide enough for 4 columns */
+				}
+				/* Clock styles removed */
+				#shortcuts-grid {
+					grid-template-columns: repeat(
+						4,
+						minmax(0, 1fr)
+					); /* 4 columns on medium screens */
+					gap: 1rem; /* increased gap */
+				}
+				.icon-circle {
+					width: 4rem;
+					height: 4rem;
+				}
+				.icon-circle svg {
+					width: 2rem;
+					height: 2rem;
+				}
+				.shortcut-item span {
+					font-size: 0.875rem; /* text-sm */
+				}
+			}
 
-      /* Desktop (min-width: 1024px - lg breakpoint) - TARGET LAYOUT: 5 COLUMNS */
-      @media (min-width: 1024px) {
-        main {
-          max-width: 72rem; /* Wide enough for 5 columns comfortably */
-        }
-        #clock {
-          font-size: 4rem; /* Custom size for large desktops */
-        }
-        #shortcuts-grid {
-          /* Implementing 5 columns for 3 rows (15 total items) as requested */
-          grid-template-columns: repeat(5, minmax(0, 1fr));
-          gap: 2.5rem; /* larger desktop gap */
-        }
-        .icon-circle {
-          width: 3.5rem;
-          height: 3.5rem;
-        }
-        .icon-circle svg {
-          width: 2.5rem;
-          height: 2.5rem;
-        }
-        .shortcut-item span {
-          font-size: 1rem; /* text-base */
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Header Section: Clock & Date -->
-    <header>
-      <div class="text-center">
-        <!-- Digital Clock -->
-        <h1 id="clock"></h1>
-        <!-- Date -->
-        <p id="date"></p>
-      </div>
-    </header>
+			/* Desktop (min-width: 1024px - lg breakpoint) - TARGET LAYOUT: 5 COLUMNS */
+			@media (min-width: 1024px) {
+				main {
+					max-width: 72rem; /* Wide enough for 5 columns comfortably */
+				}
+				/* Clock styles removed */
+				#shortcuts-grid {
+					/* Implementing 5 columns for 3 rows (15 total items) as requested */
+					grid-template-columns: repeat(5, minmax(0, 1fr));
+					gap: 2.5rem; /* larger desktop gap */
+				}
+				.icon-circle {
+					width: 3.5rem;
+					height: 3.5rem;
+				}
+				.icon-circle svg {
+					width: 2.5rem;
+					height: 2.5rem;
+				}
+				.shortcut-item span {
+					font-size: 1rem; /* text-base */
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Header Section: Clock & Date (REMOVED) -->
 
-    <!-- Main Content: Shortcuts Grid -->
-    <main>
-      <!-- Shortcuts Container -->
-      <div id="shortcuts-grid">
-        <!-- Shortcuts will be rendered here -->
-      </div>
-    </main>
+		<!-- Main Content: Shortcuts Grid -->
+		<main>
+			<!-- Shortcuts Container -->
+			<div id="shortcuts-grid">
+				<!-- Shortcuts will be rendered here -->
+			</div>
+		</main>
 
 
-    <script>
-      // --- INLINED SVG ICONS (Simplified) ---
-      // To add a new icon, find its SVG code (e.g., from Lucide) and copy
-      // ONLY the inner content (<path>, <circle>, etc.) into the definition below.
-      const SVG_ICONS = {
-        // Existing Icons
-        search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
-        github:
-          '<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.6c3.2.4 6.5-1.7 6.5-7.3A5.4 5.4 0 0 0 20 4.6 5.3 5.3 0 0 0 18.2 2c-.5-1.3-1.8-3.3-3.2-3.3-1.4 0-2.7 2-3.2 3.3A5.3 5.3 0 0 0 3 4.6 5.4 5.4 0 0 0 3 9.1c0 5.6 3.3 7.7 6.5 7.3a4.8 4.8 0 0 0-1 3.6v4"/><path d="M12 2a1.8 1.8 0 0 1 1.8-1.8c.6 0 1.2.5 1.2 1.2s-.5 1.2-1.2 1.2A1.8 1.8 0 0 1 12 2Zm-5.4 2.2a1.8 1.8 0 0 0-1.8-1.8c-.6 0-1.2.5-1.2 1.2s.5 1.2 1.2 1.2A1.8 1.8 0 0 0 6.6 4.2Z"/>',
-        mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
-        calendar:
-          '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/>',
-        newspaper:
-          '<path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v18c0-.5-.4-1-1-1H3a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2c.5 0 1-.5 1-1z"/><path d="M10 6h8"/><path d="M10 10h8"/><path d="M10 14h8"/><path d="M10 18h8"/>',
-        "message-square":
-          '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
-        settings:
-          '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.44l-1.28.67a2 2 0 0 0-1 1.76v1.4a2 2 0 0 0 1 1.76l1.28.67v.44a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.44l1.28-.67a2 2 0 0 0 1-1.76v-1.4a2 2 0 0 0-1-1.76l-1.28-.67v-.44a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
-        "file-text":
-          '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9h5"/><path d="M10 13h5"/><path d="M10 17h5"/>',
+		<script>
+			// --- INLINED SVG ICONS (Simplified) ---
+			// To add a new icon, find its SVG code (e.g., from Lucide) and copy
+			// ONLY the inner content (<path>, <circle>, etc.) into the definition below.
+			const SVG_ICONS = {
+				// Existing Icons
+				search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+				github:
+					'<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.6c3.2.4 6.5-1.7 6.5-7.3A5.4 5.4 0 0 0 20 4.6 5.3 5.3 0 0 0 18.2 2c-.5-1.3-1.8-3.3-3.2-3.3-1.4 0-2.7 2-3.2 3.3A5.3 5.3 0 0 0 3 4.6 5.4 5.4 0 0 0 3 9.1c0 5.6 3.3 7.7 6.5 7.3a4.8 4.8 0 0 0-1 3.6v4"/><path d="M12 2a1.8 1.8 0 0 1 1.8-1.8c.6 0 1.2.5 1.2 1.2s-.5 1.2-1.2 1.2A1.8 1.8 0 0 1 12 2Zm-5.4 2.2a1.8 1.8 0 0 0-1.8-1.8c-.6 0-1.2.5-1.2 1.2s.5 1.2 1.2 1.2A1.8 1.8 0 0 0 6.6 4.2Z"/>',
+				mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+				calendar:
+					'<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/>',
+				newspaper:
+					'<path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v18c0-.5-.4-1-1-1H3a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2c.5 0 1-.5 1-1z"/><path d="M10 6h8"/><path d="M10 10h8"/><path d="M10 14h8"/><path d="M10 18h8"/>',
+				"message-square":
+					'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+				settings:
+					'<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.44l-1.28.67a2 2 0 0 0-1 1.76v1.4a2 2 0 0 0 1 1.76l1.28.67v.44a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.44l1.28-.67a2 2 0 0 0 1-1.76v-1.4a2 2 0 0 0-1-1.76l-1.28-.67v-.44a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
+				"file-text":
+					'<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9h5"/><path d="M10 13h5"/><path d="M10 17h5"/>',
 
-        // New icons derived from user's links:
-        code: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>', // For CodeWithHarry
-        lock: '<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', // For Encryption Hub
-        home: '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>', // For Google Classroom
-        upload:
-          '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/>', // For Send File Online
-        tv: '<rect width="20" height="15" x="2" y="7" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/>', // For YouTube/Soap2Day
-        "book-open":
-          '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>', // For Dr. Israr Ahmed
-      };
+				// New icons derived from user's links:
+				code: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>', // For CodeWithHarry
+				lock: '<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', // For Encryption Hub
+				home: '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>', // For Google Classroom
+				upload:
+					'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/>', // For Send File Online
+				tv: '<rect width="20" height="15" x="2" y="7" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/>', // For YouTube/Soap2Day
+				"book-open":
+					'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>', // For Dr. Israr Ahmed
+			};
 
-      // --- STATIC SHORTCUT DATA (CURATED FROM BOOKMARKS) ---
-      const staticShortcuts = [
-        // University Portals (Fallback Icons) - 2
-        {
-          name: "AKTU",
-          url: "https://exams.aktu.ac.in/studentlogin.aspx",
-          icon: "A",
-        },
-        {
-          name: "JSSATEN",
-          url: "https://jssaten.azurewebsites.net/Apps/Login.aspx",
-          icon: "J",
-        },
+			// --- STATIC SHORTCUT DATA (CURATED FROM BOOKMARKS) ---
+			const staticShortcuts = [
+				// University Portals (Fallback Icons) - 2
+				{
+					name: "AKTU",
+					url: "https://exams.aktu.ac.in/studentlogin.aspx",
+					icon: "A",
+				},
+				{
+					name: "JSSATEN",
+					url: "https://jssaten.azurewebsites.net/Apps/Login.aspx",
+					icon: "J",
+				},
 
-        // AI/Chat (SVG Icons + Fallback) - 4
-        {
-          name: "ChatGPT",
-          url: "https://chatgpt.com/",
-          icon: "message-square",
-        },
-        { name: "DeepSeek", url: "https://chat.deepseek.com/", icon: "D" },
-        { name: "Gemini", url: "https://gemini.google.com/app", icon: "G" },
-        {
-          name: "M365",
-          url: "https://m365.cloud.microsoft/search/?fromcode=cmmiadtp424&origindomain=Office&auth=2",
-          icon: "M",
-        },
+				// AI/Chat (SVG Icons + Fallback) - 4
+				{
+					name: "ChatGPT",
+					url: "https://chatgpt.com/",
+					icon: "message-square",
+				},
+				{ name: "DeepSeek", url: "https://chat.deepseek.com/", icon: "D" },
+				{ name: "Gemini", url: "https://gemini.google.com/app", icon: "G" },
+				{
+					name: "M365",
+					url: "https://m365.cloud.microsoft/search/?fromcode=cmmiadtp424&origindomain=Office&auth=2",
+					icon: "M",
+				},
 
-        // Coding/Tools (SVG Icons) - 4
-        {
-          name: "CodeWithHarry",
-          url: "https://www.codewithharry.com/",
-          icon: "code",
-        },
-        { name: "GitHub", url: "https://github.com/", icon: "github" },
-        {
-          name: "Encryption Hub",
-          url: "https://azeem117.github.io/EncryptionHub.github.io/",
-          icon: "lock",
-        },
-        {
-          name: "Send File Online",
-          url: "https://sendfileonline.com/",
-          icon: "upload",
-        },
+				// Coding/Tools (SVG Icons) - 4
+				{
+					name: "CodeWithHarry",
+					url: "https://www.codewithharry.com/",
+					icon: "code",
+				},
+				{ name: "GitHub", url: "https://github.com/", icon: "github" },
+				{
+					name: "Encryption Hub",
+					url: "https://azeem117.github.io/EncryptionHub.github.io/",
+					icon: "lock",
+				},
+				{
+					name: "Send File Online",
+					url: "https://sendfileonline.com/",
+					icon: "upload",
+				},
 
-        // Educational/Media (SVG Icons + Fallback) - 4
-        {
-          name: "Classroom",
-          url: "https://classroom.google.com/?lfhs=2",
-          icon: "home",
-        },
-        { name: "YouTube", url: "https://www.youtube.com/", icon: "tv" },
-        { name: "Soap2Day", url: "https://ww25.soap2day.day/", icon: "tv" },
-        {
-          name: "Dr. Israr Ahmed",
-          url: "https://www.drisrar.com/",
-          icon: "book-open",
-        },
+				// Educational/Media (SVG Icons + Fallback) - 4
+				{
+					name: "Classroom",
+					url: "https://classroom.google.com/?lfhs=2",
+					icon: "home",
+				},
+				{ name: "YouTube", url: "https://www.youtube.com/", icon: "tv" },
+				{ name: "Soap2Day", url: "https://ww25.soap2day.day/", icon: "tv" },
+				{
+					name: "Dr. Israr Ahmed",
+					url: "https://www.drisrar.com/",
+					icon: "book-open",
+				},
 
-        // Notes/Misc (SVG Icon) - 1
-        {
-          name: "PText",
-          url: "https://www.protectedtext.com/",
-          icon: "file-text",
-        },
-      ];
+				// Notes/Misc (SVG Icon) - 1
+				{
+					name: "PText",
+					url: "https://www.protectedtext.com/",
+					icon: "file-text",
+				},
+			];
 
-      // --- Clock Functions ---
+			// --- Clock Functions (REMOVED) ---
 
-      /**
-       * Updates the digital clock and date display.
-       */
-      const updateClock = () => {
-        const now = new Date();
-        // Use 12-hour format with leading zero removal
-        const timeOptions = {
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: true,
-        };
-        const dateOptions = {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        };
+			// --- UI Rendering Functions ---
 
-        // Ensure AM/PM is not dropped (some environments might strip it without a space)
-        const timeString = now.toLocaleTimeString("en-US", timeOptions);
+			/**
+			 * Generates the SVG/Text icon for the shortcut tile using inlined SVGs.
+			 */
+			const getIcon = (iconName) => {
+				const iconKey = iconName.toLowerCase();
+				const svgContent = SVG_ICONS[iconKey];
 
-        document.getElementById("clock").textContent = timeString;
-        document.getElementById("date").textContent = now.toLocaleDateString(
-          "en-US",
-          dateOptions
-        );
-      };
+				if (svgContent) {
+					// Return the full SVG wrapper with the simplified content inside
+					return `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white">${svgContent}</svg>`;
+				}
 
-      // --- UI Rendering Functions ---
+				// Fallback to the first letter(s) if not found
+				const fallbackText = iconName
+					? iconName.substring(0, 2).toUpperCase()
+					: "?";
+				return `<span style="font-size: 2rem; color: #ffffff; font-weight: 700;">${fallbackText}</span>`;
+			};
 
-      /**
-       * Generates the SVG/Text icon for the shortcut tile using inlined SVGs.
-       */
-      const getIcon = (iconName) => {
-        const iconKey = iconName.toLowerCase();
-        const svgContent = SVG_ICONS[iconKey];
+			/**
+			 * Renders the shortcut grid based on the static data.
+			 */
+			const renderShortcuts = (shortcuts) => {
+				const grid = document.getElementById("shortcuts-grid");
+				grid.innerHTML = ""; // Clear existing shortcuts
 
-        if (svgContent) {
-          // Return the full SVG wrapper with the simplified content inside
-          return `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white">${svgContent}</svg>`;
-        }
+				shortcuts.forEach((shortcut) => {
+					const iconHtml = getIcon(shortcut.icon);
 
-        // Fallback to the first letter(s) if not found
-        const fallbackText = iconName
-          ? iconName.substring(0, 2).toUpperCase()
-          : "?";
-        return `<span style="font-size: 2rem; color: #ffffff; font-weight: 700;">${fallbackText}</span>`;
-      };
+					const shortcutElement = document.createElement("a");
+					shortcutElement.href = shortcut.url;
+					shortcutElement.className = "shortcut-item"; // Use inlined CSS classes
+					shortcutElement.setAttribute("title", `Go to ${shortcut.name}`);
+					// Open link in new tab
 
-      /**
-       * Renders the shortcut grid based on the static data.
-       */
-      const renderShortcuts = (shortcuts) => {
-        const grid = document.getElementById("shortcuts-grid");
-        grid.innerHTML = ""; // Clear existing shortcuts
+					// The inlined CSS handles the styling, keeping the HTML simple
+					shortcutElement.innerHTML = `
+					 					<div class="icon-circle">
+					 						${iconHtml}
+					 					</div>
+					 					<span>${shortcut.name}</span>
+					 				`;
 
-        shortcuts.forEach((shortcut) => {
-          const iconHtml = getIcon(shortcut.icon);
+					grid.appendChild(shortcutElement);
+				});
+			};
 
-          const shortcutElement = document.createElement("a");
-          shortcutElement.href = shortcut.url;
-          shortcutElement.className = "shortcut-item"; // Use inlined CSS classes
-          shortcutElement.setAttribute("title", `Go to ${shortcut.name}`);
-          // Open link in new tab
+			// --- Initialization ---
+			document.addEventListener("DOMContentLoaded", () => {
+				// Clock initialization removed
 
-          // The inlined CSS handles the styling, keeping the HTML simple
-          shortcutElement.innerHTML = `
-                    <div class="icon-circle">
-                        ${iconHtml}
-                    </div>
-                    <span>${shortcut.name}</span>
-                `;
+				// Sort shortcuts alphabetically by name
+				staticShortcuts.sort((a, b) => {
+					const nameA = a.name.toUpperCase();
+					const nameB = b.name.toUpperCase();
+					if (nameA < nameB) return -1;
+					if (nameA > nameB) return 1;
+					return 0;
+				});
 
-          grid.appendChild(shortcutElement);
-        });
-      };
-
-      // --- Initialization ---
-      document.addEventListener("DOMContentLoaded", () => {
-        // Start the clock immediately and set an interval
-        updateClock();
-        setInterval(updateClock, 1000);
-
-        // Sort shortcuts alphabetically by name
-        staticShortcuts.sort((a, b) => {
-          const nameA = a.name.toUpperCase();
-          const nameB = b.name.toUpperCase();
-          if (nameA < nameB) return -1;
-          if (nameA > nameB) return 1;
-          return 0;
-        });
-
-        // Render static shortcuts
-        renderShortcuts(staticShortcuts);
-      });
-    </script>
-  </body>
+				// Render static shortcuts
+				renderShortcuts(staticShortcuts);
+			});
+		</script>
+	</body>
 </html>
