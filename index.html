@@ -68,6 +68,11 @@
       type="image/svg+xml"
       href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg"
     />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Homepage" />
     <title>Homepage </title>
     <style type="text/css">
       /* Theme tokens */
@@ -767,6 +772,33 @@
     </footer>
 
     <script>
+      // Register Service Worker for PWA functionality
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+              console.log('Service Worker registered successfully:', registration.scope);
+              
+              // Check for updates periodically
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                console.log('Service Worker update found!');
+                
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // New service worker available, notify user
+                    console.log('New version available! Refresh to update.');
+                  }
+                });
+              });
+            })
+            .catch((error) => {
+              console.error('Service Worker registration failed:', error);
+            });
+        });
+      }
+
       // Search engine URLs configuration
       const searchEngines = {
         brave: "https://search.brave.com/search?q=",
