@@ -14,6 +14,12 @@ A beautiful, modern search page with a dark theme and multi-search engine suppor
   - Bing
   - Yahoo
   - Startpage
+- **Smart Search Suggestions**: Real-time search suggestions as you type, just like a normal browser
+  - Automatically fetches suggestions from the selected search engine
+  - Keyboard navigation support (Arrow keys, Enter, Escape)
+  - Click to select suggestions
+  - Debounced API calls for optimal performance
+  - Works with Google, DuckDuckGo, Bing, and Yahoo
 - **Persistent Preferences**: Your search engine choice is saved automatically
 - **Fully Functional**: Real search that redirects to your chosen engine
 - **Responsive Design**: Works on desktop and mobile devices
@@ -23,9 +29,20 @@ A beautiful, modern search page with a dark theme and multi-search engine suppor
 
 Simply open `index.html` in your browser:
 1. Type your search query
-2. Select your preferred search engine from the dropdown
-3. Press Enter or click the search button
-4. You'll be redirected to your chosen search engine with your query
+2. See real-time search suggestions appear as you type
+3. Use arrow keys to navigate suggestions or click to select
+4. Select your preferred search engine from the dropdown
+5. Press Enter or click the search button
+6. You'll be redirected to your chosen search engine with your query
+
+### Search Suggestions
+The search suggestions feature works just like a normal browser:
+- Start typing in the search box
+- Suggestions appear automatically from your selected search engine
+- Use ↑↓ arrow keys to navigate through suggestions
+- Press Enter to select a suggestion
+- Press Escape to close suggestions
+- Click any suggestion to search immediately
 
 ## Installing as PWA
 

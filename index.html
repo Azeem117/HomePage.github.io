@@ -402,7 +402,53 @@
 
       /* engine badge removed */
 
-      /* suggestions removed */
+      /* Search Suggestions */
+      .suggestions-container {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        border-radius: 12px;
+        padding: 8px;
+        box-shadow: 0 8px 32px var(--shadow), 0 0 0 1px var(--border);
+        border: 1px solid var(--border);
+        backdrop-filter: blur(10px);
+        z-index: 999;
+        max-height: 400px;
+        overflow-y: auto;
+        display: none;
+      }
+      .suggestions-container.show {
+        display: block;
+      }
+      .suggestion-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: var(--fg);
+        font-size: 0.85rem;
+      }
+      .suggestion-item:hover,
+      .suggestion-item.selected {
+        background: var(--surface-hover);
+      }
+      .suggestion-item .suggestion-icon {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        opacity: 0.6;
+      }
+      .suggestion-item .suggestion-text {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
 
       footer {
         width: 100%;
@@ -650,6 +696,7 @@
             <div
               class="searchform-container svelte-g9bky4 llm-enabled multiline"
               data-testid="searchform-container"
+              style="position: relative;"
             >
               <form
                 id="searchform"
@@ -740,6 +787,11 @@
                   </button>
                 </div>
               </form>
+              
+              <!-- Search Suggestions Container -->
+              <div id="suggestions-container" class="suggestions-container" role="listbox">
+                <!-- Suggestions will be populated by JavaScript -->
+              </div>
             </div>
 
             
@@ -813,32 +865,38 @@
         brave: {
           url: "https://search.brave.com/search?q=",
           icon: "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg",
-          name: "Brave Search"
+          name: "Brave Search",
+          suggestUrl: "https://search.brave.com/api/suggest?q="
         },
         google: {
           url: "https://www.google.com/search?q=",
           icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%234285F4' d='M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z'/%3E%3Cpath fill='%2334A853' d='M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z'/%3E%3Cpath fill='%23FBBC05' d='M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z'/%3E%3Cpath fill='%23EA4335' d='M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z'/%3E%3Cpath fill='none' d='M0 0h48v48H0z'/%3E%3C/svg%3E",
-          name: "Google"
+          name: "Google",
+          suggestUrl: "https://www.google.com/complete/search?client=firefox&q="
         },
         duckduckgo: {
           url: "https://duckduckgo.com/?q=",
           icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%23de5833'/%3E%3Cpath fill='%23fff' d='M24 10c-7.73 0-14 6.27-14 14 0 1.2.15 2.36.44 3.47.55-.44 1.18-.8 1.87-1.05-.18-.78-.31-1.58-.31-2.42 0-6.63 5.37-12 12-12s12 5.37 12 12c0 .84-.13 1.64-.31 2.42.69.25 1.32.61 1.87 1.05.29-1.11.44-2.27.44-3.47 0-7.73-6.27-14-14-14zm-6 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm12 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-6 4c-2.21 0-4 1.79-4 4h8c0-2.21-1.79-4-4-4z'/%3E%3C/svg%3E",
-          name: "DuckDuckGo"
+          name: "DuckDuckGo",
+          suggestUrl: "https://duckduckgo.com/ac/?q="
         },
         bing: {
           url: "https://www.bing.com/search?q=",
           icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%2300809d' d='M14 4l4 14 12 4-12 10-2 12-8-6v-34z'/%3E%3Cpath fill='%2300a8e1' d='M18 18l12 4-12 10z'/%3E%3Cpath fill='%23005e7e' d='M14 4v34l4-6V18z'/%3E%3C/svg%3E",
-          name: "Bing"
+          name: "Bing",
+          suggestUrl: "https://api.bing.com/osjson.aspx?query="
         },
         yahoo: {
           url: "https://search.yahoo.com/search?p=",
           icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%235f01d1' d='M24 0C10.7 0 0 10.7 0 24s10.7 24 24 24 24-10.7 24-24S37.3 0 24 0zm8.2 14.3l-6.9 13.1v8.9h-2.6v-8.9l-6.9-13.1h3l5.2 10.1 5.2-10.1h3z'/%3E%3C/svg%3E",
-          name: "Yahoo"
+          name: "Yahoo",
+          suggestUrl: "https://search.yahoo.com/sugg/gossip/gossip-us-ura/?output=fxjson&command="
         },
         startpage: {
           url: "https://www.startpage.com/do/search?q=",
           icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect fill='%23206580' width='48' height='48' rx='8'/%3E%3Cpath fill='%23fff' d='M24 8c-8.8 0-16 7.2-16 16s7.2 16 16 16 16-7.2 16-16-7.2-16-16-16zm0 28c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12-5.4 12-12 12z'/%3E%3Ccircle fill='%23fff' cx='24' cy='24' r='6'/%3E%3C/svg%3E",
-          name: "Startpage"
+          name: "Startpage",
+          suggestUrl: null // Startpage doesn't have a public suggestions API
         }
       };
 
@@ -854,6 +912,7 @@
       const engineIcon = document.getElementById("engine-icon");
       const themeToggle = document.getElementById("theme-toggle");
       const dropdownMenu = document.getElementById("engine-dropdown-menu");
+      const suggestionsContainer = document.getElementById("suggestions-container");
 
       // Function to populate dropdown menu
       function populateDropdown() {
@@ -956,6 +1015,206 @@
         currentEngineIndex = engineKeys.indexOf(savedEngine);
       }
       updateEngineIcon();
+
+      // Search Suggestions functionality
+      let suggestions = [];
+      let selectedSuggestionIndex = -1;
+      let fetchTimeout = null;
+      let currentScript = null;
+
+      // Search icon SVG
+      const searchIconSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.498 2a8.498 8.498 0 1 0 5.843 14.67l4.292 4.291a.8.8 0 1 0 1.131-1.13l-4.367-4.368A8.498 8.498 0 0 0 10.499 2M3.6 10.498a6.898 6.898 0 1 1 13.797 0 6.898 6.898 0 0 1-13.797 0" fill="currentColor"></path></svg>';
+
+      // Fetch suggestions using JSONP for better CORS compatibility
+      function fetchSuggestionsJSONP(query, callback) {
+        const currentEngine = engineKeys[currentEngineIndex];
+        const engine = searchEngines[currentEngine];
+        
+        if (!engine.suggestUrl || !query.trim()) {
+          callback([]);
+          return;
+        }
+
+        // Remove previous script if any
+        if (currentScript && currentScript.parentNode) {
+          currentScript.parentNode.removeChild(currentScript);
+        }
+
+        // Create a unique callback name
+        const callbackName = 'suggestionCallback_' + Date.now();
+        
+        // Set up the callback
+        window[callbackName] = function(data) {
+          // Parse different response formats
+          let suggestions = [];
+          
+          // Google, Bing format: [query, [suggestions]]
+          if (Array.isArray(data) && data.length > 1 && Array.isArray(data[1])) {
+            suggestions = data[1];
+          }
+          // DuckDuckGo format: [{phrase: "suggestion"}]
+          else if (Array.isArray(data)) {
+            suggestions = data.map(item => item.phrase || item).filter(Boolean);
+          }
+          // Other formats
+          else if (data.suggestions) {
+            suggestions = data.suggestions;
+          }
+
+          callback(suggestions.slice(0, 8));
+          
+          // Cleanup
+          delete window[callbackName];
+          if (currentScript && currentScript.parentNode) {
+            currentScript.parentNode.removeChild(currentScript);
+          }
+        };
+
+        // Build URL based on engine
+        let url;
+        if (currentEngine === 'google') {
+          url = `https://suggestqueries.google.com/complete/search?client=firefox&q=${encodeURIComponent(query)}`;
+        } else if (currentEngine === 'duckduckgo') {
+          url = `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&callback=${callbackName}`;
+        } else if (currentEngine === 'bing') {
+          url = `https://api.bing.com/osjson.aspx?query=${encodeURIComponent(query)}`;
+        } else if (currentEngine === 'yahoo') {
+          url = `https://search.yahoo.com/sugg/gossip/gossip-us-ura/?output=fxjson&command=${encodeURIComponent(query)}`;
+        } else {
+          // For engines without suggestions, return empty
+          callback([]);
+          return;
+        }
+
+        // Create and append script
+        currentScript = document.createElement('script');
+        currentScript.src = url;
+        currentScript.onerror = function() {
+          callback([]);
+          delete window[callbackName];
+        };
+        document.body.appendChild(currentScript);
+      }
+
+      // Display suggestions
+      function displaySuggestions(suggestionList) {
+        suggestions = suggestionList;
+        selectedSuggestionIndex = -1;
+
+        if (suggestions.length === 0) {
+          suggestionsContainer.classList.remove('show');
+          suggestionsContainer.innerHTML = '';
+          return;
+        }
+
+        suggestionsContainer.innerHTML = suggestions.map((suggestion, index) => `
+          <div class="suggestion-item" role="option" data-index="${index}">
+            <div class="suggestion-icon">${searchIconSvg}</div>
+            <div class="suggestion-text">${escapeHtml(suggestion)}</div>
+          </div>
+        `).join('');
+
+        // Add click handlers
+        suggestionsContainer.querySelectorAll('.suggestion-item').forEach(item => {
+          item.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            selectSuggestion(index);
+          });
+        });
+
+        suggestionsContainer.classList.add('show');
+      }
+
+      // Escape HTML to prevent XSS
+      function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      // Select a suggestion
+      function selectSuggestion(index) {
+        if (index >= 0 && index < suggestions.length) {
+          searchBox.value = suggestions[index];
+          suggestionsContainer.classList.remove('show');
+          searchForm.dispatchEvent(new Event('submit'));
+        }
+      }
+
+      // Update selected suggestion styling
+      function updateSelectedSuggestion() {
+        const items = suggestionsContainer.querySelectorAll('.suggestion-item');
+        items.forEach((item, index) => {
+          item.classList.toggle('selected', index === selectedSuggestionIndex);
+        });
+
+        // Scroll selected item into view
+        if (selectedSuggestionIndex >= 0 && selectedSuggestionIndex < items.length) {
+          items[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
+        }
+      }
+
+      // Handle input changes for suggestions
+      searchBox.addEventListener('input', function() {
+        const query = searchBox.value.trim();
+        
+        // Clear existing timeout
+        if (fetchTimeout) {
+          clearTimeout(fetchTimeout);
+        }
+
+        if (query.length === 0) {
+          suggestionsContainer.classList.remove('show');
+          return;
+        }
+
+        // Debounce the fetch
+        fetchTimeout = setTimeout(() => {
+          fetchSuggestionsJSONP(query, displaySuggestions);
+        }, 200); // 200ms debounce
+      });
+
+      // Handle keyboard navigation in search box
+      const originalKeydownHandler = searchBox.onkeydown;
+      searchBox.addEventListener('keydown', function(e) {
+        const isOpen = suggestionsContainer.classList.contains('show');
+        
+        if (!isOpen) {
+          return;
+        }
+
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, suggestions.length - 1);
+          updateSelectedSuggestion();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, -1);
+          updateSelectedSuggestion();
+        } else if (e.key === 'Enter' && selectedSuggestionIndex >= 0) {
+          e.preventDefault();
+          selectSuggestion(selectedSuggestionIndex);
+        } else if (e.key === 'Escape') {
+          suggestionsContainer.classList.remove('show');
+          selectedSuggestionIndex = -1;
+        }
+      });
+
+      // Close suggestions when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!searchBox.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+          suggestionsContainer.classList.remove('show');
+        }
+      });
+
+      // Hide suggestions when search box loses focus (with delay to allow clicking suggestions)
+      searchBox.addEventListener('blur', function() {
+        setTimeout(() => {
+          if (!suggestionsContainer.matches(':hover')) {
+            suggestionsContainer.classList.remove('show');
+          }
+        }, 200);
+      });
 
       // Auto-resize textarea
       function autosize() {
