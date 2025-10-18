@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html class="dark" lang="en-in">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.search.brave.com"
+      rel="preconnect"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://imgs.search.brave.com"
+      rel="preconnect"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://tiles.search.brave.com"
+      rel="preconnect"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-wght-normal.Dx4kXJAl.woff2"
+      crossorigin="anonymous"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+    />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="description"
+      content="Search the Web. Privately. Truly useful results from multiple search engines."
+    />
+    <meta property="og:site_name" content="Search Page" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Universal Search" />
+    <meta
+      property="og:description"
+      content="Search the Web using your preferred search engine."
+    />
+    <meta property="og:locale" content="en-in" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Universal Search" />
+    <meta
+      name="twitter:description"
+      content="Search the Web using your preferred search engine."
+    />
+    <meta name="keywords" content="search, privacy, web search" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/apple-touch-icon.Bqba6l0U.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/favicon-32x32.B2iBzfXZ.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/favicon-16x16.nT_pLL7v.png"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg"
+    />
+    <title>Universal Search</title>
+    <style type="text/css">
+      @font-face {
+        font-family: Inter Variable;
+        font-style: normal;
+        font-display: var(--font-display, optional);
+        font-weight: 100 900;
+        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-wght-normal.Dx4kXJAl.woff2)
+          format("woff2-variations");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+          U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: Inter Variable;
+        font-style: italic;
+        font-display: var(--font-display, optional);
+        font-weight: 100 900;
+        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-wght-italic.DpCbqKDY.woff2)
+          format("woff2-variations");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+          U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: Inter Variable;
+        font-style: normal;
+        font-display: var(--font-display, optional);
+        font-weight: 100 900;
+        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-ext-wght-normal.DO1Apj_S.woff2)
+          format("woff2-variations");
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F,
+          U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+          U+A720-A7FF;
+      }
+      @font-face {
+        font-family: Inter Variable;
+        font-style: italic;
+        font-display: var(--font-display, optional);
+        font-weight: 100 900;
+        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-ext-wght-italic.0pjOp8NU.woff2)
+          format("woff2-variations");
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F,
+          U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+          U+A720-A7FF;
+      }
+      @font-face {
+        font-family: DM Mono;
+        font-style: normal;
+        font-display: var(--font-display, optional);
+        font-weight: 400;
+        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/dm-mono-latin-400-normal.4GdczIuU.woff2)
+            format("woff2"),
+          url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/dm-mono-latin-400-normal.-0xN8mdc.woff)
+            format("woff");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+          U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      :root {
+        --main-font: Inter Variable, Helvetica, sans-serif;
+        --mono-font: DM Mono, ui-monospace, SFMono-Regular, Menlo, Monaco,
+          Consolas, Liberation Mono, Courier New, monospace;
+        --brand-font: var(--main-font);
+      }
+      html {
+        font-size: 20px;
+      }
+      .desktop-heading-display1 {
+        font: 600 2.3rem/2.7rem var(--main-font);
+      }
+      .desktop-heading-display2 {
+        font: 600 2rem/2.4rem var(--main-font);
+      }
+      .desktop-heading-display3 {
+        font: 600 1.7rem/2rem var(--main-font);
+      }
+      .desktop-heading-h1 {
+        font: 600 1.4rem/1.7rem var(--main-font);
+      }
+      .desktop-heading-h2 {
+        font: 600 1.1rem/1.4rem var(--main-font);
+      }
+      .desktop-heading-h3 {
+        font: 600 1rem/1.3rem var(--main-font);
+      }
+      .desktop-heading-h4 {
+        font: 600 0.8rem/1.2rem var(--main-font);
+      }
+      .desktop-xsmall-regular {
+        font: 400 0.55rem/.8rem var(--main-font);
+      }
+      .desktop-xsmall-semibold {
+        font: 600 0.55rem/.8rem var(--main-font);
+      }
+      .desktop-small-regular {
+        font: 400 0.6rem/.9rem var(--main-font);
+      }
+      .desktop-small-semibold {
+        font: 600 0.6rem/.9rem var(--main-font);
+      }
+      .desktop-default-regular {
+        font: 400 0.7rem/1.1rem var(--main-font);
+      }
+      .desktop-default-semibold {
+        font: 600 0.7rem/1.1rem var(--main-font);
+      }
+      .desktop-large-regular {
+        font: 400 0.8rem/1.2rem var(--main-font);
+      }
+      .desktop-large-semibold {
+        font: 600 0.8rem/1.2rem var(--main-font);
+      }
+      .desktop-monospace-small {
+        font: 400 0.6rem/.9rem var(--mono-font);
+      }
+      .desktop-monospace-default {
+        font: 400 0.7rem/1.1rem var(--mono-font);
+      }
+      .desktop-monospace-large {
+        font: 400 0.8rem/1.2rem var(--mono-font);
+      }
+      body {
+        font: 400 0.8rem/1.2rem var(--main-font);
+        text-rendering: optimizeLegibility;
+        background: #0a0a0f;
+        color: #e6e8ee;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-image: radial-gradient(
+            circle at 20% 50%,
+            rgba(120, 119, 198, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 24, 147, 0.05) 0%,
+            transparent 50%
+          );
+      }
+      #main {
+        width: 100%;
+        max-width: 980px;
+        padding: 36px 24px;
+        box-sizing: border-box;
+      }
+      #home-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+      }
+      #logo img {
+        display: block;
+      }
+      .searchform-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      form#searchform {
+        width: 100%;
+        max-width: 820px;
+        display: flex;
+        align-items: center;
+        background: rgba(20, 20, 28, 0.95);
+        border-radius: 16px;
+        padding: 14px 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+          0 0 0 1px rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+      form#searchform:focus-within {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7),
+          0 0 0 1px rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+      #search-icon {
+        display: flex;
+        align-items: center;
+        margin-right: 8px;
+      }
+      #search-icon .logo-wrapper img {
+        display: block;
+      }
+      textarea#searchbox {
+        flex: 1;
+        background: transparent;
+        border: 0;
+        outline: 0;
+        color: #e6e8ee;
+        resize: none;
+        padding: 6px 8px;
+        font-size: 1rem;
+        line-height: 1.3;
+        font-family: var(--main-font);
+        min-height: 28px;
+        max-height: 300px;
+      }
+      textarea#searchbox::placeholder {
+        color: #6b7280;
+      }
+      .searchform-actions-button {
+        background: transparent;
+        border: 0;
+        color: #9aa0b2;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+      .searchform-actions-button:hover {
+        background: rgba(255, 255, 255, 0.06);
+        color: #e6e8ee;
+      }
+      .engine-selector-wrapper {
+        margin-left: 8px;
+        position: relative;
+      }
+      select#search-engine {
+        appearance: none;
+        background: linear-gradient(
+          135deg,
+          rgba(120, 119, 198, 0.2) 0%,
+          rgba(255, 24, 147, 0.2) 100%
+        );
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 10px 36px 10px 16px;
+        color: #e6e8ee;
+        font-weight: 600;
+        font-size: 0.85rem;
+        cursor: pointer;
+        font-family: var(--main-font);
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+      select#search-engine:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(120, 119, 198, 0.3) 0%,
+          rgba(255, 24, 147, 0.3) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      select#search-engine:focus {
+        outline: none;
+        border-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 0 3px rgba(120, 119, 198, 0.2);
+      }
+      .engine-selector-wrapper::after {
+        content: "";
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #e6e8ee;
+        pointer-events: none;
+      }
+      select#search-engine option {
+        background: #14141c;
+        color: #e6e8ee;
+        padding: 10px;
+      }
+      footer {
+        width: 100%;
+        max-width: 980px;
+        margin-top: auto;
+        padding: 20px 24px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #6b7280;
+        font-size: 0.75rem;
+        text-align: center;
+      }
+      footer .links {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      footer .links a {
+        color: #9aa0b2;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      footer .links a:hover {
+        color: #e6e8ee;
+      }
+      .svelte-ve2bd1 {
+        box-sizing: border-box;
+      }
+      @media (max-width: 720px) {
+        html {
+          font-size: 18px;
+        }
+        form#searchform {
+          padding: 12px;
+          border-radius: 12px;
+        }
+        select#search-engine {
+          padding: 8px 32px 8px 12px;
+          font-size: 0.8rem;
+        }
+        #logo img {
+          height: 48px;
+        }
+      }
+    </style>
+  </head>
+  <body class="is-pc is-serp">
+    <div id="main" class="full-height">
+      <div id="home-wrapper" class="svelte-ve2bd1">
+        <main class="svelte-ve2bd1" role="main" style="width: 100%">
+          <div
+            id="searchbar-home"
+            class="svelte-ve2bd1"
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 24px;
+            "
+          >
+            <a id="logo" href="/" class="svelte-ve2bd1" style="display: block">
+              <img
+                src="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-logo-dark.Bg87GL4b.svg"
+                alt="Search logo"
+                title="Universal Search"
+                height="64"
+              />
+            </a>
+
+            <div
+              class="searchform-container svelte-g9bky4 llm-enabled multiline"
+              data-testid="searchform-container"
+            >
+              <form
+                id="searchform"
+                method="GET"
+                action="#"
+                target="_self"
+                class="svelte-g9bky4"
+              >
+                <div id="search-icon" class="svelte-g9bky4">
+                  <div class="icon-wrapper svelte-g9bky4" aria-hidden="true">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      class="icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M10.498 2a8.498 8.498 0 1 0 5.843 14.67l4.292 4.291a.8.8 0 1 0 1.131-1.13l-4.367-4.368A8.498 8.498 0 0 0 10.499 2M3.6 10.498a6.898 6.898 0 1 1 13.797 0 6.898 6.898 0 0 1-13.797 0"
+                        fill="#E6E8EE"
+                      ></path>
+                    </svg>
+                  </div>
+                  <a
+                    href="/"
+                    class="logo-wrapper svelte-g9bky4"
+                    style="margin-left: 8px"
+                  >
+                    <img
+                      alt="Search logo"
+                      title="Universal Search"
+                      src="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-logo-small.1fMdoHsa.svg"
+                      width="21"
+                      height="24"
+                    />
+                  </a>
+                </div>
+
+                <textarea
+                  autofocus
+                  id="searchbox"
+                  rows="1"
+                  class="desktop-large-regular styled-scrollbar svelte-g9bky4"
+                  placeholder="Search the web..."
+                  name="q"
+                  autocapitalize="off"
+                  autocomplete="off"
+                  autocorrect="off"
+                  aria-label="Search"
+                  title="Search"
+                  aria-autocomplete="both"
+                  maxlength="2048"
+                ></textarea>
+
+                <div
+                  id="searchform-actions"
+                  class="svelte-g9bky4"
+                  style="display: flex; align-items: center; margin-left: 8px"
+                >
+                  <button
+                    id="clear-query-button"
+                    type="button"
+                    class="searchform-actions-button tooltip svelte-g9bky4"
+                    aria-label="Clear"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      class="icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M5.287 5.287a.85.85 0 0 0 0 1.202L10.797 12l-5.51 5.511a.85.85 0 0 0 1.202 1.202L12 13.203l5.51 5.51a.85.85 0 0 0 1.202-1.203L13.202 12l5.51-5.51a.85.85 0 0 0-1.202-1.202L12 10.798 6.489 5.287a.85.85 0 0 0-1.202 0"
+                        fill="#9AA0B2"
+                      ></path>
+                    </svg>
+                  </button>
+
+                  <button
+                    id="submit-button"
+                    type="submit"
+                    class="searchform-actions-button tooltip svelte-g9bky4"
+                    aria-label="Search"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      class="icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M10.498 2a8.498 8.498 0 1 0 5.843 14.67l4.292 4.291a.8.8 0 1 0 1.131-1.13l-4.367-4.368A8.498 8.498 0 0 0 10.499 2M3.6 10.498a6.898 6.898 0 1 1 13.797 0 6.898 6.898 0 0 1-13.797 0"
+                        fill="#E6E8EE"
+                      ></path>
+                    </svg>
+                  </button>
+
+                  <div class="engine-selector-wrapper">
+                    <select
+                      id="search-engine"
+                      aria-label="Select search engine"
+                      title="Choose your search engine"
+                    >
+                      <option value="brave" selected>Brave</option>
+                      <option value="google">Google</option>
+                      <option value="duckduckgo">DuckDuckGo</option>
+                      <option value="bing">Bing</option>
+                      <option value="yahoo">Yahoo</option>
+                      <option value="startpage">Startpage</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div
+              id="welcome-wrapper"
+              style="
+                text-align: center;
+                color: #6b7280;
+                max-width: 760px;
+                padding: 0 20px;
+              "
+            >
+              <p style="margin: 0; font-size: 0.85rem; line-height: 1.5">
+                Search the web using your preferred search engine. Choose from
+                Brave, Google, DuckDuckGo, Bing, and more.
+              </p>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer>
+      <div class="links">
+        <span>© 2025 Universal Search</span>
+        <a href="#privacy">Privacy</a>
+        <a href="#terms">Terms</a>
+        <a href="#about">About</a>
+      </div>
+    </footer>
+
+    <script>
+      // Search engine URLs configuration
+      const searchEngines = {
+        brave: "https://search.brave.com/search?q=",
+        google: "https://www.google.com/search?q=",
+        duckduckgo: "https://duckduckgo.com/?q=",
+        bing: "https://www.bing.com/search?q=",
+        yahoo: "https://search.yahoo.com/search?p=",
+        startpage: "https://www.startpage.com/do/search?q=",
+      };
+
+      // Get elements
+      const searchForm = document.getElementById("searchform");
+      const searchBox = document.getElementById("searchbox");
+      const clearButton = document.getElementById("clear-query-button");
+      const engineSelector = document.getElementById("search-engine");
+
+      // Auto-resize textarea
+      function autosize() {
+        searchBox.style.height = "auto";
+        searchBox.style.height = searchBox.scrollHeight + "px";
+      }
+      searchBox.addEventListener("input", autosize, false);
+      autosize();
+
+      // Clear button functionality
+      clearButton.addEventListener("click", function () {
+        searchBox.value = "";
+        searchBox.focus();
+        autosize();
+      });
+
+      // Handle form submission
+      searchForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const query = searchBox.value.trim();
+        if (!query) {
+          searchBox.focus();
+          return;
+        }
+
+        const selectedEngine = engineSelector.value;
+        const searchUrl = searchEngines[selectedEngine];
+
+        // Redirect to the selected search engine with the query
+        window.location.href = searchUrl + encodeURIComponent(query);
+      });
+
+      // Handle Enter key in textarea
+      searchBox.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          searchForm.dispatchEvent(new Event("submit"));
+        }
+      });
+
+      // Save selected search engine to localStorage
+      engineSelector.addEventListener("change", function () {
+        localStorage.setItem("preferredSearchEngine", engineSelector.value);
+      });
+
+      // Load preferred search engine from localStorage
+      const savedEngine = localStorage.getItem("preferredSearchEngine");
+      if (savedEngine && searchEngines[savedEngine]) {
+        engineSelector.value = savedEngine;
+      }
+    </script>
+  </body>
+</html>
