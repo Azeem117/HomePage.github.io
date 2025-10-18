@@ -355,6 +355,49 @@
         background: var(--surface-hover);
         color: var(--fg);
       }
+      /* Engine dropdown styles */
+      .engine-dropdown {
+        position: relative;
+      }
+      .engine-dropdown-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        background: var(--surface);
+        border-radius: 12px;
+        padding: 8px;
+        box-shadow: 0 8px 32px var(--shadow), 0 0 0 1px var(--border);
+        border: 1px solid var(--border);
+        backdrop-filter: blur(10px);
+        min-width: 180px;
+        z-index: 1000;
+        display: none;
+      }
+      .engine-dropdown-menu.show {
+        display: block;
+      }
+      .engine-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: var(--fg);
+        font-size: 0.85rem;
+      }
+      .engine-option:hover {
+        background: var(--surface-hover);
+      }
+      .engine-option.selected {
+        background: var(--accent-1);
+      }
+      .engine-option img {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
       /* old searchbar selector removed - footer selector styles below */
 
       /* engine badge removed */
@@ -615,13 +658,18 @@
                 target="_self"
                 class="svelte-g9bky4"
               >
-                <div id="search-icon" class="svelte-g9bky4" role="button" tabindex="0" aria-label="Switch search engine" title="Click to switch search engine">
-                  <img 
-                    id="engine-icon" 
-                    class="engine-logo" 
-                    src="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg" 
-                    alt="Brave Search"
-                  />
+                <div class="engine-dropdown">
+                  <div id="search-icon" class="svelte-g9bky4" role="button" tabindex="0" aria-label="Switch search engine" title="Click to select search engine">
+                    <img 
+                      id="engine-icon" 
+                      class="engine-logo" 
+                      src="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg" 
+                      alt="Brave Search"
+                    />
+                  </div>
+                  <div id="engine-dropdown-menu" class="engine-dropdown-menu" role="menu">
+                    <!-- Dropdown options will be populated by JavaScript -->
+                  </div>
                 </div>
 
                 <textarea
@@ -805,6 +853,53 @@
       const searchIcon = document.getElementById("search-icon");
       const engineIcon = document.getElementById("engine-icon");
       const themeToggle = document.getElementById("theme-toggle");
+      const dropdownMenu = document.getElementById("engine-dropdown-menu");
+
+      // Function to populate dropdown menu
+      function populateDropdown() {
+        dropdownMenu.innerHTML = "";
+        engineKeys.forEach((engineKey, index) => {
+          const engine = searchEngines[engineKey];
+          const option = document.createElement("div");
+          option.className = "engine-option";
+          option.setAttribute("role", "menuitem");
+          option.setAttribute("data-engine-index", index);
+          if (index === currentEngineIndex) {
+            option.classList.add("selected");
+          }
+          
+          const icon = document.createElement("img");
+          icon.src = engine.icon;
+          icon.alt = "";
+          
+          const name = document.createElement("span");
+          name.textContent = engine.name;
+          
+          option.appendChild(icon);
+          option.appendChild(name);
+          
+          option.addEventListener("click", function() {
+            selectEngine(index);
+            toggleDropdown();
+          });
+          
+          dropdownMenu.appendChild(option);
+        });
+      }
+
+      // Function to toggle dropdown visibility
+      function toggleDropdown() {
+        dropdownMenu.classList.toggle("show");
+        if (dropdownMenu.classList.contains("show")) {
+          populateDropdown();
+        }
+      }
+
+      // Function to select a specific engine
+      function selectEngine(index) {
+        currentEngineIndex = index;
+        updateEngineIcon();
+      }
 
       // Function to update the engine icon and save preference
       function updateEngineIcon() {
@@ -813,26 +908,38 @@
         
         engineIcon.src = engine.icon;
         engineIcon.alt = engine.name;
-        searchIcon.title = `${engine.name} (Click to switch)`;
+        searchIcon.title = `${engine.name} (Click to select)`;
         
         // Save to localStorage
         localStorage.setItem("preferredSearchEngine", currentEngine);
+        
+        // Update selected state in dropdown if it's open
+        if (dropdownMenu.classList.contains("show")) {
+          const options = dropdownMenu.querySelectorAll(".engine-option");
+          options.forEach((option, index) => {
+            option.classList.toggle("selected", index === currentEngineIndex);
+          });
+        }
       }
 
-      // Function to cycle to next search engine
-      function switchEngine() {
-        currentEngineIndex = (currentEngineIndex + 1) % engineKeys.length;
-        updateEngineIcon();
-      }
-
-      // Add click event to search icon
-      searchIcon.addEventListener("click", switchEngine);
+      // Add click event to search icon to toggle dropdown
+      searchIcon.addEventListener("click", function(e) {
+        e.stopPropagation();
+        toggleDropdown();
+      });
       
       // Add keyboard support for search icon
       searchIcon.addEventListener("keydown", function(e) {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          switchEngine();
+          toggleDropdown();
+        }
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function(e) {
+        if (!searchIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
+          dropdownMenu.classList.remove("show");
         }
       });
 
