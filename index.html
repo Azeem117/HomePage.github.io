@@ -943,6 +943,13 @@
         }
       });
 
+      // Close dropdown when pressing Escape
+      document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape" && dropdownMenu.classList.contains("show")) {
+          dropdownMenu.classList.remove("show");
+        }
+      });
+
       // Load preferred search engine from localStorage
       const savedEngine = localStorage.getItem("preferredSearchEngine");
       if (savedEngine && searchEngines[savedEngine]) {
