@@ -5,13 +5,14 @@
 "start_url": "/",
 "display": "standalone",
 "orientation": "portrait",
-"background_color": "#000000",
-"theme_color": "#0a0a0f",
+"background_color": "#0a0a14",
+"theme_color": "#0a0a14",
 "icons": [
 {
 "src": "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg",
-"sizes": "48x48 72x72 96x96 128x128 256x256 512x512",
-"type": "image/svg+xml"
+"sizes": "48x48 72x72 96x96 128x128 192x192 256x256 384x384 512x512 1024x1024",
+"type": "image/svg+xml",
+"purpose": "any maskable"
 },
 {
 "src": "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/favicon-16x16.nT_pLL7v.png",
@@ -25,8 +26,9 @@
 },
 {
 "src": "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/apple-touch-icon.Bqba6l0U.png",
-"sizes": "180x180",
-"type": "image/png"
+"sizes": "180x180 192x192 512x512",
+"type": "image/png",
+"purpose": "any"
 }
 ],
 "shortcuts": [

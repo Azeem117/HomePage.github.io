@@ -72,40 +72,44 @@
     <style type="text/css">
       /* Theme tokens */
       :root {
-        --bg: #0a0a0f;
-        --fg: #e6e8ee;
-        --muted: #9aa0b2;
-        --muted-2: #6b7280;
-        --surface: rgba(20, 20, 28, 0.95);
-        --surface-hover: rgba(255, 255, 255, 0.06);
-        --border: rgba(255, 255, 255, 0.08);
-        --border-strong: rgba(255, 255, 255, 0.15);
-        --shadow: rgba(0, 0, 0, 0.6);
-        --focus-ring: rgba(120, 119, 198, 0.35);
-        --accent-1: rgba(120, 119, 198, 0.2);
-        --accent-1-strong: rgba(120, 119, 198, 0.3);
-        --accent-2: rgba(255, 24, 147, 0.2);
-        --accent-2-strong: rgba(255, 24, 147, 0.3);
-        --chip-bg: rgba(255, 255, 255, 0.06);
+        --bg: #0a0a14;
+        --fg: #f0f4f8;
+        --muted: #a8b2d1;
+        --muted-2: #8892b0;
+        --surface: rgba(15, 15, 30, 0.95);
+        --surface-hover: rgba(168, 178, 209, 0.08);
+        --border: rgba(168, 178, 209, 0.12);
+        --border-strong: rgba(168, 178, 209, 0.25);
+        --shadow: rgba(0, 0, 0, 0.7);
+        --focus-ring: rgba(0, 212, 255, 0.4);
+        --accent-1: rgba(0, 212, 255, 0.25);
+        --accent-1-strong: rgba(0, 212, 255, 0.4);
+        --accent-2: rgba(168, 85, 247, 0.25);
+        --accent-2-strong: rgba(168, 85, 247, 0.4);
+        --accent-3: rgba(236, 72, 153, 0.25);
+        --accent-3-strong: rgba(236, 72, 153, 0.4);
+        --chip-bg: rgba(168, 178, 209, 0.08);
         --chip-fg: var(--fg);
       }
 
       .light {
-        --bg: #f7f8fa;
-        --fg: #0f1622;
-        --muted: #4b5563;
-        --muted-2: #6b7280;
-        --surface: #ffffffcc;
-        --surface-hover: rgba(0, 0, 0, 0.06);
-        --border: rgba(0, 0, 0, 0.08);
-        --border-strong: rgba(0, 0, 0, 0.15);
-        --shadow: rgba(0, 0, 0, 0.12);
-        --focus-ring: rgba(120, 119, 198, 0.45);
-        --accent-1: rgba(120, 119, 198, 0.18);
-        --accent-1-strong: rgba(120, 119, 198, 0.25);
-        --accent-2: rgba(255, 24, 147, 0.18);
-        --accent-2-strong: rgba(255, 24, 147, 0.25);
-        --chip-bg: rgba(0, 0, 0, 0.06);
+        --bg: #f8fafc;
+        --fg: #0f172a;
+        --muted: #475569;
+        --muted-2: #64748b;
+        --surface: rgba(255, 255, 255, 0.95);
+        --surface-hover: rgba(0, 212, 255, 0.06);
+        --border: rgba(0, 0, 0, 0.1);
+        --border-strong: rgba(0, 0, 0, 0.2);
+        --shadow: rgba(0, 0, 0, 0.15);
+        --focus-ring: rgba(0, 212, 255, 0.5);
+        --accent-1: rgba(0, 212, 255, 0.2);
+        --accent-1-strong: rgba(0, 212, 255, 0.3);
+        --accent-2: rgba(168, 85, 247, 0.2);
+        --accent-2-strong: rgba(168, 85, 247, 0.3);
+        --accent-3: rgba(236, 72, 153, 0.2);
+        --accent-3-strong: rgba(236, 72, 153, 0.3);
+        --chip-bg: rgba(0, 0, 0, 0.05);
         --chip-fg: var(--fg);
       }
 
@@ -240,14 +244,19 @@
         flex-direction: column;
         align-items: center;
         background-image: radial-gradient(
-            circle at 20% 50%,
+            ellipse at 15% 40%,
             var(--accent-1) 0%,
             transparent 50%
           ),
           radial-gradient(
-            circle at 80% 80%,
+            ellipse at 85% 60%,
             var(--accent-2) 0%,
             transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 50% 90%,
+            var(--accent-3) 0%,
+            transparent 40%
           );
       }
       #main {
@@ -405,7 +414,7 @@
 
       /* Theme toggle button */
       .theme-toggle, .footer-engine-selector {
-        background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 100%);
+        background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
         color: var(--fg);
         border: 1px solid var(--border);
         border-radius: 999px;
@@ -415,10 +424,13 @@
         transition: all 0.2s ease;
         font-family: var(--main-font);
         font-size: 0.75rem;
+        box-shadow: 0 2px 8px rgba(0, 212, 255, 0.15);
       }
       .theme-toggle:hover, .footer-engine-selector:hover {
-        background: linear-gradient(135deg, var(--accent-1-strong) 0%, var(--accent-2-strong) 100%);
+        background: linear-gradient(135deg, var(--accent-1-strong) 0%, var(--accent-2-strong) 50%, var(--accent-3-strong) 100%);
         border-color: var(--border-strong);
+        box-shadow: 0 4px 12px rgba(0, 212, 255, 0.25);
+        transform: translateY(-1px);
       }
       .footer-engine-selector {
         appearance: none;
@@ -451,14 +463,19 @@
         }
         body {
           background-image: radial-gradient(
-              circle at 20% 30%,
+              ellipse at 15% 25%,
               var(--accent-1) 0%,
               transparent 60%
             ),
             radial-gradient(
-              circle at 80% 70%,
+              ellipse at 85% 65%,
               var(--accent-2) 0%,
               transparent 60%
+            ),
+            radial-gradient(
+              ellipse at 50% 85%,
+              var(--accent-3) 0%,
+              transparent 50%
             );
         }
         #main {
