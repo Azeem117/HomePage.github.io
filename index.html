@@ -449,6 +449,27 @@
         text-overflow: ellipsis;
         white-space: nowrap;
       }
+      .suggestion-item .remove-recent {
+        background: transparent;
+        border: 0;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        opacity: 0;
+        margin-left: 8px;
+      }
+      .suggestion-item:hover .remove-recent {
+        opacity: 1;
+      }
+      .suggestion-item .remove-recent:hover {
+        background: var(--surface-hover);
+        color: var(--fg);
+      }
 
       footer {
         width: 100%;
@@ -1021,9 +1042,52 @@
       let selectedSuggestionIndex = -1;
       let fetchTimeout = null;
       let currentScript = null;
+      const MAX_RECENT_SEARCHES = 8;
 
       // Search icon SVG
       const searchIconSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.498 2a8.498 8.498 0 1 0 5.843 14.67l4.292 4.291a.8.8 0 1 0 1.131-1.13l-4.367-4.368A8.498 8.498 0 0 0 10.499 2M3.6 10.498a6.898 6.898 0 1 1 13.797 0 6.898 6.898 0 0 1-13.797 0" fill="currentColor"></path></svg>';
+      
+      // Clock icon SVG for recent searches
+      const clockIconSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm1-13h-2v6l5.25 3.15.75-1.23-4-2.4V7z" fill="currentColor"></path></svg>';
+      
+      // Close/X icon SVG for removing recent searches
+      const closeIconSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.287 5.287a.85.85 0 0 0 0 1.202L10.797 12l-5.51 5.511a.85.85 0 0 0 1.202 1.202L12 13.203l5.51 5.51a.85.85 0 0 0 1.202-1.203L13.202 12l5.51-5.51a.85.85 0 0 0-1.202-1.202L12 10.798 6.489 5.287a.85.85 0 0 0-1.202 0" fill="currentColor"></path></svg>';
+
+      // Recent searches management
+      function getRecentSearches() {
+        try {
+          const recent = localStorage.getItem('recentSearches');
+          return recent ? JSON.parse(recent) : [];
+        } catch (e) {
+          console.error('Error loading recent searches:', e);
+          return [];
+        }
+      }
+
+      function saveRecentSearch(query) {
+        try {
+          let recent = getRecentSearches();
+          // Remove if already exists (to move it to top)
+          recent = recent.filter(s => s.toLowerCase() !== query.toLowerCase());
+          // Add to beginning
+          recent.unshift(query);
+          // Keep only MAX_RECENT_SEARCHES
+          recent = recent.slice(0, MAX_RECENT_SEARCHES);
+          localStorage.setItem('recentSearches', JSON.stringify(recent));
+        } catch (e) {
+          console.error('Error saving recent search:', e);
+        }
+      }
+
+      function removeRecentSearch(query) {
+        try {
+          let recent = getRecentSearches();
+          recent = recent.filter(s => s !== query);
+          localStorage.setItem('recentSearches', JSON.stringify(recent));
+        } catch (e) {
+          console.error('Error removing recent search:', e);
+        }
+      }
 
       // Fetch suggestions using JSONP for better CORS compatibility
       function fetchSuggestionsJSONP(query, callback) {
@@ -1096,8 +1160,8 @@
         document.body.appendChild(currentScript);
       }
 
-      // Display suggestions
-      function displaySuggestions(suggestionList) {
+      // Display suggestions (can be recent searches or API suggestions)
+      function displaySuggestions(suggestionList, isRecent = false) {
         suggestions = suggestionList;
         selectedSuggestionIndex = -1;
 
@@ -1108,21 +1172,45 @@
         }
 
         suggestionsContainer.innerHTML = suggestions.map((suggestion, index) => `
-          <div class="suggestion-item" role="option" data-index="${index}">
-            <div class="suggestion-icon">${searchIconSvg}</div>
+          <div class="suggestion-item" role="option" data-index="${index}" ${isRecent ? 'data-recent="true"' : ''}>
+            <div class="suggestion-icon">${isRecent ? clockIconSvg : searchIconSvg}</div>
             <div class="suggestion-text">${escapeHtml(suggestion)}</div>
+            ${isRecent ? `<button class="remove-recent" data-query="${escapeHtml(suggestion)}" aria-label="Remove from history" title="Remove">${closeIconSvg}</button>` : ''}
           </div>
         `).join('');
 
-        // Add click handlers
+        // Add click handlers for suggestions
         suggestionsContainer.querySelectorAll('.suggestion-item').forEach(item => {
-          item.addEventListener('click', function() {
+          item.addEventListener('click', function(e) {
+            // Don't trigger if clicking the remove button
+            if (e.target.closest('.remove-recent')) return;
+            
             const index = parseInt(this.getAttribute('data-index'));
             selectSuggestion(index);
           });
         });
 
+        // Add click handlers for remove buttons
+        suggestionsContainer.querySelectorAll('.remove-recent').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const query = this.getAttribute('data-query');
+            removeRecentSearch(query);
+            showRecentSearches();
+          });
+        });
+
         suggestionsContainer.classList.add('show');
+      }
+      
+      // Show recent searches
+      function showRecentSearches() {
+        const recent = getRecentSearches();
+        if (recent.length > 0) {
+          displaySuggestions(recent, true);
+        } else {
+          suggestionsContainer.classList.remove('show');
+        }
       }
 
       // Escape HTML to prevent XSS
@@ -1164,14 +1252,40 @@
         }
 
         if (query.length === 0) {
-          suggestionsContainer.classList.remove('show');
+          // Show recent searches when query is empty
+          showRecentSearches();
           return;
         }
 
         // Debounce the fetch
         fetchTimeout = setTimeout(() => {
-          fetchSuggestionsJSONP(query, displaySuggestions);
+          fetchSuggestionsJSONP(query, (apiSuggestions) => {
+            // Get recent searches that match the query
+            const recent = getRecentSearches();
+            const matchingRecent = recent.filter(r => 
+              r.toLowerCase().includes(query.toLowerCase()) && 
+              r.toLowerCase() !== query.toLowerCase()
+            ).slice(0, 3); // Show max 3 recent matches
+            
+            // Combine recent and API suggestions, removing duplicates
+            const combined = [...matchingRecent];
+            apiSuggestions.forEach(suggestion => {
+              if (!combined.some(s => s.toLowerCase() === suggestion.toLowerCase())) {
+                combined.push(suggestion);
+              }
+            });
+            
+            // Limit total suggestions
+            displaySuggestions(combined.slice(0, 8), false);
+          });
         }, 200); // 200ms debounce
+      });
+      
+      // Show recent searches when search box is focused
+      searchBox.addEventListener('focus', function() {
+        if (searchBox.value.trim().length === 0) {
+          showRecentSearches();
+        }
       });
 
       // Handle keyboard navigation in search box
@@ -1247,6 +1361,9 @@
           searchBox.focus();
           return;
         }
+
+        // Save to recent searches
+        saveRecentSearch(query);
 
         const currentEngine = engineKeys[currentEngineIndex];
         const searchUrl = searchEngines[currentEngine].url;
