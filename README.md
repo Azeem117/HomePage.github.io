@@ -14,12 +14,17 @@ A beautiful, modern search page with a dark theme and multi-search engine suppor
   - Bing
   - Yahoo
   - Startpage
-- **Smart Search Suggestions**: Real-time search suggestions as you type, just like a normal browser
-  - Automatically fetches suggestions from the selected search engine
+- **Smart Search Suggestions with Recent Searches**: Real-time search suggestions and search history, just like a normal browser homepage
+  - **Recent Searches**: Stores and displays your recent searches (up to 8) when you focus on the search box
+  - **Visual Indicators**: Clock icon for recent searches, search icon for suggestions
+  - **Remove Individual Items**: Hover over recent searches to reveal a remove button (X icon)
+  - **Smart Merging**: When typing, shows matching recent searches combined with API suggestions
+  - Automatically fetches live suggestions from the selected search engine
   - Keyboard navigation support (Arrow keys, Enter, Escape)
-  - Click to select suggestions
+  - Click to select any suggestion or recent search
   - Debounced API calls for optimal performance
   - Works with Google, DuckDuckGo, Bing, and Yahoo
+  - All data stored locally in your browser (privacy-friendly)
 - **Persistent Preferences**: Your search engine choice is saved automatically
 - **Fully Functional**: Real search that redirects to your chosen engine
 - **Responsive Design**: Works on desktop and mobile devices
@@ -35,13 +40,23 @@ Simply open `index.html` in your browser:
 5. Press Enter or click the search button
 6. You'll be redirected to your chosen search engine with your query
 
-### Search Suggestions
-The search suggestions feature works just like a normal browser:
-- Start typing in the search box
-- Suggestions appear automatically from your selected search engine
-- Use ↑↓ arrow keys to navigate through suggestions
-- Press Enter to select a suggestion
-- Press Escape to close suggestions
+### Search Suggestions & Recent Searches
+The search feature works just like a modern browser homepage:
+
+**Recent Searches:**
+- Click or focus on the empty search box to see your recent searches
+- Recent searches are marked with a clock icon
+- Hover over any recent search to reveal the remove button (X)
+- Click the X to remove individual items from your history
+- Recent searches are stored locally and persist across sessions
+
+**Live Suggestions:**
+- Start typing to get real-time suggestions from your selected search engine
+- Matching recent searches appear at the top of suggestions
+- API suggestions appear below (marked with search icon)
+- Use ↑↓ arrow keys to navigate through all suggestions
+- Press Enter to select any suggestion
+- Press Escape to close the suggestions dropdown
 - Click any suggestion to search immediately
 
 ## Installing as PWA
