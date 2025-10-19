@@ -5,8 +5,8 @@
 "start_url": "/",
 "display": "standalone",
 "orientation": "portrait",
-"background_color": "#0a0a14",
-"theme_color": "#0a0a14",
+"background_color": "#2a2a48",
+"theme_color": "#2a2a48",
 "icons": [
 {
 "src": "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg",
