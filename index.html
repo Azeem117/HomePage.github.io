@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html class="dark" lang="en-in">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.search.brave.com"
+      rel="preconnect"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://imgs.search.brave.com"
+      rel="preconnect"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://tiles.search.brave.com"
+      rel="preconnect"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-wght-normal.Dx4kXJAl.woff2"
+      crossorigin="anonymous"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+    />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="description"
+      content="Search the Web. Privately. Truly useful results from multiple search engines."
+    />
+    <meta property="og:site_name" content="Search Page" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Universal Search" />
+    <meta
+      property="og:description"
+      content="Search the Web using your preferred search engine."
+    />
+    <meta property="og:locale" content="en-in" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Universal Search" />
+    <meta
+      name="twitter:description"
+      content="Search the Web using your preferred search engine."
+    />
+    <meta name="keywords" content="search, privacy, web search" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/apple-touch-icon.Bqba6l0U.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/favicon-32x32.B2iBzfXZ.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/favicon-16x16.nT_pLL7v.png"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Homepage" />
+    <title>Homepage </title>
+    <style type="text/css">
+      /* Theme tokens */
+      :root {
+        --bg: #0a0a14;
+        --fg: #f0f4f8;
+        --muted: #a8b2d1;
+        --muted-2: #8892b0;
+        --surface: rgba(15, 15, 30, 0.95);
+        --surface-hover: rgba(168, 178, 209, 0.08);
+        --border: rgba(168, 178, 209, 0.12);
+        --border-strong: rgba(168, 178, 209, 0.25);
+        --shadow: rgba(0, 0, 0, 0.7);
+        --focus-ring: rgba(0, 212, 255, 0.4);
+        --accent-1: rgba(0, 212, 255, 0.25);
+        --accent-1-strong: rgba(0, 212, 255, 0.4);
+        --accent-2: rgba(168, 85, 247, 0.25);
+        --accent-2-strong: rgba(168, 85, 247, 0.4);
+        --accent-3: rgba(236, 72, 153, 0.25);
+        --accent-3-strong: rgba(236, 72, 153, 0.4);
+        --chip-bg: rgba(168, 178, 209, 0.08);
+        --chip-fg: var(--fg);
+      }
+
+      .light {
+        --bg: #f8fafc;
+        --fg: #0f172a;
+        --muted: #475569;
+        --muted-2: #64748b;
+        --surface: rgba(255, 255, 255, 0.95);
+        --surface-hover: rgba(0, 212, 255, 0.06);
+        --border: rgba(0, 0, 0, 0.1);
+        --border-strong: rgba(0, 0, 0, 0.2);
+        --shadow: rgba(0, 0, 0, 0.15);
+        --focus-ring: rgba(0, 212, 255, 0.5);
+        --accent-1: rgba(0, 212, 255, 0.2);
+        --accent-1-strong: rgba(0, 212, 255, 0.3);
+        --accent-2: rgba(168, 85, 247, 0.2);
+        --accent-2-strong: rgba(168, 85, 247, 0.3);
+        --accent-3: rgba(236, 72, 153, 0.2);
+        --accent-3-strong: rgba(236, 72, 153, 0.3);
+        --chip-bg: rgba(0, 0, 0, 0.05);
+        --chip-fg: var(--fg);
+      }
+
+      @font-face {
+        font-family: Inter Variable;
+        font-style: normal;
+        font-display: var(--font-display, optional);
+        font-weight: 100 900;
+        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-wght-normal.Dx4kXJAl.woff2)
+          format("woff2-variations");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+          U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: Inter Variable;
+        font-style: italic;
+        font-display: var(--font-display, optional);
+        font-weight: 100 900;
+        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-wght-italic.DpCbqKDY.woff2)
+          format("woff2-variations");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+          U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: Inter Variable;
+        font-style: normal;
+        font-display: var(--font-display, optional);
+        font-weight: 100 900;
+        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-ext-wght-normal.DO1Apj_S.woff2)
+          format("woff2-variations");
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F,
+          U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+          U+A720-A7FF;
+      }
+      @font-face {
+        font-family: Inter Variable;
+        font-style: italic;
+        font-display: var(--font-display, optional);
+        font-weight: 100 900;
+        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-ext-wght-italic.0pjOp8NU.woff2)
+          format("woff2-variations");
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F,
+          U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+          U+A720-A7FF;
+      }
+      @font-face {
+        font-family: DM Mono;
+        font-style: normal;
+        font-display: var(--font-display, optional);
+        font-weight: 400;
+        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/dm-mono-latin-400-normal.4GdczIuU.woff2)
+            format("woff2"),
+          url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/dm-mono-latin-400-normal.-0xN8mdc.woff)
+            format("woff");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+          U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      :root {
+        --main-font: Inter Variable, Helvetica, sans-serif;
+        --mono-font: DM Mono, ui-monospace, SFMono-Regular, Menlo, Monaco,
+          Consolas, Liberation Mono, Courier New, monospace;
+        --brand-font: var(--main-font);
+      }
+      html {
+        font-size: 20px;
+      }
+      .desktop-heading-display1 {
+        font: 600 2.3rem/2.7rem var(--main-font);
+      }
+      .desktop-heading-display2 {
+        font: 600 2rem/2.4rem var(--main-font);
+      }
+      .desktop-heading-display3 {
+        font: 600 1.7rem/2rem var(--main-font);
+      }
+      .desktop-heading-h1 {
+        font: 600 1.4rem/1.7rem var(--main-font);
+      }
+      .desktop-heading-h2 {
+        font: 600 1.1rem/1.4rem var(--main-font);
+      }
+      .desktop-heading-h3 {
+        font: 600 1rem/1.3rem var(--main-font);
+      }
+      .desktop-heading-h4 {
+        font: 600 0.8rem/1.2rem var(--main-font);
+      }
+      .desktop-xsmall-regular {
+        font: 400 0.55rem/0.8rem var(--main-font);
+      }
+      .desktop-xsmall-semibold {
+        font: 600 0.55rem/0.8rem var(--main-font);
+      }
+      .desktop-small-regular {
+        font: 400 0.6rem/0.9rem var(--main-font);
+      }
+      .desktop-small-semibold {
+        font: 600 0.6rem/0.9rem var(--main-font);
+      }
+      .desktop-default-regular {
+        font: 400 0.7rem/1.1rem var(--main-font);
+      }
+      .desktop-default-semibold {
+        font: 600 0.7rem/1.1rem var(--main-font);
+      }
+      .desktop-large-regular {
+        font: 400 0.8rem/1.2rem var(--main-font);
+      }
+      .desktop-large-semibold {
+        font: 600 0.8rem/1.2rem var(--main-font);
+      }
+      .desktop-monospace-small {
+        font: 400 0.6rem/0.9rem var(--mono-font);
+      }
+      .desktop-monospace-default {
+        font: 400 0.7rem/1.1rem var(--mono-font);
+      }
+      .desktop-monospace-large {
+        font: 400 0.8rem/1.2rem var(--mono-font);
+      }
+      body {
+        font: 400 0.8rem/1.2rem var(--main-font);
+        text-rendering: optimizeLegibility;
+        background: var(--bg);
+        color: var(--fg);
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-image: radial-gradient(
+            ellipse at 15% 40%,
+            var(--accent-1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 85% 60%,
+            var(--accent-2) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 50% 90%,
+            var(--accent-3) 0%,
+            transparent 40%
+          );
+      }
+      #main {
+        width: 100%;
+        max-width: 980px;
+        padding: 36px 24px;
+        box-sizing: border-box;
+      }
+      #home-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+      }
+      #logo img {
+        display: block;
+      }
+      .searchform-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      form#searchform {
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        align-items: center;
+        background: var(--surface);
+        border-radius: 16px;
+        padding: 14px 16px;
+        box-shadow: 0 8px 32px var(--shadow), 0 0 0 1px var(--border);
+        border: 1px solid var(--border);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+      form#searchform:focus-within {
+        box-shadow: 0 8px 32px var(--shadow), 0 0 0 1px var(--border-strong),
+          0 0 0 3px var(--focus-ring);
+        border-color: var(--border-strong);
+      }
+      #search-icon {
+        display: flex;
+        align-items: center;
+        margin-right: 8px;
+        cursor: pointer;
+        padding: 6px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+      #search-icon:hover {
+        background: var(--surface-hover);
+      }
+      #search-icon .engine-logo {
+        display: block;
+        width: 24px;
+        height: 24px;
+      }
+      textarea#searchbox {
+        flex: 1;
+        background: transparent;
+        border: 0;
+        outline: 0;
+        color: var(--fg);
+        resize: none;
+        padding: 0 6px;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        font-family: var(--main-font);
+        min-height: 20px;
+        max-height: 200px;
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+      textarea#searchbox::placeholder {
+        color: var(--muted-2);
+      }
+      .searchform-actions-button {
+        background: transparent;
+        border: 0;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+      .searchform-actions-button:hover {
+        background: var(--surface-hover);
+        color: var(--fg);
+      }
+      /* Engine dropdown styles */
+      .engine-dropdown {
+        position: relative;
+      }
+      .engine-dropdown-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        background: var(--surface);
+        border-radius: 12px;
+        padding: 8px;
+        box-shadow: 0 8px 32px var(--shadow), 0 0 0 1px var(--border);
+        border: 1px solid var(--border);
+        backdrop-filter: blur(10px);
+        min-width: 180px;
+        z-index: 1000;
+        display: none;
+      }
+      .engine-dropdown-menu.show {
+        display: block;
+      }
+      .engine-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: var(--fg);
+        font-size: 0.85rem;
+      }
+      .engine-option:hover {
+        background: var(--surface-hover);
+      }
+      .engine-option.selected {
+        background: var(--accent-1);
+      }
+      .engine-option img {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+      /* old searchbar selector removed - footer selector styles below */
+
+      /* engine badge removed */
+
+
+
+      footer {
+        width: 100%;
+        max-width: 980px;
+        margin-top: auto;
+        padding: 20px 24px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--muted-2);
+        font-size: 0.75rem;
+        text-align: center;
+      }
+      footer .links {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      footer .links a {
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      footer .links a:hover {
+        color: var(--fg);
+      }
+
+      /* Quick Links */
+      .quicklinks {
+        width: 100%;
+        max-width: 600px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .quicklink {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--surface-hover);
+        color: var(--fg);
+        text-decoration: none;
+        font-size: 0.75rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .quicklink:hover {
+        background: var(--surface);
+        border-color: var(--border-strong);
+        transform: translateY(-1px);
+      }
+      .quicklink img {
+        width: 14px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+
+      /* Theme toggle button */
+      .theme-toggle {
+        background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+        color: var(--fg);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: var(--main-font);
+        font-size: 0.75rem;
+        box-shadow: 0 2px 8px rgba(0, 212, 255, 0.15);
+      }
+      .theme-toggle:hover {
+        background: linear-gradient(135deg, var(--accent-1-strong) 0%, var(--accent-2-strong) 50%, var(--accent-3-strong) 100%);
+        border-color: var(--border-strong);
+        box-shadow: 0 4px 12px rgba(0, 212, 255, 0.25);
+        transform: translateY(-1px);
+      }
+      .svelte-ve2bd1 {
+        box-sizing: border-box;
+      }
+      @media (max-width: 720px) {
+        html {
+          font-size: 16px;
+        }
+        body {
+          background-image: radial-gradient(
+              ellipse at 15% 25%,
+              var(--accent-1) 0%,
+              transparent 60%
+            ),
+            radial-gradient(
+              ellipse at 85% 65%,
+              var(--accent-2) 0%,
+              transparent 60%
+            ),
+            radial-gradient(
+              ellipse at 50% 85%,
+              var(--accent-3) 0%,
+              transparent 50%
+            );
+        }
+        #main {
+          padding: 20px 16px;
+        }
+        #home-wrapper {
+          gap: 20px;
+        }
+        #logo img {
+          height: 44px;
+
+        }
+        form#searchform {
+          padding: 8px 12px;
+          border-radius: 14px;
+          max-width: 100%;
+        }
+        textarea#searchbox {
+          font-size: 0.9rem;
+          padding: 4px 6px;
+          min-height: 18px;
+          white-space: nowrap;
+          overflow-x: auto;
+          overflow-y: hidden;
+        }
+        .searchform-actions-button {
+          padding: 10px;
+          min-width: 44px;
+          min-height: 44px;
+        }
+          .quicklinks {
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 8px;
+          }
+          .quicklink {
+            padding: 8px 10px;
+            font-size: 0.7rem;
+          }
+          .quicklink img {
+            width: 16px;
+            height: 24px;
+          }
+        
+        #welcome-wrapper {
+          padding: 0 12px !important;
+        }
+        #welcome-wrapper p {
+          font-size: 0.8rem !important;
+        }
+        footer {
+          padding: 16px 12px;
+        }
+        footer .links {
+          gap: 12px;
+          font-size: 0.7rem;
+        }
+        .theme-toggle {
+          padding: 8px 14px;
+          font-size: 0.7rem;
+        }
+        #search-icon {
+          margin-right: 6px;
+        }
+        #search-icon .logo-wrapper {
+          margin-left: 6px !important;
+        }
+        #searchform-actions {
+          margin-left: 4px !important;
+        }
+        .engine-selector-wrapper {
+          margin-left: 4px;
+        }
+      }
+      @media (max-width: 480px) {
+        html {
+          font-size: 15px;
+        }
+        #logo img {
+          height: 40px;
+        }
+        form#searchform {
+          padding: 6px 10px;
+        }
+        textarea#searchbox {
+          font-size: 0.85rem;
+          padding: 2px 6px;
+          min-height: 16px;
+          white-space: nowrap;
+          overflow-x: auto;
+          overflow-y: hidden;
+        }
+        .searchform-actions-button {
+          padding: 8px;
+          min-width: 40px;
+          min-height: 40px;
+        }
+        
+          .quicklinks {
+              grid-template-columns: repeat(2, 1fr);
+              gap: 6px;
+            }
+          .quicklink {
+            padding: 7px 8px;
+            font-size: 0.65rem;
+          }
+          .quicklink img {
+            width: 14px;
+            height: 22px;
+          }
+        
+      }
+    </style>
+  </head>
+  <body class="is-pc is-serp">
+    <div id="main" class="full-height">
+      <div id="home-wrapper" class="svelte-ve2bd1">
+        <main class="svelte-ve2bd1" role="main" style="width: 100%">
+          <div
+            id="searchbar-home"
+            class="svelte-ve2bd1"
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 24px;
+            "
+          >
+            <div id="logo" class="svelte-ve2bd1" style="display: block; cursor: default;">
+              <img
+                src="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-logo-dark.Bg87GL4b.svg"
+                alt="Search logo"
+                title="Universal Search"
+                height="64"
+              />
+            </div>
+
+            <div
+              class="searchform-container svelte-g9bky4 llm-enabled multiline"
+              data-testid="searchform-container"
+              style="position: relative;"
+            >
+              <form
+                id="searchform"
+                method="GET"
+                action="#"
+                target="_self"
+                class="svelte-g9bky4"
+              >
+                <div class="engine-dropdown">
+                  <div id="search-icon" class="svelte-g9bky4" role="button" tabindex="0" aria-label="Switch search engine" title="Click to select search engine">
+                    <img 
+                      id="engine-icon" 
+                      class="engine-logo" 
+                      src="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg" 
+                      alt="Brave Search"
+                    />
+                  </div>
+                  <div id="engine-dropdown-menu" class="engine-dropdown-menu" role="menu">
+                    <!-- Dropdown options will be populated by JavaScript -->
+                  </div>
+                </div>
+
+                <textarea
+                  autofocus
+                  id="searchbox"
+                  rows="1"
+                  class="desktop-large-regular styled-scrollbar svelte-g9bky4"
+                  placeholder="Search the web..."
+                  name="q"
+                  autocapitalize="off"
+                  autocomplete="off"
+                  autocorrect="off"
+                  aria-label="Search"
+                  title="Search"
+                  aria-autocomplete="both"
+                  maxlength="2048"
+                ></textarea>
+
+                <div
+                  id="searchform-actions"
+                  class="svelte-g9bky4"
+                  style="display: flex; align-items: center; margin-left: 8px"
+                >
+                  <button
+                    id="clear-query-button"
+                    type="button"
+                    class="searchform-actions-button tooltip svelte-g9bky4"
+                    aria-label="Clear"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      class="icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M5.287 5.287a.85.85 0 0 0 0 1.202L10.797 12l-5.51 5.511a.85.85 0 0 0 1.202 1.202L12 13.203l5.51 5.51a.85.85 0 0 0 1.202-1.203L13.202 12l5.51-5.51a.85.85 0 0 0-1.202-1.202L12 10.798 6.489 5.287a.85.85 0 0 0-1.202 0"
+                        fill="#9AA0B2"
+                      ></path>
+                    </svg>
+                  </button>
+
+                  <button
+                    id="submit-button"
+                    type="submit"
+                    class="searchform-actions-button tooltip svelte-g9bky4"
+                    aria-label="Search"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      class="icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M10.498 2a8.498 8.498 0 1 0 5.843 14.67l4.292 4.291a.8.8 0 1 0 1.131-1.13l-4.367-4.368A8.498 8.498 0 0 0 10.499 2M3.6 10.498a6.898 6.898 0 1 1 13.797 0 6.898 6.898 0 0 1-13.797 0"
+                        fill="#E6E8EE"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            
+
+              <!-- Quick Links -->
+              <div class="quicklinks" id="quicklinks" aria-label="Quick Links">
+                <a href="https://exams.aktu.ac.in/studentlogin.aspx" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z'/%3E%3C/svg%3E" alt=""><span>AKTU</span></a>
+				<a href="https://chatgpt.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310a37f'%3E%3Cpath d='M22.28 12.63a6.15 6.15 0 00-2.13-7.03 6.15 6.15 0 00-7.98.53 6.15 6.15 0 00-6.85-.53 6.15 6.15 0 00-2.13 7.03 6.15 6.15 0 002.13 7.03 6.15 6.15 0 007.98-.53 6.15 6.15 0 006.85.53 6.15 6.15 0 002.13-7.03z'/%3E%3C/svg%3E" alt=""><span>ChatGPT</span></a>
+                <a href="https://www.codewithharry.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff4757'%3E%3Cpath d='M8 3a2 2 0 00-2 2v4a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2H8zm0 10a2 2 0 00-2 2v4a2 2 0 002 2h8a2 2 0 002-2v-4a2 2 0 00-2-2H8z'/%3E%3C/svg%3E" alt=""><span>CodeWithHarry</span></a>
+				<a href="https://classroom.google.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2334a853'%3E%3Cpath d='M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z'/%3E%3C/svg%3E" alt=""><span>Classroom</span></a>
+				 <a href="https://notesgallery.com/computer-organization-and-architecture-aktu-notes/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z'/%3E%3C/svg%3E" alt=""><span>COA Notes</span></a>
+				<a href="https://chat.deepseek.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e90ff'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/%3E%3C/svg%3E" alt=""><span>DeepSeek</span></a>
+                <a href="https://www.drisrar.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%239aa0b2' viewBox='0 0 24 24'%3E%3Cpath d='M12 4a8 8 0 100 16 8 8 0 000-16zm1 11h-2v-1h2v1zm0-3h-2V7h2v5z'/%3E%3C/svg%3E" alt=""><span>Dr. Israr</span></a>
+                <a href="https://azeem117.github.io/EncryptionHub.github.io/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffa502'%3E%3Cpath d='M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6z'/%3E%3C/svg%3E" alt=""><span>Encryption Hub</span></a>
+                <a href="https://gemini.google.com/app" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234285f4'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E" alt=""><span>Gemini</span></a>
+				<a href="https://jssaten.azurewebsites.net/Apps/Login.aspx" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E" alt=""><span>JSSATEN</span></a>
+                <a href="https://github.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z'/%3E%3C/svg%3E" alt=""><span>GitHub</span></a>
+                <a href="https://lmarena.ai/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff6b6b'%3E%3Cpath d='M9 11.75A1.25 1.25 0 007.75 13 1.25 1.25 0 009 14.25 1.25 1.25 0 0010.25 13 1.25 1.25 0 009 11.75zm6 0A1.25 1.25 0 0013.75 13 1.25 1.25 0 0015 14.25 1.25 1.25 0 0016.25 13 1.25 1.25 0 0015 11.75zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.7.33 1.43.33 2.26 0 4.41-3.59 8-8 8z'/%3E%3C/svg%3E" alt=""><span>LMArena</span></a>
+                <a href="https://m365.cloud.microsoft/search/?fromcode=cmmiadtp424&amp;origindomain=Office&amp;auth=2" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230078d4' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l7 4v12l-7 4-7-4V6l7-4z'/%3E%3C/svg%3E" alt=""><span>M365 Copilot</span></a>
+                <a href="https://www.protectedtext.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M12 2a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 8V7a3 3 0 116 0v3H9z'/%3E%3C/svg%3E" alt=""><span>Protected text</span></a>
+                <a href="https://sendfileonline.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%239aa0b2' viewBox='0 0 24 24'%3E%3Cpath d='M20 6H4a2 2 0 00-2 2v1h20V8a2 2 0 00-2-2zm2 5H2v5a2 2 0 002 2h16a2 2 0 002-2v-5zm-6 3H8v-2h8v2z'/%3E%3C/svg%3E" alt=""><span>Send File Online</span></a>
+                <a href="https://ww25.soap2day.day/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff6b6b' viewBox='0 0 24 24'%3E%3Cpath d='M21 6h-7l-2-2H3a2 2 0 00-2 2v10a2 2 0 002 2h18a2 2 0 002-2V8a2 2 0 00-2-2z'/%3E%3C/svg%3E" alt=""><span>Soap 2 Day</span></a>
+                <a href="https://www.youtube.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff0000'%3E%3Cpath d='M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z'/%3E%3C/svg%3E" alt=""><span>YouTube</span></a>
+				<a href="https://m.youtube.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff0000' viewBox='0 0 24 24'%3E%3Cpath d='M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9.25-1.48.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z'/%3E%3C/svg%3E" alt=""><span>YouTube</span></a>
+              </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <footer>
+      <div class="links">
+        <span>© 2025 _.md._.azeem._</span>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="true" title="Toggle theme">Dark</button>
+      </div>
+    </footer>
+
+    <script>
+      // Register Service Worker for PWA functionality
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+              console.log('Service Worker registered successfully:', registration.scope);
+              
+              // Check for updates periodically
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                console.log('Service Worker update found!');
+                
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // New service worker available, notify user
+                    console.log('New version available! Refresh to update.');
+                  }
+                });
+              });
+            })
+            .catch((error) => {
+              console.error('Service Worker registration failed:', error);
+            });
+        });
+      }
+
+      // Search engine configuration with icons
+      const searchEngines = {
+        brave: {
+          url: "https://search.brave.com/search?q=",
+          icon: "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg",
+          name: "Brave Search",
+          suggestUrl: "https://search.brave.com/api/suggest?q="
+        },
+        google: {
+          url: "https://www.google.com/search?q=",
+          icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%234285F4' d='M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z'/%3E%3Cpath fill='%2334A853' d='M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z'/%3E%3Cpath fill='%23FBBC05' d='M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z'/%3E%3Cpath fill='%23EA4335' d='M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z'/%3E%3Cpath fill='none' d='M0 0h48v48H0z'/%3E%3C/svg%3E",
+          name: "Google",
+          suggestUrl: "https://www.google.com/complete/search?client=firefox&q="
+        },
+        duckduckgo: {
+          url: "https://duckduckgo.com/?q=",
+          icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%23de5833'/%3E%3Cpath fill='%23fff' d='M24 10c-7.73 0-14 6.27-14 14 0 1.2.15 2.36.44 3.47.55-.44 1.18-.8 1.87-1.05-.18-.78-.31-1.58-.31-2.42 0-6.63 5.37-12 12-12s12 5.37 12 12c0 .84-.13 1.64-.31 2.42.69.25 1.32.61 1.87 1.05.29-1.11.44-2.27.44-3.47 0-7.73-6.27-14-14-14zm-6 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm12 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-6 4c-2.21 0-4 1.79-4 4h8c0-2.21-1.79-4-4-4z'/%3E%3C/svg%3E",
+          name: "DuckDuckGo",
+          suggestUrl: "https://duckduckgo.com/ac/?q="
+        },
+        bing: {
+          url: "https://www.bing.com/search?q=",
+          icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%2300809d' d='M14 4l4 14 12 4-12 10-2 12-8-6v-34z'/%3E%3Cpath fill='%2300a8e1' d='M18 18l12 4-12 10z'/%3E%3Cpath fill='%23005e7e' d='M14 4v34l4-6V18z'/%3E%3C/svg%3E",
+          name: "Bing",
+          suggestUrl: "https://api.bing.com/osjson.aspx?query="
+        },
+        yahoo: {
+          url: "https://search.yahoo.com/search?p=",
+          icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%235f01d1' d='M24 0C10.7 0 0 10.7 0 24s10.7 24 24 24 24-10.7 24-24S37.3 0 24 0zm8.2 14.3l-6.9 13.1v8.9h-2.6v-8.9l-6.9-13.1h3l5.2 10.1 5.2-10.1h3z'/%3E%3C/svg%3E",
+          name: "Yahoo",
+          suggestUrl: "https://search.yahoo.com/sugg/gossip/gossip-us-ura/?output=fxjson&command="
+        },
+        startpage: {
+          url: "https://www.startpage.com/do/search?q=",
+          icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect fill='%23206580' width='48' height='48' rx='8'/%3E%3Cpath fill='%23fff' d='M24 8c-8.8 0-16 7.2-16 16s7.2 16 16 16 16-7.2 16-16-7.2-16-16-16zm0 28c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12-5.4 12-12 12z'/%3E%3Ccircle fill='%23fff' cx='24' cy='24' r='6'/%3E%3C/svg%3E",
+          name: "Startpage",
+          suggestUrl: null // Startpage doesn't have a public suggestions API
+        }
+      };
+
+      // Array of engine keys for cycling
+      const engineKeys = Object.keys(searchEngines);
+      let currentEngineIndex = 0;
+
+      // Get elements
+      const searchForm = document.getElementById("searchform");
+      const searchBox = document.getElementById("searchbox");
+      const clearButton = document.getElementById("clear-query-button");
+      const searchIcon = document.getElementById("search-icon");
+      const engineIcon = document.getElementById("engine-icon");
+      const themeToggle = document.getElementById("theme-toggle");
+      const dropdownMenu = document.getElementById("engine-dropdown-menu");
+
+      // Function to populate dropdown menu
+      function populateDropdown() {
+        dropdownMenu.innerHTML = "";
+        engineKeys.forEach((engineKey, index) => {
+          const engine = searchEngines[engineKey];
+          const option = document.createElement("div");
+          option.className = "engine-option";
+          option.setAttribute("role", "menuitem");
+          option.setAttribute("data-engine-index", index);
+          if (index === currentEngineIndex) {
+            option.classList.add("selected");
+          }
+          
+          const icon = document.createElement("img");
+          icon.src = engine.icon;
+          icon.alt = "";
+          
+          const name = document.createElement("span");
+          name.textContent = engine.name;
+          
+          option.appendChild(icon);
+          option.appendChild(name);
+          
+          option.addEventListener("click", function() {
+            selectEngine(index);
+            toggleDropdown();
+          });
+          
+          dropdownMenu.appendChild(option);
+        });
+      }
+
+      // Function to toggle dropdown visibility
+      function toggleDropdown() {
+        dropdownMenu.classList.toggle("show");
+        if (dropdownMenu.classList.contains("show")) {
+          populateDropdown();
+        }
+      }
+
+      // Function to select a specific engine
+      function selectEngine(index) {
+        currentEngineIndex = index;
+        updateEngineIcon();
+      }
+
+      // Function to update the engine icon and save preference
+      function updateEngineIcon() {
+        const currentEngine = engineKeys[currentEngineIndex];
+        const engine = searchEngines[currentEngine];
+        
+        engineIcon.src = engine.icon;
+        engineIcon.alt = engine.name;
+        searchIcon.title = `${engine.name} (Click to select)`;
+        
+        // Save to localStorage
+        localStorage.setItem("preferredSearchEngine", currentEngine);
+        
+        // Update selected state in dropdown if it's open
+        if (dropdownMenu.classList.contains("show")) {
+          const options = dropdownMenu.querySelectorAll(".engine-option");
+          options.forEach((option, index) => {
+            option.classList.toggle("selected", index === currentEngineIndex);
+          });
+        }
+      }
+
+      // Add click event to search icon to toggle dropdown
+      searchIcon.addEventListener("click", function(e) {
+        e.stopPropagation();
+        toggleDropdown();
+      });
+      
+      // Add keyboard support for search icon
+      searchIcon.addEventListener("keydown", function(e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleDropdown();
+        }
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function(e) {
+        if (!searchIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
+          dropdownMenu.classList.remove("show");
+        }
+      });
+
+      // Close dropdown when pressing Escape
+      document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape" && dropdownMenu.classList.contains("show")) {
+          dropdownMenu.classList.remove("show");
+        }
+      });
+
+      // Load preferred search engine from localStorage
+      const savedEngine = localStorage.getItem("preferredSearchEngine");
+      if (savedEngine && searchEngines[savedEngine]) {
+        currentEngineIndex = engineKeys.indexOf(savedEngine);
+      }
+      updateEngineIcon();
+
+      // Auto-resize textarea
+      function autosize() {
+        searchBox.style.height = "auto";
+        searchBox.style.height = searchBox.scrollHeight + "px";
+      }
+      searchBox.addEventListener("input", autosize, false);
+      // Show/hide clear button
+      function updateClearButtonVisibility() {
+        clearButton.style.visibility = searchBox.value.trim() ? "visible" : "hidden";
+      }
+      searchBox.addEventListener("input", updateClearButtonVisibility);
+      updateClearButtonVisibility();
+      autosize();
+
+      // Clear button functionality
+      clearButton.addEventListener("click", function () {
+        searchBox.value = "";
+        searchBox.focus();
+        autosize();
+        updateClearButtonVisibility();
+      });
+
+      // Handle form submission
+      searchForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const query = searchBox.value.trim();
+        if (!query) {
+          searchBox.focus();
+          return;
+        }
+
+        const currentEngine = engineKeys[currentEngineIndex];
+        const searchUrl = searchEngines[currentEngine].url;
+
+        // Redirect to the selected search engine with the query
+        window.location.href = searchUrl + encodeURIComponent(query);
+      });
+
+      // Handle Enter key in textarea
+      searchBox.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          searchForm.dispatchEvent(new Event("submit"));
+        }
+      });
+
+      // Global keyboard shortcuts
+      document.addEventListener("keydown", function (e) {
+        const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
+        const isTyping = tag === "input" || tag === "textarea" || e.target.isContentEditable;
+        // Focus with "/" when not typing
+        if (e.key === "/" && !isTyping) {
+          e.preventDefault();
+          searchBox.focus();
+        }
+        // Focus with Ctrl/Cmd+K
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          searchBox.focus();
+        }
+        // Submit to new tab with Ctrl+Enter
+        if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+          const q = searchBox.value.trim();
+          if (!q) return;
+          const currentEngine = engineKeys[currentEngineIndex];
+          const url = searchEngines[currentEngine].url + encodeURIComponent(q);
+          window.open(url, "_blank");
+        }
+      });
+
+      // Theme handling
+      const rootEl = document.documentElement;
+      function applyTheme(theme) {
+        if (theme === "light") {
+          rootEl.classList.add("light");
+          rootEl.classList.remove("dark");
+          if (themeToggle) themeToggle.textContent = "Light";
+          if (themeToggle) themeToggle.setAttribute("aria-pressed", "false");
+        } else {
+          rootEl.classList.add("dark");
+          rootEl.classList.remove("light");
+          if (themeToggle) themeToggle.textContent = "Dark";
+          if (themeToggle) themeToggle.setAttribute("aria-pressed", "true");
+        }
+      }
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light" || savedTheme === "dark") {
+        applyTheme(savedTheme);
+      } else {
+        // Use existing class on html as default
+        applyTheme(rootEl.classList.contains("light") ? "light" : "dark");
+      }
+      if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+          const next = rootEl.classList.contains("light") ? "dark" : "light";
+          applyTheme(next);
+          localStorage.setItem("theme", next);
+        });
+      }
+    </script>
+  </body>
+</html>
