@@ -95,6 +95,9 @@
         --accent-3-strong: rgba(236, 72, 153, 0.4);
         --chip-bg: rgba(168, 178, 209, 0.08);
         --chip-fg: var(--fg);
+        --icon-shadow-mobile: 0 4px 12px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
+        --icon-shadow-active: 0 2px 8px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
+        --icon-gradient-overlay: rgba(168, 178, 209, 0.1);
       }
 
       .light {
@@ -116,6 +119,9 @@
         --accent-3-strong: rgba(236, 72, 153, 0.3);
         --chip-bg: rgba(0, 0, 0, 0.05);
         --chip-fg: var(--fg);
+        --icon-shadow-mobile: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        --icon-shadow-active: 0 2px 8px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.08);
+        --icon-gradient-overlay: rgba(0, 0, 0, 0.03);
       }
 
       @font-face {
@@ -636,15 +642,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--surface) 0%, rgba(168, 178, 209, 0.1) 100%);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            background: linear-gradient(135deg, var(--surface) 0%, var(--icon-gradient-overlay) 100%);
+            box-shadow: var(--icon-shadow-mobile);
             border: 1px solid var(--border);
             flex-shrink: 0;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .quicklink:active .icon-bg {
             transform: scale(0.92); /* Touch feedback */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--icon-shadow-active);
         }
 
         .quicklink img {
