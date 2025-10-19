@@ -248,6 +248,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center; /* Center content vertically by default (desktop) */
         background-image: radial-gradient(
             ellipse at 15% 40%,
             var(--accent-1) 0%,
@@ -275,6 +276,7 @@
         flex-direction: column;
         align-items: center;
         gap: 28px;
+        width: 100%; /* Added width for mobile centering */
       }
       #logo img {
         display: block;
@@ -402,8 +404,6 @@
 
       /* engine badge removed */
 
-
-
       footer {
         width: 100%;
         max-width: 980px;
@@ -432,7 +432,7 @@
         color: var(--fg);
       }
 
-      /* Quick Links */
+      /* Quick Links - Desktop Default (Grid Layout) */
       .quicklinks {
         width: 100%;
         max-width: 600px;
@@ -468,6 +468,15 @@
         height: 20px;
         flex-shrink: 0;
       }
+      /* Desktop specific icon-bg reset */
+      .quicklink .icon-bg {
+        display: contents; /* Revert wrapper effects on desktop */
+      }
+      .quicklink .icon-bg img {
+        width: 14px;
+        height: 20px;
+      }
+
 
       /* Theme toggle button */
       .theme-toggle {
@@ -492,11 +501,17 @@
       .svelte-ve2bd1 {
         box-sizing: border-box;
       }
+
+      /* ================================================= */
+      /* MOBILE STYLES: Custom Android Look & Positioning */
+      /* ================================================= */
       @media (max-width: 720px) {
         html {
           font-size: 16px;
         }
         body {
+          /* Ensure content starts from top on mobile */
+          justify-content: flex-start;
           background-image: radial-gradient(
               ellipse at 15% 25%,
               var(--accent-1) 0%,
@@ -515,13 +530,27 @@
         }
         #main {
           padding: 20px 16px;
+          min-height: 100vh; /* Ensure full height to contain wrapper */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
         #home-wrapper {
-          gap: 20px;
+            /* Use min-height 100vh on the wrapper to control positioning */
+            min-height: 100vh; 
+            justify-content: flex-start;
+            padding-top: 5vh; /* Initial padding for logo */
         }
+        #searchbar-home {
+          /* Move search bar and quick links down below half-screen mark */
+          margin-top: 30vh; /* Push the entire block down */
+          gap: 20px !important;
+          width: 100%;
+        }
+
+        /* Search Form & Logo adjustments */
         #logo img {
           height: 44px;
-
         }
         form#searchform {
           padding: 8px 12px;
@@ -532,61 +561,113 @@
           font-size: 0.9rem;
           padding: 4px 6px;
           min-height: 18px;
-          white-space: nowrap;
-          overflow-x: auto;
-          overflow-y: hidden;
         }
         .searchform-actions-button {
           padding: 10px;
           min-width: 44px;
           min-height: 44px;
         }
-          .quicklinks {
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 8px;
-          }
-          .quicklink {
-            padding: 8px 10px;
-            font-size: 0.7rem;
-          }
-          .quicklink img {
-            width: 16px;
-            height: 24px;
-          }
-        
-        #welcome-wrapper {
-          padding: 0 12px !important;
-        }
-        #welcome-wrapper p {
-          font-size: 0.8rem !important;
-        }
-        footer {
-          padding: 16px 12px;
-        }
-        footer .links {
-          gap: 12px;
-          font-size: 0.7rem;
-        }
-        .theme-toggle {
-          padding: 8px 14px;
-          font-size: 0.7rem;
-        }
         #search-icon {
           margin-right: 6px;
         }
-        #search-icon .logo-wrapper {
-          margin-left: 6px !important;
+
+        /* Quick Links Mobile: App Icon Grid with Sliding */
+        .quicklinks {
+          /* This container is the scrollable track for the slides */
+          display: flex !important;
+          flex-wrap: nowrap;
+          overflow-x: scroll;
+          overflow-y: hidden;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          padding: 10px 0;
+          width: 100%;
+          /* Fixed height for two rows of icons + margins */
+          height: 220px; 
+          box-sizing: border-box;
+          /* Hide scrollbar on mobile */
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
         }
-        #searchform-actions {
-          margin-left: 4px !important;
+        .quicklinks::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
         }
-        .engine-selector-wrapper {
-          margin-left: 4px;
+
+        /* Define the container for the 4 columns x 2 rows grid */
+        .quicklink-slide {
+          flex-shrink: 0;
+          width: 100%; /* Each slide takes full container width (for snapping) */
+          scroll-snap-align: center;
+          
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          grid-template-rows: repeat(2, 1fr);
+          gap: 8px; /* Spacing between icons */
+          padding: 0 10px; /* Internal padding for spacing */
+          box-sizing: border-box;
+        }
+
+        /* Individual Quick Link (The App Icon Look) */
+        .quicklink {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0;
+            border: none;
+            background: transparent;
+            text-decoration: none;
+            text-align: center;
+            aspect-ratio: auto;
+            /* Remove desktop hover/interaction styles */
+            transition: none; 
+        }
+
+        /* Icon Wrapper: The rounded square background */
+        .quicklink .icon-bg {
+            width: 56px;
+            height: 56px;
+            border-radius: 15px; /* App icon rounding */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface); /* Subtle background for the icon area */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+            transition: transform 0.1s ease;
+        }
+        .quicklink:active .icon-bg {
+            transform: scale(0.9); /* Touch feedback */
+        }
+
+        .quicklink img {
+            width: 32px; /* Larger icon */
+            height: 32px;
+            margin: 0;
+            object-fit: contain;
+        }
+
+        /* Label below the icon */
+        .quicklink span {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--fg);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.2;
+            margin-top: 4px;
+            padding: 0 2px;
+            max-width: 100%;
         }
       }
       @media (max-width: 480px) {
         html {
           font-size: 15px;
+        }
+        #searchbar-home {
+            margin-top: 25vh; /* Slightly less push on very small screens */
         }
         #logo img {
           height: 40px;
@@ -598,29 +679,26 @@
           font-size: 0.85rem;
           padding: 2px 6px;
           min-height: 16px;
-          white-space: nowrap;
-          overflow-x: auto;
-          overflow-y: hidden;
         }
         .searchform-actions-button {
           padding: 8px;
           min-width: 40px;
           min-height: 40px;
         }
-        
-          .quicklinks {
-              grid-template-columns: repeat(2, 1fr);
-              gap: 6px;
-            }
-          .quicklink {
-            padding: 7px 8px;
-            font-size: 0.65rem;
-          }
-          .quicklink img {
-            width: 14px;
-            height: 22px;
-          }
-        
+        .quicklinks {
+            height: 200px; /* Adjusted height for smaller icons */
+        }
+        .quicklink .icon-bg {
+            width: 50px;
+            height: 50px;
+        }
+        .quicklink img {
+            width: 28px;
+            height: 28px;
+        }
+        .quicklink span {
+            font-size: 0.6rem;
+        }
       }
     </style>
   </head>
@@ -744,28 +822,82 @@
             </div>
 
             
-
-              <!-- Quick Links -->
-              <div class="quicklinks" id="quicklinks" aria-label="Quick Links">
-                <a href="https://exams.aktu.ac.in/studentlogin.aspx" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z'/%3E%3C/svg%3E" alt=""><span>AKTU</span></a>
-				<a href="https://chatgpt.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310a37f'%3E%3Cpath d='M22.28 12.63a6.15 6.15 0 00-2.13-7.03 6.15 6.15 0 00-7.98.53 6.15 6.15 0 00-6.85-.53 6.15 6.15 0 00-2.13 7.03 6.15 6.15 0 002.13 7.03 6.15 6.15 0 007.98-.53 6.15 6.15 0 006.85.53 6.15 6.15 0 002.13-7.03z'/%3E%3C/svg%3E" alt=""><span>ChatGPT</span></a>
-                <a href="https://www.codewithharry.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff4757'%3E%3Cpath d='M8 3a2 2 0 00-2 2v4a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2H8zm0 10a2 2 0 00-2 2v4a2 2 0 002 2h8a2 2 0 002-2v-4a2 2 0 00-2-2H8z'/%3E%3C/svg%3E" alt=""><span>CodeWithHarry</span></a>
-				<a href="https://classroom.google.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2334a853'%3E%3Cpath d='M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z'/%3E%3C/svg%3E" alt=""><span>Classroom</span></a>
-				 <a href="https://notesgallery.com/computer-organization-and-architecture-aktu-notes/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z'/%3E%3C/svg%3E" alt=""><span>COA Notes</span></a>
-				<a href="https://chat.deepseek.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e90ff'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/%3E%3C/svg%3E" alt=""><span>DeepSeek</span></a>
-                <a href="https://www.drisrar.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%239aa0b2' viewBox='0 0 24 24'%3E%3Cpath d='M12 4a8 8 0 100 16 8 8 0 000-16zm1 11h-2v-1h2v1zm0-3h-2V7h2v5z'/%3E%3C/svg%3E" alt=""><span>Dr. Israr</span></a>
-                <a href="https://azeem117.github.io/EncryptionHub.github.io/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffa502'%3E%3Cpath d='M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6z'/%3E%3C/svg%3E" alt=""><span>Encryption Hub</span></a>
-                <a href="https://gemini.google.com/app" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234285f4'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E" alt=""><span>Gemini</span></a>
-				<a href="https://jssaten.azurewebsites.net/Apps/Login.aspx" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E" alt=""><span>JSSATEN</span></a>
-                <a href="https://github.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z'/%3E%3C/svg%3E" alt=""><span>GitHub</span></a>
-                <a href="https://lmarena.ai/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff6b6b'%3E%3Cpath d='M9 11.75A1.25 1.25 0 007.75 13 1.25 1.25 0 009 14.25 1.25 1.25 0 0010.25 13 1.25 1.25 0 009 11.75zm6 0A1.25 1.25 0 0013.75 13 1.25 1.25 0 0015 14.25 1.25 1.25 0 0016.25 13 1.25 1.25 0 0015 11.75zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.7.33 1.43.33 2.26 0 4.41-3.59 8-8 8z'/%3E%3C/svg%3E" alt=""><span>LMArena</span></a>
-                <a href="https://m365.cloud.microsoft/search/?fromcode=cmmiadtp424&amp;origindomain=Office&amp;auth=2" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230078d4' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l7 4v12l-7 4-7-4V6l7-4z'/%3E%3C/svg%3E" alt=""><span>M365 Copilot</span></a>
-                <a href="https://www.protectedtext.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M12 2a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 8V7a3 3 0 116 0v3H9z'/%3E%3C/svg%3E" alt=""><span>Protected text</span></a>
-                <a href="https://sendfileonline.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%239aa0b2' viewBox='0 0 24 24'%3E%3Cpath d='M20 6H4a2 2 0 00-2 2v1h20V8a2 2 0 00-2-2zm2 5H2v5a2 2 0 002 2h16a2 2 0 002-2v-5zm-6 3H8v-2h8v2z'/%3E%3C/svg%3E" alt=""><span>Send File Online</span></a>
-                <a href="https://ww25.soap2day.day/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff6b6b' viewBox='0 0 24 24'%3E%3Cpath d='M21 6h-7l-2-2H3a2 2 0 00-2 2v10a2 2 0 002 2h18a2 2 0 002-2V8a2 2 0 00-2-2z'/%3E%3C/svg%3E" alt=""><span>Soap 2 Day</span></a>
-                <a href="https://www.youtube.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff0000'%3E%3Cpath d='M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z'/%3E%3C/svg%3E" alt=""><span>YouTube</span></a>
-				<a href="https://m.youtube.com/" class="quicklink"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff0000' viewBox='0 0 24 24'%3E%3Cpath d='M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9.25-1.48.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z'/%3E%3C/svg%3E" alt=""><span>YouTube</span></a>
-              </div>
+            <!-- Quick Links - Restructured for App Icon look and mobile sliding -->
+            <div class="quicklinks" id="quicklinks" aria-label="Quick Links">
+              <a href="https://exams.aktu.ac.in/studentlogin.aspx" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z'/%3E%3C/svg%3E" alt="AKTU icon"></div>
+                  <span>AKTU</span>
+              </a>
+              <a href="https://chatgpt.com/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310a37f'%3E%3Cpath d='M22.28 12.63a6.15 6.15 0 00-2.13-7.03 6.15 6.15 0 00-7.98.53 6.15 6.15 0 00-6.85-.53 6.15 6.15 0 00-2.13 7.03 6.15 6.15 0 002.13 7.03 6.15 6.15 0 007.98-.53 6.15 6.15 0 006.85.53 6.15 6.15 0 002.13-7.03z'/%3E%3C/svg%3E" alt="ChatGPT icon"></div>
+                  <span>ChatGPT</span>
+              </a>
+              <a href="https://www.codewithharry.com/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff4757'%3E%3Cpath d='M8 3a2 2 0 00-2 2v4a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2H8zm0 10a2 2 0 00-2 2v4a2 2 0 002 2h8a2 2 0 002-2v-4a2 2 0 00-2-2H8z'/%3E%3C/svg%3E" alt="CodeWithHarry icon"></div>
+                  <span>CodeWithHarry</span>
+              </a>
+              <a href="https://classroom.google.com/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2334a853'%3E%3Cpath d='M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z'/%3E%3C/svg%3E" alt="Classroom icon"></div>
+                  <span>Classroom</span>
+              </a>
+              <a href="https://notesgallery.com/computer-organization-and-architecture-aktu-notes/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z'/%3E%3C/svg%3E" alt="COA Notes icon"></div>
+                  <span>COA Notes</span>
+              </a>
+              <a href="https://chat.deepseek.com/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e90ff'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/%3E%3C/svg%3E" alt="DeepSeek icon"></div>
+                  <span>DeepSeek</span>
+              </a>
+              <a href="https://www.drisrar.com/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%239aa0b2' viewBox='0 0 24 24'%3E%3Cpath d='M12 4a8 8 0 100 16 8 8 0 000-16zm1 11h-2v-1h2v1zm0-3h-2V7h2v5z'/%3E%3C/svg%3E" alt="Dr. Israr icon"></div>
+                  <span>Dr. Israr</span>
+              </a>
+              <a href="https://azeem117.github.io/EncryptionHub.github.io/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffa502'%3E%3Cpath d='M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6z'/%3E%3C/svg%3E" alt="Encryption Hub icon"></div>
+                  <span>Encryption Hub</span>
+              </a>
+              <a href="https://gemini.google.com/app" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234285f4'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E" alt="Gemini icon"></div>
+                  <span>Gemini</span>
+              </a>
+              <a href="https://jssaten.azurewebsites.net/Apps/Login.aspx" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E" alt="JSSATEN icon"></div>
+                  <span>JSSATEN</span>
+              </a>
+              <a href="https://github.com/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z'/%3E%3C/svg%3E" alt="GitHub icon"></div>
+                  <span>GitHub</span>
+              </a>
+              <a href="https://lmarena.ai/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff6b6b'%3E%3Cpath d='M9 11.75A1.25 1.25 0 007.75 13 1.25 1.25 0 009 14.25 1.25 1.25 0 0010.25 13 1.25 1.25 0 009 11.75zm6 0A1.25 1.25 0 0013.75 13 1.25 1.25 0 0015 14.25 1.25 1.25 0 0016.25 13 1.25 1.25 0 0015 11.75zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.7.33 1.43.33 2.26 0 4.41-3.59 8-8 8z'/%3E%3C/svg%3E" alt="LMArena icon"></div>
+                  <span>LMArena</span>
+              </a>
+              <a href="https://m365.cloud.microsoft/search/?fromcode=cmmiadtp424&amp;origindomain=Office&amp;auth=2" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230078d4' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l7 4v12l-7 4-7-4V6l7-4z'/%3E%3C/svg%3E" alt="M365 Copilot icon"></div>
+                  <span>M365 Copilot</span>
+              </a>
+              <a href="https://www.protectedtext.com/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0b2'%3E%3Cpath d='M12 2a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 8V7a3 3 0 116 0v3H9z'/%3E%3C/svg%3E" alt="Protected text icon"></div>
+                  <span>Protected text</span>
+              </a>
+              <a href="https://sendfileonline.com/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%239aa0b2' viewBox='0 0 24 24'%3E%3Cpath d='M20 6H4a2 2 0 00-2 2v1h20V8a2 2 0 00-2-2zm2 5H2v5a2 2 0 002 2h16a2 2 0 002-2v-5zm-6 3H8v-2h8v2z'/%3E%3C/svg%3E" alt="Send File Online icon"></div>
+                  <span>Send File Online</span>
+              </a>
+              <a href="https://ww25.soap2day.day/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff6b6b' viewBox='0 0 24 24'%3E%3Cpath d='M21 6h-7l-2-2H3a2 2 0 00-2 2v10a2 2 0 002 2h18a2 2 0 002-2V8a2 2 0 00-2-2z'/%3E%3C/svg%3E" alt="Soap 2 Day icon"></div>
+                  <span>Soap 2 Day</span>
+              </a>
+              <a href="https://www.youtube.com/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff0000'%3E%3Cpath d='M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z'/%3E%3C/svg%3E" alt="YouTube icon"></div>
+                  <span>YouTube</span>
+              </a>
+              <a href="https://m.youtube.com/" class="quicklink">
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff0000' viewBox='0 0 24 24'%3E%3Cpath d='M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z'/%3E%3C/svg%3E" alt="YouTube icon"></div>
+                  <span>YouTube</span>
+              </a>
+            </div>
+            
           </div>
         </main>
       </div>
@@ -779,7 +911,61 @@
     </footer>
 
     <script>
-      // Register Service Worker for PWA functionality
+      // Function to group quick links into 4x2 slides for mobile carousel
+      function setupQuicklinkCarousel() {
+        const container = document.getElementById('quicklinks');
+        if (!container) return;
+        
+        // Check if we are on a mobile screen (or smaller than 720px)
+        const isMobile = window.matchMedia('(max-width: 720px)').matches;
+
+        if (isMobile) {
+            // Check if the structure is already grouped to prevent re-grouping on resize
+            if (container.querySelector('.quicklink-slide')) {
+                return;
+            }
+            
+            const links = Array.from(container.children).filter(el => el.classList.contains('quicklink'));
+            const linksPerSlide = 8; // 4 columns * 2 rows
+
+            // Temporarily hold all links to re-group
+            const fragment = document.createDocumentFragment();
+
+            for (let i = 0; i < links.length; i += linksPerSlide) {
+              const slide = document.createElement('div');
+              slide.className = 'quicklink-slide';
+              
+              // Append up to 8 links to the slide
+              const slice = links.slice(i, i + linksPerSlide);
+              slice.forEach(link => slide.appendChild(link));
+
+              fragment.appendChild(slide);
+            }
+            
+            // Replace the original contents with the new slides
+            container.innerHTML = ''; // Clear container
+            container.appendChild(fragment);
+            
+        } else {
+            // Restore original structure for Desktop (ungroup slides into main container)
+            const slides = container.querySelectorAll('.quicklink-slide');
+            if (slides.length > 0) {
+                const fragment = document.createDocumentFragment();
+                slides.forEach(slide => {
+                    // Move all children (quicklinks) back to the fragment
+                    while (slide.firstChild) {
+                        fragment.appendChild(slide.firstChild);
+                    }
+                });
+                container.innerHTML = '';
+                container.appendChild(fragment);
+                // Ensure desktop grid styles are applied 
+                container.style.display = 'grid';
+            }
+        }
+      }
+
+      // Register Service Worker for PWA functionality (existing code)
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker
@@ -806,7 +992,7 @@
         });
       }
 
-      // Search engine configuration with icons
+      // Search engine configuration with icons (existing code)
       const searchEngines = {
         brave: {
           url: "https://search.brave.com/search?q=",
@@ -859,7 +1045,7 @@
       const themeToggle = document.getElementById("theme-toggle");
       const dropdownMenu = document.getElementById("engine-dropdown-menu");
 
-      // Function to populate dropdown menu
+      // Function to populate dropdown menu (existing code)
       function populateDropdown() {
         dropdownMenu.innerHTML = "";
         engineKeys.forEach((engineKey, index) => {
@@ -891,7 +1077,7 @@
         });
       }
 
-      // Function to toggle dropdown visibility
+      // Function to toggle dropdown visibility (existing code)
       function toggleDropdown() {
         dropdownMenu.classList.toggle("show");
         if (dropdownMenu.classList.contains("show")) {
@@ -899,13 +1085,13 @@
         }
       }
 
-      // Function to select a specific engine
+      // Function to select a specific engine (existing code)
       function selectEngine(index) {
         currentEngineIndex = index;
         updateEngineIcon();
       }
 
-      // Function to update the engine icon and save preference
+      // Function to update the engine icon and save preference (existing code)
       function updateEngineIcon() {
         const currentEngine = engineKeys[currentEngineIndex];
         const engine = searchEngines[currentEngine];
@@ -926,13 +1112,13 @@
         }
       }
 
-      // Add click event to search icon to toggle dropdown
+      // Add click event to search icon to toggle dropdown (existing code)
       searchIcon.addEventListener("click", function(e) {
         e.stopPropagation();
         toggleDropdown();
       });
       
-      // Add keyboard support for search icon
+      // Add keyboard support for search icon (existing code)
       searchIcon.addEventListener("keydown", function(e) {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
@@ -940,34 +1126,34 @@
         }
       });
 
-      // Close dropdown when clicking outside
+      // Close dropdown when clicking outside (existing code)
       document.addEventListener("click", function(e) {
         if (!searchIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
           dropdownMenu.classList.remove("show");
         }
       });
 
-      // Close dropdown when pressing Escape
+      // Close dropdown when pressing Escape (existing code)
       document.addEventListener("keydown", function(e) {
         if (e.key === "Escape" && dropdownMenu.classList.contains("show")) {
           dropdownMenu.classList.remove("show");
         }
       });
 
-      // Load preferred search engine from localStorage
+      // Load preferred search engine from localStorage (existing code)
       const savedEngine = localStorage.getItem("preferredSearchEngine");
       if (savedEngine && searchEngines[savedEngine]) {
         currentEngineIndex = engineKeys.indexOf(savedEngine);
       }
       updateEngineIcon();
 
-      // Auto-resize textarea
+      // Auto-resize textarea (existing code)
       function autosize() {
         searchBox.style.height = "auto";
         searchBox.style.height = searchBox.scrollHeight + "px";
       }
       searchBox.addEventListener("input", autosize, false);
-      // Show/hide clear button
+      // Show/hide clear button (existing code)
       function updateClearButtonVisibility() {
         clearButton.style.visibility = searchBox.value.trim() ? "visible" : "hidden";
       }
@@ -975,7 +1161,7 @@
       updateClearButtonVisibility();
       autosize();
 
-      // Clear button functionality
+      // Clear button functionality (existing code)
       clearButton.addEventListener("click", function () {
         searchBox.value = "";
         searchBox.focus();
@@ -983,7 +1169,7 @@
         updateClearButtonVisibility();
       });
 
-      // Handle form submission
+      // Handle form submission (existing code)
       searchForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
@@ -1000,7 +1186,7 @@
         window.location.href = searchUrl + encodeURIComponent(query);
       });
 
-      // Handle Enter key in textarea
+      // Handle Enter key in textarea (existing code)
       searchBox.addEventListener("keydown", function (e) {
         if (e.key === "Enter" && !e.shiftKey) {
           e.preventDefault();
@@ -1008,7 +1194,7 @@
         }
       });
 
-      // Global keyboard shortcuts
+      // Global keyboard shortcuts (existing code)
       document.addEventListener("keydown", function (e) {
         const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
         const isTyping = tag === "input" || tag === "textarea" || e.target.isContentEditable;
@@ -1032,7 +1218,7 @@
         }
       });
 
-      // Theme handling
+      // Theme handling (existing code)
       const rootEl = document.documentElement;
       function applyTheme(theme) {
         if (theme === "light") {
@@ -1061,6 +1247,10 @@
           localStorage.setItem("theme", next);
         });
       }
+
+      // New: Call quicklink carousel setup on load and resize
+      window.addEventListener('load', setupQuicklinkCarousel);
+      window.addEventListener('resize', setupQuicklinkCarousel); 
     </script>
   </body>
 </html>
