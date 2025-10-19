@@ -77,27 +77,27 @@
     <style type="text/css">
       /* Theme tokens */
       :root {
-        --bg: #2a2a48;
-        --fg: #f0f4f8;
-        --muted: #d4d9ec;
-        --muted-2: #c4c9df;
-        --surface: rgba(50, 50, 80, 0.95);
-        --surface-hover: rgba(168, 178, 209, 0.20);
-        --border: rgba(168, 178, 209, 0.30);
-        --border-strong: rgba(168, 178, 209, 0.50);
-        --shadow: rgba(0, 0, 0, 0.35);
-        --focus-ring: rgba(0, 212, 255, 0.60);
-        --accent-1: rgba(0, 212, 255, 0.50);
-        --accent-1-strong: rgba(0, 212, 255, 0.70);
-        --accent-2: rgba(168, 85, 247, 0.50);
-        --accent-2-strong: rgba(168, 85, 247, 0.70);
-        --accent-3: rgba(236, 72, 153, 0.50);
-        --accent-3-strong: rgba(236, 72, 153, 0.70);
-        --chip-bg: rgba(168, 178, 209, 0.20);
+        --bg: #0D1117; /* Even darker, GitHub-style background */
+        --fg: #E6EDF3; /* Bright, clear text color */
+        --muted: #8B949E; /* Muted slate for secondary text */
+        --muted-2: #6E7681; /* Darker muted slate */
+        --surface: rgba(22, 27, 34, 0.9); /* Surface color with slight transparency */
+        --surface-hover: rgba(110, 118, 129, 0.2);
+        --border: rgba(48, 54, 61, 0.7);
+        --border-strong: rgba(66, 76, 85, 0.9);
+        --shadow: rgba(0, 0, 0, 0.6); /* Stronger shadow for depth */
+        --focus-ring: rgba(59, 130, 246, 0.7); /* Vibrant blue focus ring */
+        --accent-1: rgba(14, 165, 233, 0.7); /* Vibrant sky blue */
+        --accent-1-strong: rgba(14, 165, 233, 0.9);
+        --accent-2: rgba(139, 92, 246, 0.7); /* Vibrant violet */
+        --accent-2-strong: rgba(139, 92, 246, 0.9);
+        --accent-3: rgba(234, 179, 8, 0.7); /* Vibrant amber/yellow */
+        --accent-3-strong: rgba(234, 179, 8, 0.9);
+        --chip-bg: rgba(51, 65, 85, 0.5);
         --chip-fg: var(--fg);
-        --icon-shadow-mobile: 0 4px 12px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
-        --icon-shadow-active: 0 2px 8px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
-        --icon-gradient-overlay: rgba(168, 178, 209, 0.1);
+        --icon-shadow-mobile: 0 4px 12px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.3);
+        --icon-shadow-active: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+        --icon-gradient-overlay: rgba(203, 213, 225, 0.1);
       }
 
       .light {
@@ -491,6 +491,7 @@
         background: var(--surface);
         border-color: var(--border-strong);
         transform: translateY(-1px);
+        box-shadow: 0 0 12px -2px var(--accent-2);
       }
       .light .quicklink {
         background: rgba(255, 255, 255, 0.7);
@@ -654,7 +655,7 @@
           flex-shrink: 0;
           width: 100%; /* Each slide takes full container width (for snapping) */
           scroll-snap-align: center;
-          
+         
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           grid-template-rows: repeat(2, 1fr);
@@ -687,9 +688,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--surface) 0%, var(--icon-gradient-overlay) 100%);
+            background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.08), transparent 50%),
+                        linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(13, 17, 23, 0.7) 100%);
             box-shadow: var(--icon-shadow-mobile);
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-strong);
             flex-shrink: 0;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
@@ -703,11 +705,11 @@
             height: 32px;
             margin: 0;
             object-fit: contain;
-            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.15));
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
             transition: filter 0.2s ease;
         }
         .quicklink:active img {
-            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6));
         }
 
         /* Label below the icon */
@@ -762,6 +764,31 @@
         }
         .quicklink span {
             font-size: 0.6rem;
+        }
+      }
+
+      /* ================================================= */
+      /* DESKTOP-ONLY OVERRIDES (Viewport > 720px)      */
+      /* ================================================= */
+      @media (min-width: 721px) {
+        body {
+          /* Position content container towards the bottom */
+          justify-content: flex-end;
+          /* Add padding to push it 20% up from the bottom edge */
+          padding-bottom: 20vh;
+          box-sizing: border-box;
+        }
+
+        .engine-dropdown-menu {
+          /* Make dropdown fully opaque for better readability on desktop */
+          background: rgb(22, 27, 34); /* Opaque version of --surface variable */
+          backdrop-filter: none;
+        }
+
+        .light .engine-dropdown-menu {
+          /* Opaque version for light mode */
+          background: rgb(255, 255, 255);
+          backdrop-filter: none;
         }
       }
     </style>
@@ -885,7 +912,7 @@
               </form>
             </div>
 
-            
+           
             <!-- Quick Links - Restructured for App Icon look and mobile sliding -->
             <div class="quicklinks" id="quicklinks" aria-label="Quick Links">
               <a href="https://exams.aktu.ac.in/studentlogin.aspx" class="quicklink">
@@ -949,11 +976,11 @@
                   <span>Soap 2 Day</span>
               </a>
               <a href="https://m.youtube.com/" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff0000' viewBox='0 0 24 24'%3E%3Cpath d='M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z'/%3E%3C/svg%3E" alt="YouTube icon"></div>
+                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff0000' viewBox='0 0 24 24'%3E%3Cpath d='M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33.22 2.65.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z'/%3E%3C/svg%3E" alt="YouTube icon"></div>
                   <span>YouTube</span>
               </a>
             </div>
-            
+           
           </div>
         </main>
       </div>
@@ -971,7 +998,7 @@
       function setupQuicklinkCarousel() {
         const container = document.getElementById('quicklinks');
         if (!container) return;
-        
+       
         // Check if we are on a mobile screen (or smaller than 720px)
         const isMobile = window.matchMedia('(max-width: 720px)').matches;
 
@@ -980,7 +1007,7 @@
             if (container.querySelector('.quicklink-slide')) {
                 return;
             }
-            
+           
             const links = Array.from(container.children).filter(el => el.classList.contains('quicklink'));
             const linksPerSlide = 8; // 4 columns * 2 rows
 
@@ -990,18 +1017,18 @@
             for (let i = 0; i < links.length; i += linksPerSlide) {
               const slide = document.createElement('div');
               slide.className = 'quicklink-slide';
-              
+             
               // Append up to 8 links to the slide
               const slice = links.slice(i, i + linksPerSlide);
               slice.forEach(link => slide.appendChild(link));
 
               fragment.appendChild(slide);
             }
-            
+           
             // Replace the original contents with the new slides
             container.innerHTML = ''; // Clear container
             container.appendChild(fragment);
-            
+           
         } else {
             // Restore original structure for Desktop (ungroup slides into main container)
             const slides = container.querySelectorAll('.quicklink-slide');
@@ -1028,12 +1055,12 @@
             .register('/sw.js')
             .then((registration) => {
               console.log('Service Worker registered successfully:', registration.scope);
-              
+             
               // Check for updates periodically
               registration.addEventListener('updatefound', () => {
                 const newWorker = registration.installing;
                 console.log('Service Worker update found!');
-                
+               
                 newWorker.addEventListener('statechange', () => {
                   if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
                     // New service worker available, notify user
@@ -1113,22 +1140,22 @@
           if (index === currentEngineIndex) {
             option.classList.add("selected");
           }
-          
+         
           const icon = document.createElement("img");
           icon.src = engine.icon;
           icon.alt = "";
-          
+         
           const name = document.createElement("span");
           name.textContent = engine.name;
-          
+         
           option.appendChild(icon);
           option.appendChild(name);
-          
+         
           option.addEventListener("click", function() {
             selectEngine(index);
             toggleDropdown();
           });
-          
+         
           dropdownMenu.appendChild(option);
         });
       }
@@ -1151,14 +1178,14 @@
       function updateEngineIcon() {
         const currentEngine = engineKeys[currentEngineIndex];
         const engine = searchEngines[currentEngine];
-        
+       
         engineIcon.src = engine.icon;
         engineIcon.alt = engine.name;
         searchIcon.title = `${engine.name} (Click to select)`;
-        
+       
         // Save to localStorage
         localStorage.setItem("preferredSearchEngine", currentEngine);
-        
+       
         // Update selected state in dropdown if it's open
         if (dropdownMenu.classList.contains("show")) {
           const options = dropdownMenu.querySelectorAll(".engine-option");
@@ -1173,7 +1200,7 @@
         e.stopPropagation();
         toggleDropdown();
       });
-      
+     
       // Add keyboard support for search icon (existing code)
       searchIcon.addEventListener("keydown", function(e) {
         if (e.key === "Enter" || e.key === " ") {
@@ -1310,3 +1337,4 @@
     </script>
   </body>
 </html>
+
