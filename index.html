@@ -77,29 +77,29 @@
     <style type="text/css">
       /* --- NEW THEME TOKENS --- */
       :root {
-        /* Midnight Neon Theme (Dark) */
-        --bg: #050816; /* Deep midnight */
-        --fg: #E7E9FF; /* Soft off-white */
-        --muted: #9AA0C7; /* Secondary text */
-        --muted-2: #6E7399; /* Tertiary text */
-        --surface: rgba(22, 24, 52, 0.55); /* Glass surface */
-        --surface-hover: rgba(143, 148, 181, 0.12);
-        --border: rgba(102, 108, 170, 0.38);
-        --border-strong: rgba(130, 136, 200, 0.6);
+        /* Dark Black + Cyan Theme (applies to both desktop and mobile) */
+        --bg: #02060C; /* Near-black backdrop */
+        --fg: #EAFBFF; /* Soft cyan-tinted white */
+        --muted: #8BA6B5; /* Secondary text (cool gray-cyan) */
+        --muted-2: #5D7382; /* Tertiary text */
+        --surface: rgba(6, 12, 20, 0.62); /* Subtle cyan-tinted glass */
+        --surface-hover: rgba(0, 212, 255, 0.08);
+        --border: rgba(0, 212, 255, 0.22);
+        --border-strong: rgba(0, 212, 255, 0.45);
         --shadow: rgba(0, 0, 0, 0.5);
-        --focus-ring: rgba(0, 224, 255, 0.6); /* Cyan ring */
+        --focus-ring: rgba(0, 212, 255, 0.6); /* Cyan ring */
 
-        /* Accents */
-        --accent-1: rgba(0, 224, 255, 0.38); /* Cyan */
-        --accent-1-strong: rgba(0, 224, 255, 0.7);
-        --accent-2: rgba(255, 0, 255, 0.28); /* Magenta */
-        --accent-2-strong: rgba(255, 0, 255, 0.6);
-        --accent-3: rgba(132, 0, 255, 0.26); /* Violet */
-        --accent-3-strong: rgba(132, 0, 255, 0.58);
+        /* Accents (cyan-focused) */
+        --accent-1: rgba(0, 212, 255, 0.35);
+        --accent-1-strong: rgba(0, 212, 255, 0.70);
+        --accent-2: rgba(0, 160, 220, 0.28);
+        --accent-2-strong: rgba(0, 160, 220, 0.60);
+        --accent-3: rgba(0, 120, 180, 0.26);
+        --accent-3-strong: rgba(0, 120, 180, 0.58);
 
         /* Glass + Elevation */
-        --glass-bg: rgba(18, 20, 42, 0.6);
-        --glass-border: rgba(120, 125, 190, 0.35);
+        --glass-bg: rgba(7, 12, 18, 0.72);
+        --glass-border: rgba(0, 212, 255, 0.18);
         --radius-sm: 10px;
         --radius-md: 16px;
         --radius-lg: 20px;
@@ -492,10 +492,12 @@
           justify-content: flex-start;
           padding-top: 0;
           transform: none;
-          margin-top: 8vh; /* Move everything 15% higher (was 14vh on desktop, now 8vh for mobile) */
+          margin-top: 8vh; /* Base mobile offset */
         }
         #searchbar-home {
-          margin-top: 8vh; /* Reduced from 15vh to move higher */
+          margin-top: 8vh; /* Keep base mobile offset unchanged */
+          transform: translateY(5vh); /* Move section ~5% further down for mobile without changing px */
+          will-change: transform;
           gap: 18px !important;
           width: 100%;
         }
@@ -537,8 +539,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 14px;
-            margin-top: -8px; /* Bring quicklinks closer to searchbox */
+      gap: 14px;
+      /* Keep original px spacing; overall section shift handled by translateY on #searchbar-home */
+      margin-top: -8px;
         }
         .quicklinks {
           display: flex !important;
