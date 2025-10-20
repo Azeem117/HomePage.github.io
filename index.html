@@ -283,6 +283,7 @@
         align-items: center;
         gap: 28px;
         width: 100%; /* Added width for mobile centering */
+        transform: translateY(15vh); /* Move content down to position it 20% above bottom on desktop */
       }
       #logo img {
         display: block;
@@ -597,6 +598,7 @@
             min-height: 100vh; 
             justify-content: flex-start;
             padding-top: 5vh; /* Initial padding for logo */
+            transform: none; /* Reset desktop transform on mobile */
         }
         #searchbar-home {
           /* Move search bar and quick links down below half-screen mark */
