@@ -75,55 +75,52 @@
     <meta name="apple-mobile-web-app-title" content="Homepage" />
     <title>Homepage </title>
     <style type="text/css">
-      /* Theme tokens */
+      /* --- NEW THEME TOKENS --- */
       :root {
-        --bg: #0D1117; /* Even darker, GitHub-style background */
-        --fg: #E6EDF3; /* Bright, clear text color */
-        --muted: #8B949E; /* Muted slate for secondary text */
-        --muted-2: #6E7681; /* Darker muted slate */
-        --surface: rgba(22, 27, 34, 0.9); /* Surface color with slight transparency */
-        --surface-hover: rgba(110, 118, 129, 0.2);
-        --border: rgba(48, 54, 61, 0.7);
-        --border-strong: rgba(66, 76, 85, 0.9);
-        --shadow: rgba(0, 0, 0, 0.6); /* Stronger shadow for depth */
-        --focus-ring: rgba(59, 130, 246, 0.7); /* Vibrant blue focus ring */
-        --accent-1: rgba(14, 165, 233, 0.7); /* Vibrant sky blue */
-        --accent-1-strong: rgba(14, 165, 233, 0.9);
-        --accent-2: rgba(139, 92, 246, 0.7); /* Vibrant violet */
-        --accent-2-strong: rgba(139, 92, 246, 0.9);
-        --accent-3: rgba(234, 179, 8, 0.7); /* Vibrant amber/yellow */
-        --accent-3-strong: rgba(234, 179, 8, 0.9);
-        --chip-bg: rgba(51, 65, 85, 0.5);
-        --chip-fg: var(--fg);
-        --icon-shadow-mobile: 0 4px 12px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.3);
-        --icon-shadow-active: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
-        --icon-gradient-overlay: rgba(203, 213, 225, 0.1);
+        /* Cyberpunk Dark Theme */
+        --bg: #01041B; /* Deep space blue */
+        --fg: #E0E1FF; /* Off-white with a hint of lavender */
+        --muted: #8F94B5; /* Muted slate for secondary text */
+        --muted-2: #656A8A; /* Darker muted slate */
+        --surface: rgba(22, 23, 53, 0.7); /* Frosted glass surface */
+        --surface-hover: rgba(143, 148, 181, 0.1);
+        --border: rgba(69, 73, 122, 0.5);
+        --border-strong: rgba(104, 110, 172, 0.7);
+        --shadow: rgba(0, 0, 0, 0.5);
+        --focus-ring: rgba(0, 224, 255, 0.7); /* Vibrant cyan focus ring */
+        --accent-1: rgba(0, 224, 255, 0.4); /* Cyan */
+        --accent-1-strong: rgba(0, 224, 255, 0.7);
+        --accent-2: rgba(255, 0, 255, 0.3); /* Magenta */
+        --accent-2-strong: rgba(255, 0, 255, 0.6);
+        --accent-3: rgba(132, 0, 255, 0.3); /* Electric Violet */
+        --accent-3-strong: rgba(132, 0, 255, 0.6);
+        --icon-shadow-mobile: 0 4px 12px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.4);
+        --icon-shadow-active: 0 2px 8px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
       }
 
       .light {
-        --bg: #ffffff;
-        --fg: #1e293b;
-        --muted: #475569;
-        --muted-2: #64748b;
+        /* Clean & Airy Light Theme */
+        --bg: #F8F9FA;
+        --fg: #212529;
+        --muted: #6C757D;
+        --muted-2: #495057;
         --surface: rgba(255, 255, 255, 0.85);
-        --surface-hover: rgba(0, 212, 255, 0.12);
-        --border: rgba(71, 85, 105, 0.15);
-        --border-strong: rgba(71, 85, 105, 0.3);
-        --shadow: rgba(15, 23, 42, 0.12);
-        --focus-ring: rgba(0, 150, 255, 0.4);
-        --accent-1: rgba(0, 188, 242, 0.35);
-        --accent-1-strong: rgba(0, 150, 255, 0.45);
-        --accent-2: rgba(147, 51, 234, 0.35);
-        --accent-2-strong: rgba(147, 51, 234, 0.45);
-        --accent-3: rgba(236, 72, 153, 0.35);
-        --accent-3-strong: rgba(236, 72, 153, 0.45);
-        --chip-bg: rgba(241, 245, 249, 0.8);
-        --chip-fg: var(--fg);
-        --icon-shadow-mobile: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-        --icon-shadow-active: 0 2px 8px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.08);
-        --icon-gradient-overlay: rgba(0, 0, 0, 0.03);
+        --surface-hover: rgba(0, 123, 255, 0.08);
+        --border: rgba(0, 0, 0, 0.1);
+        --border-strong: rgba(0, 0, 0, 0.2);
+        --shadow: rgba(0, 0, 0, 0.08);
+        --focus-ring: rgba(0, 123, 255, 0.5);
+        --accent-1: rgba(0, 123, 255, 0.3);
+        --accent-1-strong: rgba(0, 123, 255, 0.5);
+        --accent-2: rgba(23, 162, 184, 0.3);
+        --accent-2-strong: rgba(23, 162, 184, 0.5);
+        --accent-3: rgba(40, 167, 69, 0.3);
+        --accent-3-strong: rgba(40, 167, 69, 0.5);
+        --icon-shadow-mobile: 0 6px 15px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.05);
+        --icon-shadow-active: 0 3px 8px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.06);
       }
 
+      /* --- FONT FACE & BASE STYLES (Unchanged) --- */
       @font-face {
         font-family: Inter Variable;
         font-style: normal;
@@ -135,53 +132,7 @@
           U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
           U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
-      @font-face {
-        font-family: Inter Variable;
-        font-style: italic;
-        font-display: var(--font-display, optional);
-        font-weight: 100 900;
-        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-wght-italic.DpCbqKDY.woff2)
-          format("woff2-variations");
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-          U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
-          U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-      }
-      @font-face {
-        font-family: Inter Variable;
-        font-style: normal;
-        font-display: var(--font-display, optional);
-        font-weight: 100 900;
-        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-ext-wght-normal.DO1Apj_S.woff2)
-          format("woff2-variations");
-        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F,
-          U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
-          U+A720-A7FF;
-      }
-      @font-face {
-        font-family: Inter Variable;
-        font-style: italic;
-        font-display: var(--font-display, optional);
-        font-weight: 100 900;
-        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-ext-wght-italic.0pjOp8NU.woff2)
-          format("woff2-variations");
-        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F,
-          U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
-          U+A720-A7FF;
-      }
-      @font-face {
-        font-family: DM Mono;
-        font-style: normal;
-        font-display: var(--font-display, optional);
-        font-weight: 400;
-        src: url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/dm-mono-latin-400-normal.4GdczIuU.woff2)
-            format("woff2"),
-          url(https://cdn.search.brave.com/serp/v3/_app/immutable/assets/dm-mono-latin-400-normal.-0xN8mdc.woff)
-            format("woff");
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-          U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
-          U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-      }
-      :root {
+       :root {
         --main-font: Inter Variable, Helvetica, sans-serif;
         --mono-font: DM Mono, ui-monospace, SFMono-Regular, Menlo, Monaco,
           Consolas, Liberation Mono, Courier New, monospace;
@@ -189,60 +140,6 @@
       }
       html {
         font-size: 20px;
-      }
-      .desktop-heading-display1 {
-        font: 600 2.3rem/2.7rem var(--main-font);
-      }
-      .desktop-heading-display2 {
-        font: 600 2rem/2.4rem var(--main-font);
-      }
-      .desktop-heading-display3 {
-        font: 600 1.7rem/2rem var(--main-font);
-      }
-      .desktop-heading-h1 {
-        font: 600 1.4rem/1.7rem var(--main-font);
-      }
-      .desktop-heading-h2 {
-        font: 600 1.1rem/1.4rem var(--main-font);
-      }
-      .desktop-heading-h3 {
-        font: 600 1rem/1.3rem var(--main-font);
-      }
-      .desktop-heading-h4 {
-        font: 600 0.8rem/1.2rem var(--main-font);
-      }
-      .desktop-xsmall-regular {
-        font: 400 0.55rem/0.8rem var(--main-font);
-      }
-      .desktop-xsmall-semibold {
-        font: 600 0.55rem/0.8rem var(--main-font);
-      }
-      .desktop-small-regular {
-        font: 400 0.6rem/0.9rem var(--main-font);
-      }
-      .desktop-small-semibold {
-        font: 600 0.6rem/0.9rem var(--main-font);
-      }
-      .desktop-default-regular {
-        font: 400 0.7rem/1.1rem var(--main-font);
-      }
-      .desktop-default-semibold {
-        font: 600 0.7rem/1.1rem var(--main-font);
-      }
-      .desktop-large-regular {
-        font: 400 0.8rem/1.2rem var(--main-font);
-      }
-      .desktop-large-semibold {
-        font: 600 0.8rem/1.2rem var(--main-font);
-      }
-      .desktop-monospace-small {
-        font: 400 0.6rem/0.9rem var(--mono-font);
-      }
-      .desktop-monospace-default {
-        font: 400 0.7rem/1.1rem var(--mono-font);
-      }
-      .desktop-monospace-large {
-        font: 400 0.8rem/1.2rem var(--mono-font);
       }
       body {
         font: 400 0.8rem/1.2rem var(--main-font);
@@ -254,7 +151,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center; /* Center content vertically by default (desktop) */
+        justify-content: center;
+        /* --- NEW BACKGROUND GRADIENT --- */
         background-image: radial-gradient(
             ellipse at 15% 40%,
             var(--accent-1) 0%,
@@ -270,6 +168,7 @@
             var(--accent-3) 0%,
             transparent 40%
           );
+          background-attachment: fixed; /* Keep gradient in place on scroll */
       }
       #main {
         width: 100%;
@@ -282,8 +181,8 @@
         flex-direction: column;
         align-items: center;
         gap: 28px;
-        width: 100%; /* Added width for mobile centering */
-        transform: translateY(15vh); /* Move content down to position it 20% above bottom on desktop */
+        width: 100%; 
+        transform: translateY(15vh); 
       }
       #logo img {
         display: block;
@@ -306,21 +205,18 @@
         padding: 14px 16px;
         box-shadow: 0 8px 32px var(--shadow), 0 0 0 1px var(--border);
         border: 1px solid var(--border);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(12px) saturate(150%);
+        -webkit-backdrop-filter: blur(12px) saturate(150%);
         transition: all 0.3s ease;
       }
       .light form#searchform {
-        box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04), 0 0 0 1px var(--border);
+        box-shadow: 0 4px 24px var(--shadow), 0 2px 8px var(--shadow), 0 0 0 1px var(--border);
         background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(20px);
       }
       form#searchform:focus-within {
         box-shadow: 0 8px 32px var(--shadow), 0 0 0 1px var(--border-strong),
           0 0 0 3px var(--focus-ring);
         border-color: var(--border-strong);
-      }
-      .light form#searchform:focus-within {
-        box-shadow: 0 8px 32px rgba(0, 150, 255, 0.1), 0 4px 16px rgba(15, 23, 42, 0.08), 0 0 0 1px var(--border-strong), 0 0 0 3px var(--focus-ring);
       }
       #search-icon {
         display: flex;
@@ -395,9 +291,7 @@
       }
       .light .engine-dropdown-menu {
         background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        box-shadow: 0 8px 32px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(15, 23, 42, 0.08), 0 0 0 1px var(--border);
-        border: 1.5px solid var(--border);
+        box-shadow: 0 8px 32px var(--shadow), 0 4px 12px var(--shadow), 0 0 0 1px var(--border);
       }
       .engine-dropdown-menu.show {
         display: block;
@@ -418,22 +312,17 @@
       }
       .engine-option.selected {
         background: var(--accent-1);
+        color: #fff;
       }
       .light .engine-option.selected {
-        background: rgba(0, 150, 255, 0.15);
-      }
-      .light .engine-option:hover {
-        background: rgba(241, 245, 249, 0.9);
+        background: rgba(0, 123, 255, 0.15);
+        color: var(--fg);
       }
       .engine-option img {
         width: 20px;
         height: 20px;
         flex-shrink: 0;
       }
-      /* old searchbar selector removed - footer selector styles below */
-
-      /* engine badge removed */
-
       footer {
         width: 100%;
         max-width: 980px;
@@ -462,7 +351,7 @@
         color: var(--fg);
       }
 
-      /* Quick Links - Desktop Default (Grid Layout) */
+      /* Quick Links - Desktop */
       .quicklinks {
         width: 100%;
         max-width: 600px;
@@ -494,17 +383,6 @@
         transform: translateY(-1px);
         box-shadow: 0 0 12px -2px var(--accent-2);
       }
-      .light .quicklink {
-        background: rgba(255, 255, 255, 0.7);
-        border: 1.5px solid var(--border);
-        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-      }
-      .light .quicklink:hover {
-        background: rgba(255, 255, 255, 0.95);
-        border-color: var(--border-strong);
-        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.04);
-        transform: translateY(-2px);
-      }
       .quicklink img {
         width: 14px;
         height: 20px;
@@ -512,23 +390,14 @@
         filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
         transition: filter 0.2s ease;
       }
-      .quicklink:hover img {
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)) brightness(1.1);
-      }
-      /* Desktop specific icon-bg reset */
       .quicklink .icon-bg {
         display: contents; /* Revert wrapper effects on desktop */
       }
-      .quicklink .icon-bg img {
-        width: 14px;
-        height: 20px;
-      }
-
 
       /* Theme toggle button */
       .theme-toggle {
-        background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
-        color: var(--fg);
+        background: linear-gradient(135deg, var(--accent-1-strong) 0%, var(--accent-2-strong) 100%);
+        color: #fff;
         border: 1px solid var(--border);
         border-radius: 999px;
         padding: 6px 12px;
@@ -537,38 +406,22 @@
         transition: all 0.2s ease;
         font-family: var(--main-font);
         font-size: 0.75rem;
-        box-shadow: 0 2px 8px rgba(0, 212, 255, 0.15);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       }
       .theme-toggle:hover {
-        background: linear-gradient(135deg, var(--accent-1-strong) 0%, var(--accent-2-strong) 50%, var(--accent-3-strong) 100%);
         border-color: var(--border-strong);
-        box-shadow: 0 4px 12px rgba(0, 212, 255, 0.25);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         transform: translateY(-1px);
-      }
-      .light .theme-toggle {
-        background: linear-gradient(135deg, rgba(0, 150, 255, 0.85) 0%, rgba(147, 51, 234, 0.85) 50%, rgba(236, 72, 153, 0.85) 100%);
-        color: #ffffff;
-        border: 1.5px solid rgba(0, 150, 255, 0.3);
-        box-shadow: 0 2px 12px rgba(0, 150, 255, 0.2), 0 1px 4px rgba(15, 23, 42, 0.1);
-      }
-      .light .theme-toggle:hover {
-        background: linear-gradient(135deg, rgba(0, 150, 255, 1) 0%, rgba(147, 51, 234, 1) 50%, rgba(236, 72, 153, 1) 100%);
-        box-shadow: 0 4px 16px rgba(0, 150, 255, 0.3), 0 2px 8px rgba(15, 23, 42, 0.15);
-        transform: translateY(-2px);
-      }
-      .svelte-ve2bd1 {
-        box-sizing: border-box;
       }
 
       /* ================================================= */
-      /* MOBILE STYLES: Custom Android Look & Positioning */
+      /* MOBILE STYLES (IMPROVED)                         */
       /* ================================================= */
       @media (max-width: 720px) {
         html {
           font-size: 16px;
         }
         body {
-          /* Ensure content starts from top on mobile */
           justify-content: flex-start;
           background-image: radial-gradient(
               ellipse at 15% 25%,
@@ -588,26 +441,22 @@
         }
         #main {
           padding: 20px 16px;
-          min-height: 100vh; /* Ensure full height to contain wrapper */
+          min-height: 100vh;
           display: flex;
           flex-direction: column;
           align-items: center;
         }
         #home-wrapper {
-            /* Use min-height 100vh on the wrapper to control positioning */
-            min-height: 100vh; 
-            justify-content: flex-start;
-            padding-top: 5vh; /* Initial padding for logo */
-            transform: none; /* Reset desktop transform on mobile */
+          min-height: 100vh;
+          justify-content: flex-start;
+          padding-top: 5vh;
+          transform: none;
         }
         #searchbar-home {
-          /* Move search bar and quick links down below half-screen mark */
-          margin-top: 30vh; /* Push the entire block down */
+          margin-top: 30vh;
           gap: 20px !important;
           width: 100%;
         }
-
-        /* Search Form & Logo adjustments */
         #logo img {
           height: 44px;
         }
@@ -619,54 +468,44 @@
         textarea#searchbox {
           font-size: 0.9rem;
           padding: 4px 6px;
-          min-height: 18px;
         }
-        .searchform-actions-button {
-          padding: 10px;
-          min-width: 44px;
-          min-height: 44px;
+        
+        /* --- Quick Links Mobile: App Icon Grid with Sliding & Pagination --- */
+        #quicklinks-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
         }
-        #search-icon {
-          margin-right: 6px;
-        }
-
-        /* Quick Links Mobile: App Icon Grid with Sliding */
         .quicklinks {
-          /* This container is the scrollable track for the slides */
           display: flex !important;
           flex-wrap: nowrap;
           overflow-x: scroll;
           overflow-y: hidden;
           scroll-snap-type: x mandatory;
           -webkit-overflow-scrolling: touch;
-          padding: 10px 0;
+          padding-bottom: 10px;
           width: 100%;
-          /* Fixed height for two rows of icons + margins */
-          height: 220px; 
+          height: 220px;
           box-sizing: border-box;
-          /* Hide scrollbar on mobile */
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
         .quicklinks::-webkit-scrollbar {
-            display: none; /* Chrome, Safari and Opera */
+            display: none;
         }
-
-        /* Define the container for the 4 columns x 2 rows grid */
         .quicklink-slide {
           flex-shrink: 0;
-          width: 100%; /* Each slide takes full container width (for snapping) */
+          width: 100%;
           scroll-snap-align: center;
-         
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           grid-template-rows: repeat(2, 1fr);
-          gap: 8px; /* Spacing between icons */
-          padding: 0 10px; /* Internal padding for spacing */
+          gap: 8px;
+          padding: 0 10px;
           box-sizing: border-box;
         }
-
-        /* Individual Quick Link (The App Icon Look) */
         .quicklink {
             display: flex;
             flex-direction: column;
@@ -677,34 +516,36 @@
             background: transparent;
             text-decoration: none;
             text-align: center;
-            aspect-ratio: auto;
-            /* Remove desktop hover/interaction styles */
-            transition: none; 
+            transition: none;
         }
 
         /* Icon Wrapper: The rounded square background */
         .quicklink .icon-bg {
-            width: 56px;
-            height: 56px;
-            border-radius: 15px; /* App icon rounding */
+            width: 60px;
+            height: 60px;
+            border-radius: 16px; /* App icon rounding */
             display: flex;
             align-items: center;
             justify-content: center;
             background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.08), transparent 50%),
                         linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(13, 17, 23, 0.7) 100%);
             box-shadow: var(--icon-shadow-mobile);
-            border: 1px solid var(--border-strong);
+            border: 1px solid var(--border);
             flex-shrink: 0;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+        .light .quicklink .icon-bg {
+             background: #fff;
+        }
+
         .quicklink:active .icon-bg {
             transform: scale(0.92); /* Touch feedback */
             box-shadow: var(--icon-shadow-active);
         }
 
         .quicklink img {
-            width: 32px; /* Larger icon */
-            height: 32px;
+            width: 34px; /* Larger icon */
+            height: 34px;
             margin: 0;
             object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
@@ -724,73 +565,40 @@
             overflow: hidden;
             text-overflow: ellipsis;
             line-height: 1.2;
-            margin-top: 4px;
+            margin-top: 6px;
             padding: 0 2px;
             max-width: 100%;
         }
-      }
-      @media (max-width: 480px) {
-        html {
-          font-size: 15px;
+
+        /* --- NEW: Pagination dots for the carousel --- */
+        #quicklinks-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            height: 10px;
         }
-        #searchbar-home {
-            margin-top: 25vh; /* Slightly less push on very small screens */
+        .pagination-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--muted-2);
+            transition: all 0.3s ease;
         }
-        #logo img {
-          height: 40px;
-        }
-        form#searchform {
-          padding: 6px 10px;
-        }
-        textarea#searchbox {
-          font-size: 0.85rem;
-          padding: 2px 6px;
-          min-height: 16px;
-        }
-        .searchform-actions-button {
-          padding: 8px;
-          min-width: 40px;
-          min-height: 40px;
-        }
-        .quicklinks {
-            height: 200px; /* Adjusted height for smaller icons */
-        }
-        .quicklink .icon-bg {
-            width: 50px;
-            height: 50px;
-            border-radius: 13px; /* Slightly smaller rounding for proportion */
-        }
-        .quicklink img {
-            width: 28px;
-            height: 28px;
-        }
-        .quicklink span {
-            font-size: 0.6rem;
+        .pagination-dot.active {
+            background-color: var(--fg);
+            transform: scale(1.4);
         }
       }
 
       /* ================================================= */
-      /* DESKTOP-ONLY OVERRIDES (Viewport > 720px)      */
+      /* DESKTOP-ONLY OVERRIDES (> 720px)                  */
       /* ================================================= */
       @media (min-width: 721px) {
         body {
-          /* Position content container towards the bottom */
           justify-content: flex-end;
-          /* Add padding to push it 20% up from the bottom edge */
           padding-bottom: 20vh;
           box-sizing: border-box;
-        }
-
-        .engine-dropdown-menu {
-          /* Make dropdown fully opaque for better readability on desktop */
-          background: rgb(22, 27, 34); /* Opaque version of --surface variable */
-          backdrop-filter: none;
-        }
-
-        .light .engine-dropdown-menu {
-          /* Opaque version for light mode */
-          background: rgb(255, 255, 255);
-          backdrop-filter: none;
         }
       }
     </style>
@@ -832,10 +640,10 @@
               >
                 <div class="engine-dropdown">
                   <div id="search-icon" class="svelte-g9bky4" role="button" tabindex="0" aria-label="Switch search engine" title="Click to select search engine">
-                    <img 
-                      id="engine-icon" 
-                      class="engine-logo" 
-                      src="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg" 
+                    <img
+                      id="engine-icon"
+                      class="engine-logo"
+                      src="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg"
                       alt="Brave Search"
                     />
                   </div>
@@ -883,7 +691,7 @@
                         fill-rule="evenodd"
                         clip-rule="evenodd"
                         d="M5.287 5.287a.85.85 0 0 0 0 1.202L10.797 12l-5.51 5.511a.85.85 0 0 0 1.202 1.202L12 13.203l5.51 5.51a.85.85 0 0 0 1.202-1.203L13.202 12l5.51-5.51a.85.85 0 0 0-1.202-1.202L12 10.798 6.489 5.287a.85.85 0 0 0-1.202 0"
-                        fill="#9AA0B2"
+                        fill="currentColor"
                       ></path>
                     </svg>
                   </button>
@@ -906,83 +714,84 @@
                         fill-rule="evenodd"
                         clip-rule="evenodd"
                         d="M10.498 2a8.498 8.498 0 1 0 5.843 14.67l4.292 4.291a.8.8 0 1 0 1.131-1.13l-4.367-4.368A8.498 8.498 0 0 0 10.499 2M3.6 10.498a6.898 6.898 0 1 1 13.797 0 6.898 6.898 0 0 1-13.797 0"
-                        fill="#E6E8EE"
+                        fill="currentColor"
                       ></path>
                     </svg>
                   </button>
                 </div>
               </form>
             </div>
-
-           
-            <!-- Quick Links - Restructured for App Icon look and mobile sliding -->
-            <div class="quicklinks" id="quicklinks" aria-label="Quick Links">
-              <a href="https://exams.aktu.ac.in/studentlogin.aspx" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a90e2'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z'/%3E%3C/svg%3E" alt="AKTU icon"></div>
-                  <span>AKTU</span>
-              </a>
-              <a href="https://chatgpt.com/" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310b981'%3E%3Cpath d='M22.28 12.63a6.15 6.15 0 00-2.13-7.03 6.15 6.15 0 00-7.98.53 6.15 6.15 0 00-6.85-.53 6.15 6.15 0 00-2.13 7.03 6.15 6.15 0 002.13 7.03 6.15 6.15 0 007.98-.53 6.15 6.15 0 006.85.53 6.15 6.15 0 002.13-7.03z'/%3E%3C/svg%3E" alt="ChatGPT icon"></div>
-                  <span>ChatGPT</span>
-              </a>
-              <a href="https://classroom.google.com/" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2334a853'%3E%3Cpath d='M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z'/%3E%3C/svg%3E" alt="Classroom icon"></div>
-                  <span>Classroom</span>
-              </a>
-              <a href="https://notesgallery.com/computer-organization-and-architecture-aktu-notes/" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f59e0b'%3E%3Cpath d='M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z'/%3E%3C/svg%3E" alt="COA Notes icon"></div>
-                  <span>COA Notes</span>
-              </a>
-              <a href="https://www.codewithharry.com/" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ef4444'%3E%3Cpath d='M8 3a2 2 0 00-2 2v4a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2H8zm0 10a2 2 0 00-2 2v4a2 2 0 002 2h8a2 2 0 002-2v-4a2 2 0 00-2-2H8z'/%3E%3C/svg%3E" alt="CodeWithHarry icon"></div>
-                  <span>CodeWithHarry</span>
-              </a>
-              <a href="https://chat.deepseek.com/" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233b82f6'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/%3E%3C/svg%3E" alt="DeepSeek icon"></div>
-                  <span>DeepSeek</span>
-              </a>
-              <a href="https://www.drisrar.com/" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2306b6d4' viewBox='0 0 24 24'%3E%3Cpath d='M12 4a8 8 0 100 16 8 8 0 000-16zm1 11h-2v-1h2v1zm0-3h-2V7h2v5z'/%3E%3C/svg%3E" alt="Dr. Israr icon"></div>
-                  <span>Dr. Israr</span>
-              </a>
-              <a href="https://azeem117.github.io/EncryptionHub.github.io/" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f97316'%3E%3Cpath d='M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6z'/%3E%3C/svg%3E" alt="Encryption Hub icon"></div>
-                  <span>Encryption Hub</span>
-              </a>
-              <a href="https://gemini.google.com/app" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E" alt="Gemini icon"></div>
-                  <span>Gemini</span>
-              </a>
-              <a href="https://github.com/" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a855f7'%3E%3Cpath d='M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z'/%3E%3C/svg%3E" alt="GitHub icon"></div>
-                  <span>GitHub</span>
-              </a>
-              <a href="https://jssaten.azurewebsites.net/Apps/Login.aspx" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2314b8a6'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E" alt="JSSATEN icon"></div>
-                  <span>JSSATEN</span>
-              </a>
-              <a href="https://m365.cloud.microsoft/search/?fromcode=cmmiadtp424&amp;origindomain=Office&amp;auth=2" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230ea5e9' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l7 4v12l-7 4-7-4V6l7-4z'/%3E%3C/svg%3E" alt="M365 Copilot icon"></div>
-                  <span>M365 Copilot</span>
-              </a>
-              <a href="https://www.protectedtext.com/" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2384cc16'%3E%3Cpath d='M12 2a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 8V7a3 3 0 116 0v3H9z'/%3E%3C/svg%3E" alt="Protected text icon"></div>
-                  <span>Protected text</span>
-              </a>
-              <a href="https://sendfileonline.com/" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ec4899' viewBox='0 0 24 24'%3E%3Cpath d='M20 6H4a2 2 0 00-2 2v1h20V8a2 2 0 00-2-2zm2 5H2v5a2 2 0 002 2h16a2 2 0 002-2v-5zm-6 3H8v-2h8v2z'/%3E%3C/svg%3E" alt="Send File Online icon"></div>
-                  <span>Send File Online</span>
-              </a>
-              <a href="https://ww25.soap2day.day/" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23f43f5e' viewBox='0 0 24 24'%3E%3Cpath d='M21 6h-7l-2-2H3a2 2 0 00-2 2v10a2 2 0 002 2h18a2 2 0 002-2V8a2 2 0 00-2-2z'/%3E%3C/svg%3E" alt="Soap 2 Day icon"></div>
-                  <span>Soap 2 Day</span>
-              </a>
-              <a href="https://m.youtube.com/" class="quicklink">
-                  <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff0000' viewBox='0 0 24 24'%3E%3Cpath d='M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33.22 2.65.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z'/%3E%3C/svg%3E" alt="YouTube icon"></div>
-                  <span>YouTube</span>
-              </a>
+            
+            <!-- Quick Links Container with Pagination -->
+            <div id="quicklinks-container">
+              <div class="quicklinks" id="quicklinks" aria-label="Quick Links">
+                <a href="https://exams.aktu.ac.in/studentlogin.aspx" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a90e2'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z'/%3E%3C/svg%3E" alt="AKTU icon"></div>
+                    <span>AKTU</span>
+                </a>
+                <a href="https://chatgpt.com/" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310b981'%3E%3Cpath d='M22.28 12.63a6.15 6.15 0 00-2.13-7.03 6.15 6.15 0 00-7.98.53 6.15 6.15 0 00-6.85-.53 6.15 6.15 0 00-2.13 7.03 6.15 6.15 0 002.13 7.03 6.15 6.15 0 007.98-.53 6.15 6.15 0 006.85.53 6.15 6.15 0 002.13-7.03z'/%3E%3C/svg%3E" alt="ChatGPT icon"></div>
+                    <span>ChatGPT</span>
+                </a>
+                <a href="https://classroom.google.com/" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2334a853'%3E%3Cpath d='M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z'/%3E%3C/svg%3E" alt="Classroom icon"></div>
+                    <span>Classroom</span>
+                </a>
+                <a href="https://notesgallery.com/computer-organization-and-architecture-aktu-notes/" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f59e0b'%3E%3Cpath d='M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z'/%3E%3C/svg%3E" alt="COA Notes icon"></div>
+                    <span>COA Notes</span>
+                </a>
+                <a href="https://www.codewithharry.com/" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ef4444'%3E%3Cpath d='M8 3a2 2 0 00-2 2v4a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2H8zm0 10a2 2 0 00-2 2v4a2 2 0 002 2h8a2 2 0 002-2v-4a2 2 0 00-2-2H8z'/%3E%3C/svg%3E" alt="CodeWithHarry icon"></div>
+                    <span>CodeWithHarry</span>
+                </a>
+                <a href="https://chat.deepseek.com/" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233b82f6'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/%3E%3C/svg%3E" alt="DeepSeek icon"></div>
+                    <span>DeepSeek</span>
+                </a>
+                <a href="https://www.drisrar.com/" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2306b6d4' viewBox='0 0 24 24'%3E%3Cpath d='M12 4a8 8 0 100 16 8 8 0 000-16zm1 11h-2v-1h2v1zm0-3h-2V7h2v5z'/%3E%3C/svg%3E" alt="Dr. Israr icon"></div>
+                    <span>Dr. Israr</span>
+                </a>
+                <a href="https://azeem117.github.io/EncryptionHub.github.io/" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f97316'%3E%3Cpath d='M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6z'/%3E%3C/svg%3E" alt="Encryption Hub icon"></div>
+                    <span>Encryption Hub</span>
+                </a>
+                <a href="https://gemini.google.com/app" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E" alt="Gemini icon"></div>
+                    <span>Gemini</span>
+                </a>
+                <a href="https://github.com/" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a855f7'%3E%3Cpath d='M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z'/%3E%3C/svg%3E" alt="GitHub icon"></div>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://jssaten.azurewebsites.net/Apps/Login.aspx" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2314b8a6'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E" alt="JSSATEN icon"></div>
+                    <span>JSSATEN</span>
+                </a>
+                <a href="https://m365.cloud.microsoft/search/?fromcode=cmmiadtp424&amp;origindomain=Office&amp;auth=2" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230ea5e9' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l7 4v12l-7 4-7-4V6l7-4z'/%3E%3C/svg%3E" alt="M365 Copilot icon"></div>
+                    <span>M365 Copilot</span>
+                </a>
+                <a href="https://www.protectedtext.com/" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2384cc16'%3E%3Cpath d='M12 2a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 8V7a3 3 0 116 0v3H9z'/%3E%3C/svg%3E" alt="Protected text icon"></div>
+                    <span>Protected text</span>
+                </a>
+                <a href="https://sendfileonline.com/" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ec4899' viewBox='0 0 24 24'%3E%3Cpath d='M20 6H4a2 2 0 00-2 2v1h20V8a2 2 0 00-2-2zm2 5H2v5a2 2 0 002 2h16a2 2 0 002-2v-5zm-6 3H8v-2h8v2z'/%3E%3C/svg%3E" alt="Send File Online icon"></div>
+                    <span>Send File Online</span>
+                </a>
+                <a href="https://ww25.soap2day.day/" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23f43f5e' viewBox='0 0 24 24'%3E%3Cpath d='M21 6h-7l-2-2H3a2 2 0 00-2 2v10a2 2 0 002 2h18a2 2 0 002-2V8a2 2 0 00-2-2z'/%3E%3C/svg%3E" alt="Soap 2 Day icon"></div>
+                    <span>Soap 2 Day</span>
+                </a>
+                <a href="https://m.youtube.com/" class="quicklink">
+                    <div class="icon-bg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff0000' viewBox='0 0 24 24'%3E%3Cpath d='M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33.22 2.65.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z'/%3E%3C/svg%3E" alt="YouTube icon"></div>
+                    <span>YouTube</span>
+                </a>
+              </div>
+              <div id="quicklinks-pagination"></div>
             </div>
-           
           </div>
         </main>
       </div>
@@ -996,347 +805,230 @@
     </footer>
 
     <script>
-      // Function to group quick links into 4x2 slides for mobile carousel
-      function setupQuicklinkCarousel() {
-        const container = document.getElementById('quicklinks');
-        if (!container) return;
-       
-        // Check if we are on a mobile screen (or smaller than 720px)
-        const isMobile = window.matchMedia('(max-width: 720px)').matches;
+        // --- NEW AND IMPROVED SCRIPT ---
 
-        if (isMobile) {
-            // Check if the structure is already grouped to prevent re-grouping on resize
-            if (container.querySelector('.quicklink-slide')) {
-                return;
-            }
-           
-            const links = Array.from(container.children).filter(el => el.classList.contains('quicklink'));
-            const linksPerSlide = 8; // 4 columns * 2 rows
+        // Function to set up the mobile carousel and pagination
+        function setupQuicklinkCarousel() {
+            const container = document.getElementById('quicklinks');
+            const paginationContainer = document.getElementById('quicklinks-pagination');
+            if (!container || !paginationContainer) return;
 
-            // Temporarily hold all links to re-group
-            const fragment = document.createDocumentFragment();
+            const isMobile = window.matchMedia('(max-width: 720px)').matches;
 
-            for (let i = 0; i < links.length; i += linksPerSlide) {
-              const slide = document.createElement('div');
-              slide.className = 'quicklink-slide';
-             
-              // Append up to 8 links to the slide
-              const slice = links.slice(i, i + linksPerSlide);
-              slice.forEach(link => slide.appendChild(link));
-
-              fragment.appendChild(slide);
-            }
-           
-            // Replace the original contents with the new slides
-            container.innerHTML = ''; // Clear container
-            container.appendChild(fragment);
-           
-        } else {
-            // Restore original structure for Desktop (ungroup slides into main container)
-            const slides = container.querySelectorAll('.quicklink-slide');
-            if (slides.length > 0) {
+            if (isMobile) {
+                // Prevent re-grouping if already done
+                if (container.querySelector('.quicklink-slide')) {
+                    updatePaginationDots(); // Update dots on resize
+                    return;
+                }
+                
+                const links = Array.from(container.children).filter(el => el.classList.contains('quicklink'));
+                const linksPerSlide = 8;
                 const fragment = document.createDocumentFragment();
-                slides.forEach(slide => {
-                    // Move all children (quicklinks) back to the fragment
-                    while (slide.firstChild) {
-                        fragment.appendChild(slide.firstChild);
-                    }
-                });
+
+                for (let i = 0; i < links.length; i += linksPerSlide) {
+                    const slide = document.createElement('div');
+                    slide.className = 'quicklink-slide';
+                    const slice = links.slice(i, i + linksPerSlide);
+                    slice.forEach(link => slide.appendChild(link));
+                    fragment.appendChild(slide);
+                }
+                
                 container.innerHTML = '';
                 container.appendChild(fragment);
-                // Ensure desktop grid styles are applied 
-                container.style.display = 'grid';
+                
+                setupPaginationDots();
+                container.addEventListener('scroll', updatePaginationDots);
+                
+            } else {
+                // Restore desktop grid view
+                const slides = container.querySelectorAll('.quicklink-slide');
+                if (slides.length > 0) {
+                    const fragment = document.createDocumentFragment();
+                    slides.forEach(slide => {
+                        while (slide.firstChild) {
+                            fragment.appendChild(slide.firstChild);
+                        }
+                    });
+                    container.innerHTML = '';
+                    container.appendChild(fragment);
+                    container.style.display = 'grid';
+                    paginationContainer.innerHTML = ''; // Clear dots
+                    container.removeEventListener('scroll', updatePaginationDots);
+                }
             }
         }
-      }
 
-      // Register Service Worker for PWA functionality (existing code)
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker
-            .register('/sw.js')
-            .then((registration) => {
-              console.log('Service Worker registered successfully:', registration.scope);
-             
-              // Check for updates periodically
-              registration.addEventListener('updatefound', () => {
-                const newWorker = registration.installing;
-                console.log('Service Worker update found!');
-               
-                newWorker.addEventListener('statechange', () => {
-                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                    // New service worker available, notify user
-                    console.log('New version available! Refresh to update.');
-                  }
+        function setupPaginationDots() {
+            const container = document.getElementById('quicklinks');
+            const paginationContainer = document.getElementById('quicklinks-pagination');
+            const slides = container.querySelectorAll('.quicklink-slide');
+            
+            paginationContainer.innerHTML = ''; // Clear existing dots
+            
+            if (slides.length > 1) {
+                slides.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'pagination-dot';
+                    dot.dataset.index = index;
+                    paginationContainer.appendChild(dot);
                 });
-              });
-            })
-            .catch((error) => {
-              console.error('Service Worker registration failed:', error);
+                updatePaginationDots(); // Set initial active dot
+            }
+        }
+
+        function updatePaginationDots() {
+            const container = document.getElementById('quicklinks');
+            const paginationContainer = document.getElementById('quicklinks-pagination');
+            if (!paginationContainer.children.length) return;
+
+            const slideWidth = container.offsetWidth;
+            const currentIndex = Math.round(container.scrollLeft / slideWidth);
+            
+            const dots = paginationContainer.querySelectorAll('.pagination-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
             });
-        });
-      }
-
-      // Search engine configuration with icons (existing code)
-      const searchEngines = {
-        brave: {
-          url: "https://search.brave.com/search?q=",
-          icon: "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg",
-          name: "Brave Search",
-          suggestUrl: "https://search.brave.com/api/suggest?q="
-        },
-        google: {
-          url: "https://www.google.com/search?q=",
-          icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%234285F4' d='M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z'/%3E%3Cpath fill='%2334A853' d='M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z'/%3E%3Cpath fill='%23FBBC05' d='M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z'/%3E%3Cpath fill='%23EA4335' d='M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z'/%3E%3Cpath fill='none' d='M0 0h48v48H0z'/%3E%3C/svg%3E",
-          name: "Google",
-          suggestUrl: "https://www.google.com/complete/search?client=firefox&q="
-        },
-        duckduckgo: {
-          url: "https://duckduckgo.com/?q=",
-          icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%23de5833'/%3E%3Cpath fill='%23fff' d='M24 10c-7.73 0-14 6.27-14 14 0 1.2.15 2.36.44 3.47.55-.44 1.18-.8 1.87-1.05-.18-.78-.31-1.58-.31-2.42 0-6.63 5.37-12 12-12s12 5.37 12 12c0 .84-.13 1.64-.31 2.42.69.25 1.32.61 1.87 1.05.29-1.11.44-2.27.44-3.47 0-7.73-6.27-14-14-14zm-6 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm12 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-6 4c-2.21 0-4 1.79-4 4h8c0-2.21-1.79-4-4-4z'/%3E%3C/svg%3E",
-          name: "DuckDuckGo",
-          suggestUrl: "https://duckduckgo.com/ac/?q="
-        },
-        bing: {
-          url: "https://www.bing.com/search?q=",
-          icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%2300809d' d='M14 4l4 14 12 4-12 10-2 12-8-6v-34z'/%3E%3Cpath fill='%2300a8e1' d='M18 18l12 4-12 10z'/%3E%3Cpath fill='%23005e7e' d='M14 4v34l4-6V18z'/%3E%3C/svg%3E",
-          name: "Bing",
-          suggestUrl: "https://api.bing.com/osjson.aspx?query="
-        },
-        yahoo: {
-          url: "https://search.yahoo.com/search?p=",
-          icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%235f01d1' d='M24 0C10.7 0 0 10.7 0 24s10.7 24 24 24 24-10.7 24-24S37.3 0 24 0zm8.2 14.3l-6.9 13.1v8.9h-2.6v-8.9l-6.9-13.1h3l5.2 10.1 5.2-10.1h3z'/%3E%3C/svg%3E",
-          name: "Yahoo",
-          suggestUrl: "https://search.yahoo.com/sugg/gossip/gossip-us-ura/?output=fxjson&command="
-        },
-        startpage: {
-          url: "https://www.startpage.com/do/search?q=",
-          icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect fill='%23206580' width='48' height='48' rx='8'/%3E%3Cpath fill='%23fff' d='M24 8c-8.8 0-16 7.2-16 16s7.2 16 16 16 16-7.2 16-16-7.2-16-16-16zm0 28c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12-5.4 12-12 12z'/%3E%3Ccircle fill='%23fff' cx='24' cy='24' r='6'/%3E%3C/svg%3E",
-          name: "Startpage",
-          suggestUrl: null // Startpage doesn't have a public suggestions API
         }
-      };
+        
+        // --- EXISTING SCRIPT LOGIC (Unchanged, placed below new functions) ---
 
-      // Array of engine keys for cycling
-      const engineKeys = Object.keys(searchEngines);
-      let currentEngineIndex = 0;
-
-      // Get elements
-      const searchForm = document.getElementById("searchform");
-      const searchBox = document.getElementById("searchbox");
-      const clearButton = document.getElementById("clear-query-button");
-      const searchIcon = document.getElementById("search-icon");
-      const engineIcon = document.getElementById("engine-icon");
-      const themeToggle = document.getElementById("theme-toggle");
-      const dropdownMenu = document.getElementById("engine-dropdown-menu");
-
-      // Function to populate dropdown menu (existing code)
-      function populateDropdown() {
-        dropdownMenu.innerHTML = "";
-        engineKeys.forEach((engineKey, index) => {
-          const engine = searchEngines[engineKey];
-          const option = document.createElement("div");
-          option.className = "engine-option";
-          option.setAttribute("role", "menuitem");
-          option.setAttribute("data-engine-index", index);
-          if (index === currentEngineIndex) {
-            option.classList.add("selected");
-          }
-         
-          const icon = document.createElement("img");
-          icon.src = engine.icon;
-          icon.alt = "";
-         
-          const name = document.createElement("span");
-          name.textContent = engine.name;
-         
-          option.appendChild(icon);
-          option.appendChild(name);
-         
-          option.addEventListener("click", function() {
-            selectEngine(index);
-            toggleDropdown();
-          });
-         
-          dropdownMenu.appendChild(option);
-        });
-      }
-
-      // Function to toggle dropdown visibility (existing code)
-      function toggleDropdown() {
-        dropdownMenu.classList.toggle("show");
-        if (dropdownMenu.classList.contains("show")) {
-          populateDropdown();
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(reg => {
+                    console.log('SW registered:', reg.scope);
+                }).catch(err => {
+                    console.error('SW registration failed:', err);
+                });
+            });
         }
-      }
 
-      // Function to select a specific engine (existing code)
-      function selectEngine(index) {
-        currentEngineIndex = index;
+        // Search engine configuration
+        const searchEngines = {
+            brave: { url: "https://search.brave.com/search?q=", icon: "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg", name: "Brave Search" },
+            google: { url: "https://www.google.com/search?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%234285F4' d='M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z'/%3E%3Cpath fill='%2334A853' d='M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z'/%3E%3Cpath fill='%23FBBC05' d='M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z'/%3E%3Cpath fill='%23EA4335' d='M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z'/%3E%3C/svg%3E", name: "Google" },
+            duckduckgo: { url: "https://duckduckgo.com/?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%23de5833'/%3E%3Cpath fill='%23fff' d='M24 10c-7.73 0-14 6.27-14 14 0 1.2.15 2.36.44 3.47.55-.44 1.18-.8 1.87-1.05-.18-.78-.31-1.58-.31-2.42 0-6.63 5.37-12 12-12s12 5.37 12 12c0 .84-.13 1.64-.31 2.42.69.25 1.32.61 1.87 1.05.29-1.11.44-2.27.44-3.47 0-7.73-6.27-14-14-14zm-6 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm12 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-6 4c-2.21 0-4 1.79-4 4h8c0-2.21-1.79-4-4-4z'/%3E%3C/svg%3E", name: "DuckDuckGo" },
+            bing: { url: "https://www.bing.com/search?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%2300809d' d='M14 4l4 14 12 4-12 10-2 12-8-6v-34z'/%3E%3Cpath fill='%2300a8e1' d='M18 18l12 4-12 10z'/%3E%3Cpath fill='%23005e7e' d='M14 4v34l4-6V18z'/%3E%3C/svg%3E", name: "Bing" },
+            yahoo: { url: "https://search.yahoo.com/search?p=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%235f01d1' d='M24 0C10.7 0 0 10.7 0 24s10.7 24 24 24 24-10.7 24-24S37.3 0 24 0zm8.2 14.3l-6.9 13.1v8.9h-2.6v-8.9l-6.9-13.1h3l5.2 10.1 5.2-10.1h3z'/%3E%3C/svg%3E", name: "Yahoo" },
+            startpage: { url: "https://www.startpage.com/do/search?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect fill='%23206580' width='48' height='48' rx='8'/%3E%3Cpath fill='%23fff' d='M24 8c-8.8 0-16 7.2-16 16s7.2 16 16 16 16-7.2 16-16-7.2-16-16-16zm0 28c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12-5.4 12-12 12z'/%3E%3Ccircle fill='%23fff' cx='24' cy='24' r='6'/%3E%3C/svg%3E", name: "Startpage" }
+        };
+
+        const engineKeys = Object.keys(searchEngines);
+        let currentEngineIndex = 0;
+        const searchForm = document.getElementById("searchform");
+        const searchBox = document.getElementById("searchbox");
+        const clearButton = document.getElementById("clear-query-button");
+        const searchIcon = document.getElementById("search-icon");
+        const engineIcon = document.getElementById("engine-icon");
+        const themeToggle = document.getElementById("theme-toggle");
+        const dropdownMenu = document.getElementById("engine-dropdown-menu");
+
+        function populateDropdown() {
+            dropdownMenu.innerHTML = "";
+            engineKeys.forEach((key, index) => {
+                const engine = searchEngines[key];
+                const option = document.createElement("div");
+                option.className = "engine-option";
+                option.dataset.engineIndex = index;
+                if (index === currentEngineIndex) option.classList.add("selected");
+                option.innerHTML = `<img src="${engine.icon}" alt=""><span>${engine.name}</span>`;
+                option.addEventListener("click", () => {
+                    selectEngine(index);
+                    toggleDropdown();
+                });
+                dropdownMenu.appendChild(option);
+            });
+        }
+
+        function toggleDropdown() {
+            dropdownMenu.classList.toggle("show");
+            if (dropdownMenu.classList.contains("show")) populateDropdown();
+        }
+
+        function selectEngine(index) {
+            currentEngineIndex = index;
+            updateEngineIcon();
+        }
+
+        function updateEngineIcon() {
+            const currentKey = engineKeys[currentEngineIndex];
+            const engine = searchEngines[currentKey];
+            engineIcon.src = engine.icon;
+            engineIcon.alt = engine.name;
+            localStorage.setItem("preferredSearchEngine", currentKey);
+            if (dropdownMenu.classList.contains("show")) {
+                dropdownMenu.querySelectorAll(".engine-option").forEach((opt, idx) => {
+                    opt.classList.toggle("selected", idx === currentEngineIndex);
+                });
+            }
+        }
+        
+        searchIcon.addEventListener("click", e => { e.stopPropagation(); toggleDropdown(); });
+        document.addEventListener("click", e => {
+            if (!searchIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove("show");
+            }
+        });
+        
+        const savedEngine = localStorage.getItem("preferredSearchEngine");
+        if (savedEngine && searchEngines[savedEngine]) {
+            currentEngineIndex = engineKeys.indexOf(savedEngine);
+        }
         updateEngineIcon();
-      }
-
-      // Function to update the engine icon and save preference (existing code)
-      function updateEngineIcon() {
-        const currentEngine = engineKeys[currentEngineIndex];
-        const engine = searchEngines[currentEngine];
-       
-        engineIcon.src = engine.icon;
-        engineIcon.alt = engine.name;
-        searchIcon.title = `${engine.name} (Click to select)`;
-       
-        // Save to localStorage
-        localStorage.setItem("preferredSearchEngine", currentEngine);
-       
-        // Update selected state in dropdown if it's open
-        if (dropdownMenu.classList.contains("show")) {
-          const options = dropdownMenu.querySelectorAll(".engine-option");
-          options.forEach((option, index) => {
-            option.classList.toggle("selected", index === currentEngineIndex);
-          });
+        
+        function autosize() {
+            searchBox.style.height = "auto";
+            searchBox.style.height = searchBox.scrollHeight + "px";
         }
-      }
+        searchBox.addEventListener("input", autosize);
 
-      // Add click event to search icon to toggle dropdown (existing code)
-      searchIcon.addEventListener("click", function(e) {
-        e.stopPropagation();
-        toggleDropdown();
-      });
-     
-      // Add keyboard support for search icon (existing code)
-      searchIcon.addEventListener("keydown", function(e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          toggleDropdown();
+        function updateClearButtonVisibility() {
+            clearButton.style.visibility = searchBox.value.trim() ? "visible" : "hidden";
         }
-      });
-
-      // Close dropdown when clicking outside (existing code)
-      document.addEventListener("click", function(e) {
-        if (!searchIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
-          dropdownMenu.classList.remove("show");
-        }
-      });
-
-      // Close dropdown when pressing Escape (existing code)
-      document.addEventListener("keydown", function(e) {
-        if (e.key === "Escape" && dropdownMenu.classList.contains("show")) {
-          dropdownMenu.classList.remove("show");
-        }
-      });
-
-      // Load preferred search engine from localStorage (existing code)
-      const savedEngine = localStorage.getItem("preferredSearchEngine");
-      if (savedEngine && searchEngines[savedEngine]) {
-        currentEngineIndex = engineKeys.indexOf(savedEngine);
-      }
-      updateEngineIcon();
-
-      // Auto-resize textarea (existing code)
-      function autosize() {
-        searchBox.style.height = "auto";
-        searchBox.style.height = searchBox.scrollHeight + "px";
-      }
-      searchBox.addEventListener("input", autosize, false);
-      // Show/hide clear button (existing code)
-      function updateClearButtonVisibility() {
-        clearButton.style.visibility = searchBox.value.trim() ? "visible" : "hidden";
-      }
-      searchBox.addEventListener("input", updateClearButtonVisibility);
-      updateClearButtonVisibility();
-      autosize();
-
-      // Clear button functionality (existing code)
-      clearButton.addEventListener("click", function () {
-        searchBox.value = "";
-        searchBox.focus();
-        autosize();
+        searchBox.addEventListener("input", updateClearButtonVisibility);
         updateClearButtonVisibility();
-      });
 
-      // Handle form submission (existing code)
-      searchForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const query = searchBox.value.trim();
-        if (!query) {
-          searchBox.focus();
-          return;
-        }
-
-        const currentEngine = engineKeys[currentEngineIndex];
-        const searchUrl = searchEngines[currentEngine].url;
-
-        // Redirect to the selected search engine with the query
-        window.location.href = searchUrl + encodeURIComponent(query);
-      });
-
-      // Handle Enter key in textarea (existing code)
-      searchBox.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" && !e.shiftKey) {
-          e.preventDefault();
-          searchForm.dispatchEvent(new Event("submit"));
-        }
-      });
-
-      // Global keyboard shortcuts (existing code)
-      document.addEventListener("keydown", function (e) {
-        const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
-        const isTyping = tag === "input" || tag === "textarea" || e.target.isContentEditable;
-        // Focus with "/" when not typing
-        if (e.key === "/" && !isTyping) {
-          e.preventDefault();
-          searchBox.focus();
-        }
-        // Focus with Ctrl/Cmd+K
-        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
-          e.preventDefault();
-          searchBox.focus();
-        }
-        // Submit to new tab with Ctrl+Enter
-        if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
-          const q = searchBox.value.trim();
-          if (!q) return;
-          const currentEngine = engineKeys[currentEngineIndex];
-          const url = searchEngines[currentEngine].url + encodeURIComponent(q);
-          window.open(url, "_blank");
-        }
-      });
-
-      // Theme handling (existing code)
-      const rootEl = document.documentElement;
-      function applyTheme(theme) {
-        if (theme === "light") {
-          rootEl.classList.add("light");
-          rootEl.classList.remove("dark");
-          if (themeToggle) themeToggle.textContent = "Light";
-          if (themeToggle) themeToggle.setAttribute("aria-pressed", "false");
-        } else {
-          rootEl.classList.add("dark");
-          rootEl.classList.remove("light");
-          if (themeToggle) themeToggle.textContent = "Dark";
-          if (themeToggle) themeToggle.setAttribute("aria-pressed", "true");
-        }
-      }
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "light" || savedTheme === "dark") {
-        applyTheme(savedTheme);
-      } else {
-        // Use existing class on html as default
-        applyTheme(rootEl.classList.contains("light") ? "light" : "dark");
-      }
-      if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-          const next = rootEl.classList.contains("light") ? "dark" : "light";
-          applyTheme(next);
-          localStorage.setItem("theme", next);
+        clearButton.addEventListener("click", () => {
+            searchBox.value = "";
+            searchBox.focus();
+            autosize();
+            updateClearButtonVisibility();
         });
-      }
 
-      // New: Call quicklink carousel setup on load and resize
-      window.addEventListener('load', setupQuicklinkCarousel);
-      window.addEventListener('resize', setupQuicklinkCarousel); 
+        searchForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const query = searchBox.value.trim();
+            if (query) {
+                const key = engineKeys[currentEngineIndex];
+                window.location.href = searchEngines[key].url + encodeURIComponent(query);
+            }
+        });
+
+        searchBox.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                searchForm.dispatchEvent(new Event("submit"));
+            }
+        });
+
+        const rootEl = document.documentElement;
+        function applyTheme(theme) {
+            rootEl.className = theme;
+            themeToggle.textContent = theme === 'light' ? 'Light' : 'Dark';
+            themeToggle.setAttribute("aria-pressed", theme === 'dark');
+        }
+        const savedTheme = localStorage.getItem("theme") || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        applyTheme(savedTheme);
+        themeToggle.addEventListener("click", () => {
+            const next = rootEl.classList.contains("light") ? "dark" : "light";
+            applyTheme(next);
+            localStorage.setItem("theme", next);
+        });
+
+        // Initial setup on load and resize
+        window.addEventListener('load', setupQuicklinkCarousel);
+        window.addEventListener('resize', setupQuicklinkCarousel);
     </script>
   </body>
 </html>
-
