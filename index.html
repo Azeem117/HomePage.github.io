@@ -254,7 +254,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-end; /* Position content towards bottom for desktop */
+        justify-content: center; /* Center content vertically by default (desktop) */
         background-image: radial-gradient(
             ellipse at 15% 40%,
             var(--accent-1) 0%,
@@ -283,7 +283,7 @@
         align-items: center;
         gap: 28px;
         width: 100%; /* Added width for mobile centering */
-        margin-bottom: 20vh; /* Position 20% above bottom on desktop */
+        transform: translateY(15vh); /* Move content down to position it 20% above bottom on desktop */
       }
       #logo img {
         display: block;
@@ -552,7 +552,7 @@
             min-height: 100vh; 
             justify-content: flex-start;
             padding-top: 5vh; /* Initial padding for logo */
-            margin-bottom: 0; /* Reset desktop margin on mobile */
+            transform: none; /* Reset desktop transform on mobile */
         }
         #searchbar-home {
           /* Move search bar and quick links down below half-screen mark */
