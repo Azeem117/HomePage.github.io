@@ -218,22 +218,51 @@
           0 0 0 3px var(--focus-ring);
         border-color: var(--border-strong);
       }
-      #search-icon {
+      .engine-selector-wrapper {
         display: flex;
         align-items: center;
+        gap: 8px;
         margin-right: 8px;
-        cursor: pointer;
-        padding: 6px;
+        padding: 6px 8px;
         border-radius: 8px;
+        background: var(--surface-hover);
+        border: 1px solid var(--border);
         transition: all 0.2s ease;
       }
-      #search-icon:hover {
-        background: var(--surface-hover);
+      .engine-selector-wrapper:hover {
+        background: var(--surface);
+        border-color: var(--border-strong);
       }
-      #search-icon .engine-logo {
+      .engine-selector-wrapper:focus-within {
+        border-color: var(--border-strong);
+        box-shadow: 0 0 0 2px var(--focus-ring);
+      }
+      .engine-selector-wrapper .engine-logo {
         display: block;
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        pointer-events: none;
+      }
+      .engine-select {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--fg);
+        font-family: var(--main-font);
+        font-size: 0.8rem;
+        font-weight: 500;
+        cursor: pointer;
+        padding: 2px 4px;
+        min-width: 100px;
+      }
+      .engine-select option {
+        background: var(--surface);
+        color: var(--fg);
+        padding: 8px;
+      }
+      .light .engine-select option {
+        background: #fff;
       }
       textarea#searchbox {
         flex: 1;
@@ -271,58 +300,7 @@
         background: var(--surface-hover);
         color: var(--fg);
       }
-      /* Engine dropdown styles */
-      .engine-dropdown {
-        position: relative;
-      }
-      .engine-dropdown-menu {
-        position: absolute;
-        top: calc(100% + 8px);
-        left: 0;
-        background: var(--surface);
-        border-radius: 12px;
-        padding: 8px;
-        box-shadow: 0 8px 32px var(--shadow), 0 0 0 1px var(--border);
-        border: 1px solid var(--border);
-        backdrop-filter: blur(10px);
-        min-width: 180px;
-        z-index: 1000;
-        display: none;
-      }
-      .light .engine-dropdown-menu {
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 8px 32px var(--shadow), 0 4px 12px var(--shadow), 0 0 0 1px var(--border);
-      }
-      .engine-dropdown-menu.show {
-        display: block;
-      }
-      .engine-option {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 12px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        color: var(--fg);
-        font-size: 0.85rem;
-      }
-      .engine-option:hover {
-        background: var(--surface-hover);
-      }
-      .engine-option.selected {
-        background: var(--accent-1);
-        color: #fff;
-      }
-      .light .engine-option.selected {
-        background: rgba(0, 123, 255, 0.15);
-        color: var(--fg);
-      }
-      .engine-option img {
-        width: 20px;
-        height: 20px;
-        flex-shrink: 0;
-      }
+
       footer {
         width: 100%;
         max-width: 980px;
@@ -485,6 +463,7 @@
           overflow-y: hidden;
           scroll-snap-type: x mandatory;
           -webkit-overflow-scrolling: touch;
+          scroll-behavior: smooth;
           padding-bottom: 10px;
           width: 100%;
           height: 220px;
@@ -638,18 +617,21 @@
                 target="_self"
                 class="svelte-g9bky4"
               >
-                <div class="engine-dropdown">
-                  <div id="search-icon" class="svelte-g9bky4" role="button" tabindex="0" aria-label="Switch search engine" title="Click to select search engine">
-                    <img
-                      id="engine-icon"
-                      class="engine-logo"
-                      src="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg"
-                      alt="Brave Search"
-                    />
-                  </div>
-                  <div id="engine-dropdown-menu" class="engine-dropdown-menu" role="menu">
-                    <!-- Dropdown options will be populated by JavaScript -->
-                  </div>
+                <div class="engine-selector-wrapper">
+                  <img
+                    id="engine-icon"
+                    class="engine-logo"
+                    src="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg"
+                    alt="Brave Search"
+                  />
+                  <select id="engine-select" class="engine-select" aria-label="Select search engine" title="Select search engine">
+                    <option value="brave">Brave Search</option>
+                    <option value="google">Google</option>
+                    <option value="duckduckgo">DuckDuckGo</option>
+                    <option value="bing">Bing</option>
+                    <option value="yahoo">Yahoo</option>
+                    <option value="startpage">Startpage</option>
+                  </select>
                 </div>
 
                 <textarea
@@ -919,56 +901,23 @@
         const searchForm = document.getElementById("searchform");
         const searchBox = document.getElementById("searchbox");
         const clearButton = document.getElementById("clear-query-button");
-        const searchIcon = document.getElementById("search-icon");
+        const engineSelect = document.getElementById("engine-select");
         const engineIcon = document.getElementById("engine-icon");
         const themeToggle = document.getElementById("theme-toggle");
-        const dropdownMenu = document.getElementById("engine-dropdown-menu");
-
-        function populateDropdown() {
-            dropdownMenu.innerHTML = "";
-            engineKeys.forEach((key, index) => {
-                const engine = searchEngines[key];
-                const option = document.createElement("div");
-                option.className = "engine-option";
-                option.dataset.engineIndex = index;
-                if (index === currentEngineIndex) option.classList.add("selected");
-                option.innerHTML = `<img src="${engine.icon}" alt=""><span>${engine.name}</span>`;
-                option.addEventListener("click", () => {
-                    selectEngine(index);
-                    toggleDropdown();
-                });
-                dropdownMenu.appendChild(option);
-            });
-        }
-
-        function toggleDropdown() {
-            dropdownMenu.classList.toggle("show");
-            if (dropdownMenu.classList.contains("show")) populateDropdown();
-        }
-
-        function selectEngine(index) {
-            currentEngineIndex = index;
-            updateEngineIcon();
-        }
 
         function updateEngineIcon() {
             const currentKey = engineKeys[currentEngineIndex];
             const engine = searchEngines[currentKey];
             engineIcon.src = engine.icon;
             engineIcon.alt = engine.name;
+            engineSelect.value = currentKey;
             localStorage.setItem("preferredSearchEngine", currentKey);
-            if (dropdownMenu.classList.contains("show")) {
-                dropdownMenu.querySelectorAll(".engine-option").forEach((opt, idx) => {
-                    opt.classList.toggle("selected", idx === currentEngineIndex);
-                });
-            }
         }
         
-        searchIcon.addEventListener("click", e => { e.stopPropagation(); toggleDropdown(); });
-        document.addEventListener("click", e => {
-            if (!searchIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownMenu.classList.remove("show");
-            }
+        engineSelect.addEventListener("change", () => {
+            const selectedKey = engineSelect.value;
+            currentEngineIndex = engineKeys.indexOf(selectedKey);
+            updateEngineIcon();
         });
         
         const savedEngine = localStorage.getItem("preferredSearchEngine");
