@@ -905,26 +905,28 @@
         const engineIcon = document.getElementById("engine-icon");
         const themeToggle = document.getElementById("theme-toggle");
 
-        function updateEngineIcon() {
+        function updateEngineIcon(updateSelect = true) {
             const currentKey = engineKeys[currentEngineIndex];
             const engine = searchEngines[currentKey];
             engineIcon.src = engine.icon;
             engineIcon.alt = engine.name;
-            engineSelect.value = currentKey;
+            if (updateSelect) {
+                engineSelect.value = currentKey;
+            }
             localStorage.setItem("preferredSearchEngine", currentKey);
         }
         
         engineSelect.addEventListener("change", () => {
             const selectedKey = engineSelect.value;
             currentEngineIndex = engineKeys.indexOf(selectedKey);
-            updateEngineIcon();
+            updateEngineIcon(false); // Don't update select since user just changed it
         });
         
         const savedEngine = localStorage.getItem("preferredSearchEngine");
         if (savedEngine && searchEngines[savedEngine]) {
             currentEngineIndex = engineKeys.indexOf(savedEngine);
         }
-        updateEngineIcon();
+        updateEngineIcon(true);
         
         function autosize() {
             searchBox.style.height = "auto";
