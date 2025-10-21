@@ -3,6 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="dns-prefetch" href="https://cdn.search.brave.com" />
+    <link rel="dns-prefetch" href="https://imgs.search.brave.com" />
+    <link rel="dns-prefetch" href="https://tiles.search.brave.com" />
+    <link rel="dns-prefetch" href="https://brave.com" />
     <link
       href="https://cdn.search.brave.com"
       rel="preconnect"
@@ -185,6 +189,17 @@
       }
       @media (prefers-reduced-motion: reduce) {
         body::before { animation: none; }
+      }
+      
+      /* Reduce animation complexity on low-end devices */
+      @media (prefers-reduced-motion: no-preference) and (max-width: 720px) {
+        @supports (-webkit-touch-callout: none) {
+          /* iOS devices - use simpler animations */
+          body::before {
+            animation-duration: 20s;
+            filter: saturate(100%) blur(0px);
+          }
+        }
       }
       #home-wrapper {
         display: flex;
@@ -1549,14 +1564,21 @@
         
         // --- EXISTING SCRIPT LOGIC (Unchanged, placed below new functions) ---
 
-        // Register Service Worker
+        // Register Service Worker (deferred)
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').then(reg => {
-                    console.log('SW registered:', reg.scope);
-                }).catch(err => {
-                    console.error('SW registration failed:', err);
-                });
+            // Defer SW registration until page is loaded
+            if (document.readyState === 'complete') {
+                registerServiceWorker();
+            } else {
+                window.addEventListener('load', registerServiceWorker);
+            }
+        }
+        
+        function registerServiceWorker() {
+            navigator.serviceWorker.register('/sw.js').then(reg => {
+                console.log('SW registered:', reg.scope);
+            }).catch(err => {
+                console.error('SW registration failed:', err);
             });
         }
 
@@ -1652,7 +1674,30 @@
         });
 
         // Initial setup on load and resize
-        window.addEventListener('load', setupQuicklinkCarousel);
+        if (window.matchMedia('(max-width: 720px)').matches) {
+            // On mobile, use Intersection Observer for lazy initialization
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setupQuicklinkCarousel();
+                            observer.disconnect();
+                        }
+                    });
+                }, { rootMargin: '50px' });
+                
+                const quicklinksContainer = document.getElementById('quicklinks-container');
+                if (quicklinksContainer) {
+                    observer.observe(quicklinksContainer);
+                }
+            } else {
+                // Fallback for browsers without IntersectionObserver
+                window.addEventListener('load', setupQuicklinkCarousel);
+            }
+        } else {
+            // Desktop: setup immediately
+            window.addEventListener('load', setupQuicklinkCarousel);
+        }
         
         // Debounced resize handler for better performance
         let resizeTimeout;
