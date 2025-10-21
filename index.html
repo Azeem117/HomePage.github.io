@@ -46,34 +46,16 @@
       content="Search the Web using your preferred search engine."
     />
     <meta name="keywords" content="search, privacy, web search" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/apple-touch-icon.Bqba6l0U.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/favicon-32x32.B2iBzfXZ.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/favicon-16x16.nT_pLL7v.png"
-    />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg"
-    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon/hhh.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon/hhh.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon/hhh.png" />
+    <link rel="icon" type="image/png" href="/icon/hhh.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Homepage" />
-    <title>Homepage </title>
+  <meta name="apple-mobile-web-app-title" content="Vortex" />
+  <title>Vortex</title>
     <style type="text/css">
       /* --- NEW THEME TOKENS --- */
       :root {
@@ -137,7 +119,7 @@
         --icon-shadow-active: 0 3px 8px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.06);
       }
 
-      /* --- FONT FACE & BASE STYLES (Unchanged) --- */
+      /* --- FONT FACE & BASE STYLES --- */
       @font-face {
         font-family: Inter Variable;
         font-style: normal;
@@ -204,12 +186,6 @@
       @media (prefers-reduced-motion: reduce) {
         body::before { animation: none; }
       }
-      #main {
-        width: 100%;
-        max-width: 980px;
-        padding: 36px 24px;
-        box-sizing: border-box;
-      }
       #home-wrapper {
         display: flex;
         flex-direction: column;
@@ -221,14 +197,16 @@
       #logo img {
         display: block;
       }
+      /* Keep Brave logo colors unchanged in light mode */
       .light #logo img {
-        filter: brightness(0);
+        filter: none;
       }
       .searchform-container {
         width: 100%;
         display: flex;
         justify-content: center;
       }
+      /* Restore base search form styling (desktop/default) */
       form#searchform {
         width: 100%;
         max-width: 600px;
@@ -252,6 +230,8 @@
         border-color: var(--border-strong);
         transform: translateY(-1px);
       }
+
+      /* Restore base engine selector styling (desktop/default) */
       .engine-selector-wrapper {
         position: relative;
         display: flex;
@@ -260,8 +240,7 @@
         margin-right: 8px;
         padding: 6px 8px;
         border-radius: var(--radius-sm);
-        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.02))
-                    , var(--surface);
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.02)), var(--surface);
         border: 1px solid var(--glass-border);
         transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         backdrop-filter: blur(8px) saturate(140%);
@@ -457,6 +436,22 @@
         body {
           justify-content: flex-start;
         }
+        /* Ensure app buttons and menus behave well on small screens */
+        #gbwa { top: calc(10px + env(safe-area-inset-top, 0px)); right: calc(10px + env(safe-area-inset-right, 0px)); }
+        #edgewa { top: calc(10px + env(safe-area-inset-top, 0px)); right: calc(48px + env(safe-area-inset-right, 0px)); }
+        #gbwa .gb_B, #edgewa .edge_B { box-shadow: 0 6px 18px rgba(0,0,0,0.35), 0 0 0 1px var(--border); }
+        #gbwa .apps-menu, #edgewa .apps-menu {
+          width: min(94vw, 320px);
+          max-height: min(70vh, 480px);
+          padding: 12px;
+          right: calc(0px + env(safe-area-inset-right, 0px));
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior: contain;
+        }
+        #gbwa .apps-grid, #edgewa .apps-grid { gap: 10px; }
+        #gbwa .app .icon-bg, #edgewa .app .icon-bg { width: 48px; height: 48px; border-radius: 14px; }
+        #gbwa .app .app-icon, #edgewa .app .app-icon { width: 24px; height: 24px; }
+        #gbwa .app span, #edgewa .app span { font-size: 0.62rem; }
         body::before {
           /* Enhanced mobile aurora effect */
           background: radial-gradient(1000px 500px at 15% 25%, var(--accent-1) 0%, transparent 65%),
@@ -703,6 +698,13 @@
         z-index: 1000;
         pointer-events: auto;
       }
+      #edgewa {
+        position: fixed;
+        top: calc(12px + env(safe-area-inset-top, 0px));
+        right: calc(60px + env(safe-area-inset-right, 0px));
+        z-index: 1000;
+        pointer-events: auto;
+      }
       #gbwa .gb_B {
         display: inline-flex;
         align-items: center;
@@ -742,6 +744,57 @@
         display: none !important;
       }
 
+      /* Edge button visuals */
+      #edgewa .edge_B {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        background: var(--glass-bg);
+        color: var(--fg);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--shadow-sm), 0 0 0 1px var(--border);
+        text-decoration: none;
+        -webkit-backdrop-filter: blur(10px) saturate(160%);
+        backdrop-filter: blur(10px) saturate(160%);
+        transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      }
+      #edgewa .edge_B:hover {
+        transform: translateY(-1px) scale(1.03);
+        background: var(--surface);
+        border-color: var(--border-strong);
+        box-shadow: var(--shadow-md), 0 0 0 1px var(--border-strong);
+      }
+      #edgewa .edge_B:focus-visible {
+        outline: none;
+        box-shadow: var(--ring), var(--shadow-sm);
+      }
+      #edgewa .edge_F {
+        width: 22px;
+        height: 22px;
+        display: block;
+      }
+      #edgewa .edge_F path { fill: currentColor; }
+
+      @media (max-width: 720px) {
+        #edgewa { right: calc(52px + env(safe-area-inset-right, 0px)); }
+        #edgewa .edge_B { width: 36px; height: 36px; }
+        #edgewa .edge_F { width: 20px; height: 20px; }
+      }
+
+      /* Keep Edge dropdown within mobile viewport */
+      @media (max-width: 720px) {
+        #edgewa .apps-menu {
+          /* Pull the menu back to the device's right edge */
+          right: calc(-52px - env(safe-area-inset-right, 0px));
+          /* Slightly wider allowance is okay; still constrained by min(...) above */
+          width: min(94vw, 360px);
+          max-height: min(70vh, 520px);
+        }
+      }
+
       @media (max-width: 720px) {
         #gbwa .gb_B {
           width: 36px;
@@ -753,10 +806,17 @@
         }
       }
 
+      /* Larger Brave logo on mobile */
+      @media (max-width: 720px) {
+        #logo img {
+          height: 78px;
+        }
+      }
+
       /* ============================ */
       /* Apps dropdown (apps launcher)*/
       /* ============================ */
-      #gbwa .apps-menu {
+  #gbwa .apps-menu, #edgewa .apps-menu {
         position: absolute;
         top: 48px;
         right: 0;
@@ -765,11 +825,17 @@
         overflow-y: auto;
         padding: 14px;
         border-radius: var(--radius-lg);
+
         background: var(--glass-bg);
         border: 1px solid var(--glass-border);
         box-shadow: var(--shadow-lg), 0 0 0 1px var(--border);
         -webkit-backdrop-filter: blur(12px) saturate(180%);
         backdrop-filter: blur(12px) saturate(180%);
+        /* smoother scrolling */
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        scroll-behavior: smooth;
+        scrollbar-gutter: stable both-edges;
         display: none;
         opacity: 0;
         transform: translateY(-6px) scale(0.98);
@@ -777,30 +843,32 @@
         transition: opacity 120ms ease, transform 150ms ease;
         z-index: 1001;
       }
-      #gbwa .apps-menu.open {
+  #gbwa .apps-menu.open, #edgewa .apps-menu.open {
         display: block;
         opacity: 1;
         transform: translateY(0) scale(1);
       }
-      #gbwa .apps-header {
+      /* Edge apps menu shares same style block via .apps-menu
+         no extra overrides required, will inherit */
+  #gbwa .apps-header, #edgewa .apps-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 8px;
         padding: 0 2px;
       }
-      #gbwa .apps-header h3 {
+  #gbwa .apps-header h3, #edgewa .apps-header h3 {
         margin: 0;
         font-size: 0.8rem;
         font-weight: 700;
         color: var(--muted);
       }
-      #gbwa .apps-grid {
+  #gbwa .apps-grid, #edgewa .apps-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 12px;
       }
-      #gbwa .app {
+  #gbwa .app, #edgewa .app {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -812,15 +880,15 @@
         color: var(--fg);
         transition: transform 0.12s ease, background 0.12s ease;
       }
-      #gbwa .app:focus-visible {
+  #gbwa .app:focus-visible, #edgewa .app:focus-visible {
         outline: none;
         box-shadow: var(--ring);
       }
-      #gbwa .app:hover {
+  #gbwa .app:hover, #edgewa .app:hover {
         transform: translateY(-1px);
         background: var(--surface-hover);
       }
-      #gbwa .app .icon-bg {
+  #gbwa .app .icon-bg, #edgewa .app .icon-bg {
         width: 54px;
         height: 54px;
         border-radius: 16px;
@@ -834,18 +902,29 @@
         -webkit-backdrop-filter: blur(8px) saturate(150%);
         backdrop-filter: blur(8px) saturate(150%);
       }
-      .light #gbwa .app .icon-bg {
+  /* Larger monogram text inside inline SVG icons */
+  #gbwa .app .icon-bg svg text, #edgewa .app .icon-bg svg text {
+        font-size: 16px;
+        font-weight: 900;
+      }
+  /* Slightly smaller when two letters to avoid clipping */
+  #gbwa .app .icon-bg svg text.two-chars, #edgewa .app .icon-bg svg text.two-chars {
+        font-size: 13.5px;
+        font-weight: 900;
+        letter-spacing: -0.3px;
+      }
+  .light #gbwa .app .icon-bg, .light #edgewa .app .icon-bg {
         background: linear-gradient(145deg, #ffffff, #f5f5f5);
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
         border: 1px solid rgba(0, 0, 0, 0.12);
       }
-      #gbwa .app .app-icon {
+  #gbwa .app .app-icon, #edgewa .app .app-icon {
         width: 28px;
         height: 28px;
         object-fit: contain;
         filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
       }
-      #gbwa .app span {
+  #gbwa .app span, #edgewa .app span {
         font-size: 0.65rem;
         font-weight: 600;
         text-align: center;
@@ -855,14 +934,14 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
-      #gbwa .apps-footer {
+  #gbwa .apps-footer, #edgewa .apps-footer {
         border-top: 1px solid var(--glass-border);
         margin-top: 12px;
         padding-top: 10px;
         display: flex;
         justify-content: center;
       }
-      #gbwa .apps-footer a {
+  #gbwa .apps-footer a, #edgewa .apps-footer a {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -877,9 +956,30 @@
         box-shadow: 0 4px 14px rgba(0,0,0,0.25);
         transition: transform 0.15s ease, box-shadow 0.2s ease;
       }
-      #gbwa .apps-footer a:hover {
+  #gbwa .apps-footer a:hover, #edgewa .apps-footer a:hover {
         transform: translateY(-1px);
         box-shadow: 0 8px 22px rgba(0,0,0,0.3);
+      }
+
+      /* Scrollbar polish for both apps menus */
+      #gbwa .apps-menu::-webkit-scrollbar, #edgewa .apps-menu::-webkit-scrollbar {
+        width: 10px;
+      }
+      #gbwa .apps-menu::-webkit-scrollbar-track, #edgewa .apps-menu::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      #gbwa .apps-menu::-webkit-scrollbar-thumb, #edgewa .apps-menu::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+        border-radius: 999px;
+        border: 2px solid transparent;
+        background-clip: padding-box;
+      }
+      #gbwa .apps-menu::-webkit-scrollbar-thumb:hover, #edgewa .apps-menu::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, var(--accent-1-strong), var(--accent-2-strong));
+      }
+      #gbwa .apps-menu, #edgewa .apps-menu {
+        scrollbar-width: thin;
+        scrollbar-color: var(--accent-2-strong) transparent;
       }
     </style>
   </head>
@@ -892,6 +992,8 @@
           aria-label="Google apps"
           href="https://www.google.co.in/intl/en/about/products?tab=wh"
           aria-expanded="false"
+          aria-haspopup="true"
+          aria-controls="apps-menu"
           role="button"
           tabindex="0"
           title="Google apps"
@@ -901,162 +1003,300 @@
             <image src="https://ssl.gstatic.com/gb/images/bar/al-icon.png" alt="" height="24" width="24" style="border: none;"></image>
           </svg>
         </a>
-        <div class="apps-menu" id="apps-menu" role="menu" aria-label="Google apps menu">
+  <div class="apps-menu" id="apps-menu" role="group" aria-label="Google apps menu">
           <div class="apps-header">
             <h3>Google apps</h3>
           </div>
-          <div class="apps-grid">
-            <a class="app" role="menuitem" href="https://myaccount.google.com/" target="_self" title="Account">
+          <div class="apps-grid" role="list">
+            <a class="app" role="listitem" href="https://myaccount.google.com/" target="_self" title="Account">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=myaccount.google.com" alt="Account" /></div>
               <span>Account</span>
             </a>
-            <a class="app" role="menuitem" href="https://www.google.com/" target="_self" title="Search">
+            <a class="app" role="listitem" href="https://www.google.com/" target="_self" title="Search">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=google.com" alt="Search" /></div>
               <span>Search</span>
             </a>
-            <a class="app" role="menuitem" href="https://maps.google.com/" target="_self" title="Maps">
+            <a class="app" role="listitem" href="https://maps.google.com/" target="_self" title="Maps">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=maps.google.com" alt="Maps" /></div>
               <span>Maps</span>
             </a>
-            <a class="app" role="menuitem" href="https://www.youtube.com/" target="_self" title="YouTube">
+            <a class="app" role="listitem" href="https://www.youtube.com/" target="_self" title="YouTube">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com" alt="YouTube" /></div>
               <span>YouTube</span>
             </a>
-            <a class="app" role="menuitem" href="https://play.google.com/" target="_self" title="Play">
+            <a class="app" role="listitem" href="https://play.google.com/" target="_self" title="Play">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=play.google.com" alt="Play" /></div>
               <span>Play</span>
             </a>
-            <a class="app" role="menuitem" href="https://news.google.com/" target="_self" title="News">
+            <a class="app" role="listitem" href="https://news.google.com/" target="_self" title="News">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=news.google.com" alt="News" /></div>
               <span>News</span>
             </a>
-            <a class="app" role="menuitem" href="https://mail.google.com/" target="_self" title="Gmail">
+            <a class="app" role="listitem" href="https://mail.google.com/" target="_self" title="Gmail">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=mail.google.com" alt="Gmail" /></div>
               <span>Gmail</span>
             </a>
-            <a class="app" role="menuitem" href="https://meet.google.com/" target="_self" title="Meet">
+            <a class="app" role="listitem" href="https://meet.google.com/" target="_self" title="Meet">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=meet.google.com" alt="Meet" /></div>
               <span>Meet</span>
             </a>
-            <a class="app" role="menuitem" href="https://chat.google.com/" target="_self" title="Chat">
+            <a class="app" role="listitem" href="https://chat.google.com/" target="_self" title="Chat">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=chat.google.com" alt="Chat" /></div>
               <span>Chat</span>
             </a>
-            <a class="app" role="menuitem" href="https://contacts.google.com/" target="_self" title="Contacts">
+            <a class="app" role="listitem" href="https://contacts.google.com/" target="_self" title="Contacts">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=contacts.google.com" alt="Contacts" /></div>
               <span>Contacts</span>
             </a>
-            <a class="app" role="menuitem" href="https://drive.google.com/" target="_self" title="Drive">
+            <a class="app" role="listitem" href="https://drive.google.com/" target="_self" title="Drive">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=drive.google.com" alt="Drive" /></div>
               <span>Drive</span>
             </a>
-            <a class="app" role="menuitem" href="https://calendar.google.com/" target="_self" title="Calendar">
+            <a class="app" role="listitem" href="https://calendar.google.com/" target="_self" title="Calendar">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=calendar.google.com" alt="Calendar" /></div>
               <span>Calendar</span>
             </a>
-            <a class="app" role="menuitem" href="https://translate.google.com/" target="_self" title="Translate">
+            <a class="app" role="listitem" href="https://translate.google.com/" target="_self" title="Translate">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=translate.google.com" alt="Translate" /></div>
               <span>Translate</span>
             </a>
-            <a class="app" role="menuitem" href="https://photos.google.com/" target="_self" title="Photos">
+            <a class="app" role="listitem" href="https://photos.google.com/" target="_self" title="Photos">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=photos.google.com" alt="Photos" /></div>
               <span>Photos</span>
             </a>
-            <a class="app" role="menuitem" href="https://docs.google.com/" target="_self" title="Docs">
+            <a class="app" role="listitem" href="https://docs.google.com/" target="_self" title="Docs">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=docs.google.com" alt="Docs" /></div>
               <span>Docs</span>
             </a>
-            <a class="app" role="menuitem" href="https://sheets.google.com/" target="_self" title="Sheets">
+            <a class="app" role="listitem" href="https://sheets.google.com/" target="_self" title="Sheets">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=sheets.google.com" alt="Sheets" /></div>
               <span>Sheets</span>
             </a>
-            <a class="app" role="menuitem" href="https://slides.google.com/" target="_self" title="Slides">
+            <a class="app" role="listitem" href="https://slides.google.com/" target="_self" title="Slides">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=slides.google.com" alt="Slides" /></div>
               <span>Slides</span>
             </a>
-            <a class="app" role="menuitem" href="https://forms.google.com/" target="_self" title="Forms">
+            <a class="app" role="listitem" href="https://forms.google.com/" target="_self" title="Forms">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=forms.google.com" alt="Forms" /></div>
               <span>Forms</span>
             </a>
-            <a class="app" role="menuitem" href="https://sites.google.com/" target="_self" title="Sites">
+            <a class="app" role="listitem" href="https://sites.google.com/" target="_self" title="Sites">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=sites.google.com" alt="Sites" /></div>
               <span>Sites</span>
             </a>
-            <a class="app" role="menuitem" href="https://keep.google.com/" target="_self" title="Keep">
+            <a class="app" role="listitem" href="https://keep.google.com/" target="_self" title="Keep">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=keep.google.com" alt="Keep" /></div>
               <span>Keep</span>
             </a>
-            <a class="app" role="menuitem" href="https://classroom.google.com/" target="_self" title="Classroom">
+            <a class="app" role="listitem" href="https://classroom.google.com/" target="_self" title="Classroom">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=classroom.google.com" alt="Classroom" /></div>
               <span>Classroom</span>
             </a>
-            <a class="app" role="menuitem" href="https://earth.google.com/" target="_self" title="Earth">
+            <a class="app" role="listitem" href="https://earth.google.com/" target="_self" title="Earth">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=earth.google.com" alt="Earth" /></div>
               <span>Earth</span>
             </a>
-            <a class="app" role="menuitem" href="https://artsandculture.google.com/" target="_self" title="Arts & Culture">
+            <a class="app" role="listitem" href="https://artsandculture.google.com/" target="_self" title="Arts & Culture">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=artsandculture.google.com" alt="Arts & Culture" /></div>
               <span>Arts & Culture</span>
             </a>
-            <a class="app" role="menuitem" href="https://books.google.com/" target="_self" title="Books">
+            <a class="app" role="listitem" href="https://books.google.com/" target="_self" title="Books">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=books.google.com" alt="Books" /></div>
               <span>Books</span>
             </a>
-            <a class="app" role="menuitem" href="https://www.blogger.com/" target="_self" title="Blogger">
+            <a class="app" role="listitem" href="https://www.blogger.com/" target="_self" title="Blogger">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=blogger.com" alt="Blogger" /></div>
               <span>Blogger</span>
             </a>
-            <a class="app" role="menuitem" href="https://analytics.google.com/" target="_self" title="Analytics">
+            <a class="app" role="listitem" href="https://analytics.google.com/" target="_self" title="Analytics">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=analytics.google.com" alt="Analytics" /></div>
               <span>Analytics</span>
             </a>
-            <a class="app" role="menuitem" href="https://ads.google.com/" target="_self" title="Ads">
+            <a class="app" role="listitem" href="https://ads.google.com/" target="_self" title="Ads">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=ads.google.com" alt="Ads" /></div>
               <span>Ads</span>
             </a>
-            <a class="app" role="menuitem" href="https://podcasts.google.com/" target="_self" title="Podcasts">
+            <a class="app" role="listitem" href="https://podcasts.google.com/" target="_self" title="Podcasts">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=podcasts.google.com" alt="Podcasts" /></div>
               <span>Podcasts</span>
             </a>
-            <a class="app" role="menuitem" href="https://www.google.com/travel/" target="_self" title="Travel">
+            <a class="app" role="listitem" href="https://www.google.com/travel/" target="_self" title="Travel">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=google.com" alt="Travel" /></div>
               <span>Travel</span>
             </a>
-            <a class="app" role="menuitem" href="https://shopping.google.com/" target="_self" title="Shopping">
+            <a class="app" role="listitem" href="https://shopping.google.com/" target="_self" title="Shopping">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=shopping.google.com" alt="Shopping" /></div>
               <span>Shopping</span>
             </a>
-            <a class="app" role="menuitem" href="https://www.google.com/finance/" target="_self" title="Finance">
+            <a class="app" role="listitem" href="https://www.google.com/finance/" target="_self" title="Finance">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=google.com" alt="Finance" /></div>
               <span>Finance</span>
             </a>
-            <a class="app" role="menuitem" href="https://pay.google.com/" target="_self" title="Pay">
+            <a class="app" role="listitem" href="https://pay.google.com/" target="_self" title="Pay">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=pay.google.com" alt="Pay" /></div>
               <span>Pay</span>
             </a>
-            <a class="app" role="menuitem" href="https://one.google.com/" target="_self" title="One">
+            <a class="app" role="listitem" href="https://one.google.com/" target="_self" title="One">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=one.google.com" alt="One" /></div>
               <span>One</span>
             </a>
-            <a class="app" role="menuitem" href="https://voice.google.com/" target="_self" title="Voice">
+            <a class="app" role="listitem" href="https://voice.google.com/" target="_self" title="Voice">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=voice.google.com" alt="Voice" /></div>
               <span>Voice</span>
             </a>
-            <a class="app" role="menuitem" href="https://music.youtube.com/" target="_self" title="YouTube Music">
+            <a class="app" role="listitem" href="https://music.youtube.com/" target="_self" title="YouTube Music">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=music.youtube.com" alt="YouTube Music" /></div>
               <span>YouTube Music</span>
             </a>
-            <a class="app" role="menuitem" href="https://tv.youtube.com/" target="_self" title="YouTube TV">
+            <a class="app" role="listitem" href="https://tv.youtube.com/" target="_self" title="YouTube TV">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=tv.youtube.com" alt="YouTube TV" /></div>
               <span>YouTube TV</span>
             </a>
-            <a class="app" role="menuitem" href="https://www.google.com/flights" target="_self" title="Flights">
+            <a class="app" role="listitem" href="https://www.google.com/flights" target="_self" title="Flights">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=google.com" alt="Flights" /></div>
               <span>Flights</span>
             </a>
           </div>
           <div class="apps-footer">
             <a href="https://about.google/products/" target="_blank" rel="noopener noreferrer">View all</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Edge apps button (fixed top-right, left of Google) -->
+    <div id="edgewa" class="ms_td" aria-hidden="false">
+      <div class="ms_D">
+        <a
+          class="edge_B"
+          aria-label="Edge apps"
+          href="https://microsoft365.com/apps"
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-controls="edge-apps-menu"
+          role="button"
+          tabindex="0"
+          title="Edge apps"
+        >
+          <svg class="edge_F" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z"></path>
+          </svg>
+        </a>
+  <div class="apps-menu" id="edge-apps-menu" role="group" aria-label="Edge apps menu">
+          <div class="apps-header">
+            <h3>Edge apps</h3>
+          </div>
+          <div class="apps-grid" role="list">
+            <a class="app" role="listitem" href="https://www.microsoft365.com/apps" target="_self" title="Microsoft 365">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=www.microsoft365.com" alt="Microsoft 365" /></div>
+              <span>M365</span>
+            </a>
+            <a class="app" role="listitem" href="https://outlook.live.com/" target="_self" title="Outlook">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=outlook.live.com" alt="Outlook" /></div>
+              <span>Outlook</span>
+            </a>
+            <a class="app" role="listitem" href="https://onedrive.live.com/" target="_self" title="OneDrive">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=onedrive.live.com" alt="OneDrive" /></div>
+              <span>OneDrive</span>
+            </a>
+            <a class="app" role="listitem" href="https://teams.microsoft.com/" target="_self" title="Teams">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=teams.microsoft.com" alt="Teams" /></div>
+              <span>Teams</span>
+            </a>
+            <a class="app" role="listitem" href="https://www.office.com/launch/word" target="_self" title="Word">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=office.com" alt="Word" /></div>
+              <span>Word</span>
+            </a>
+            <a class="app" role="listitem" href="https://www.office.com/launch/excel" target="_self" title="Excel">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=office.com" alt="Excel" /></div>
+              <span>Excel</span>
+            </a>
+            <a class="app" role="listitem" href="https://www.office.com/launch/powerpoint" target="_self" title="PowerPoint">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=office.com" alt="PowerPoint" /></div>
+              <span>PowerPoint</span>
+            </a>
+            <a class="app" role="listitem" href="https://onenote.com/" target="_self" title="OneNote">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=onenote.com" alt="OneNote" /></div>
+              <span>OneNote</span>
+            </a>
+            <a class="app" role="listitem" href="https://copilot.microsoft.com/" target="_self" title="Copilot">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=copilot.microsoft.com" alt="Copilot" /></div>
+              <span>Copilot</span>
+            </a>
+            <a class="app" role="listitem" href="https://www.bing.com/" target="_self" title="Bing">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=bing.com" alt="Bing" /></div>
+              <span>Bing</span>
+            </a>
+            <a class="app" role="listitem" href="https://microsoftedge.microsoft.com/addons" target="_self" title="Edge Add-ons">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=microsoftedge.microsoft.com" alt="Edge Add-ons" /></div>
+              <span>Edge Add-ons</span>
+            </a>
+            <a class="app" role="listitem" href="https://apps.microsoft.com/store" target="_self" title="Microsoft Store">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=apps.microsoft.com" alt="Store" /></div>
+              <span>Store</span>
+            </a>
+            <a class="app" role="listitem" href="https://xbox.com/" target="_self" title="Xbox">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=xbox.com" alt="Xbox" /></div>
+              <span>Xbox</span>
+            </a>
+            <a class="app" role="listitem" href="https://skype.com/" target="_self" title="Skype">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=skype.com" alt="Skype" /></div>
+              <span>Skype</span>
+            </a>
+            <a class="app" role="listitem" href="https://todo.microsoft.com/" target="_self" title="To Do">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=todo.microsoft.com" alt="To Do" /></div>
+              <span>To Do</span>
+            </a>
+            <a class="app" role="listitem" href="https://tasks.office.com/" target="_self" title="Planner">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=tasks.office.com" alt="Planner" /></div>
+              <span>Planner</span>
+            </a>
+            <a class="app" role="listitem" href="https://whiteboard.microsoft.com/" target="_self" title="Whiteboard">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=whiteboard.microsoft.com" alt="Whiteboard" /></div>
+              <span>Whiteboard</span>
+            </a>
+            <a class="app" role="listitem" href="https://loop.microsoft.com/" target="_self" title="Loop">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=loop.microsoft.com" alt="Loop" /></div>
+              <span>Loop</span>
+            </a>
+            <a class="app" role="listitem" href="https://forms.microsoft.com/" target="_self" title="Forms">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=forms.microsoft.com" alt="Forms" /></div>
+              <span>Forms</span>
+            </a>
+            <a class="app" role="listitem" href="https://sway.office.com/" target="_self" title="Sway">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=sway.office.com" alt="Sway" /></div>
+              <span>Sway</span>
+            </a>
+            <a class="app" role="listitem" href="https://stream.microsoft.com/" target="_self" title="Stream">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=stream.microsoft.com" alt="Stream" /></div>
+              <span>Stream</span>
+            </a>
+            <a class="app" role="listitem" href="https://flow.microsoft.com/" target="_self" title="Power Automate">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=flow.microsoft.com" alt="Power Automate" /></div>
+              <span>Automate</span>
+            </a>
+            <a class="app" role="listitem" href="https://app.powerbi.com/" target="_self" title="Power BI">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=app.powerbi.com" alt="Power BI" /></div>
+              <span>Power BI</span>
+            </a>
+            <a class="app" role="listitem" href="https://portal.azure.com/" target="_self" title="Azure Portal">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=portal.azure.com" alt="Azure" /></div>
+              <span>Azure</span>
+            </a>
+            <a class="app" role="listitem" href="https://visualstudio.microsoft.com/" target="_self" title="Visual Studio">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=visualstudio.microsoft.com" alt="Visual Studio" /></div>
+              <span>VS</span>
+            </a>
+            <a class="app" role="listitem" href="https://developer.microsoft.com/" target="_self" title="Microsoft Developer">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=developer.microsoft.com" alt="Developer" /></div>
+              <span>Developer</span>
+            </a>
+            <a class="app" role="listitem" href="https://learn.microsoft.com/" target="_self" title="Microsoft Learn">
+              <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=learn.microsoft.com" alt="Learn" /></div>
+              <span>Learn</span>
+            </a>
+          </div>
+          <div class="apps-footer">
+            <a href="https://www.microsoft365.com/apps" target="_self" rel="noopener">View all</a>
           </div>
         </div>
       </div>
@@ -1074,12 +1314,12 @@
               gap: 24px;
             "
           >
-            <div id="logo" class="svelte-ve2bd1" style="display: block; cursor: default;">
+            <div id="logo" class="svelte-ve2bd1" style="display: block; cursor: default; position: relative; top: -4vh; left: -3px;">
               <img
-                src="https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-logo-dark.Bg87GL4b.svg"
-                alt="Search logo"
-                title="Universal Search"
-                height="64"
+                src="../../hhh.png"
+                alt="Vortex logo"
+                title="Vortex"
+                height="72"
               />
             </div>
 
@@ -1372,8 +1612,8 @@
         }
 
         // Search engine configuration
-        const searchEngines = {
-            brave: { url: "https://search.brave.com/search?q=", icon: "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg", name: "Brave Search" },
+    const searchEngines = {
+      brave: { url: "https://search.brave.com/search?q=", icon: "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg", name: "Brave Search" },
             google: { url: "https://www.google.com/search?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%234285F4' d='M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z'/%3E%3Cpath fill='%2334A853' d='M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z'/%3E%3Cpath fill='%23FBBC05' d='M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z'/%3E%3Cpath fill='%23EA4335' d='M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z'/%3E%3C/svg%3E", name: "Google" },
             duckduckgo: { url: "https://duckduckgo.com/?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%23de5833'/%3E%3Cpath fill='%23fff' d='M24 10c-7.73 0-14 6.27-14 14 0 1.2.15 2.36.44 3.47.55-.44 1.18-.8 1.87-1.05-.18-.78-.31-1.58-.31-2.42 0-6.63 5.37-12 12-12s12 5.37 12 12c0 .84-.13 1.64-.31 2.42.69.25 1.32.61 1.87 1.05.29-1.11.44-2.27.44-3.47 0-7.73-6.27-14-14-14zm-6 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm12 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-6 4c-2.21 0-4 1.79-4 4h8c0-2.21-1.79-4-4-4z'/%3E%3C/svg%3E", name: "DuckDuckGo" },
             bing: { url: "https://www.bing.com/search?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%2300809d' d='M14 4l4 14 12 4-12 10-2 12-8-6v-34z'/%3E%3Cpath fill='%2300a8e1' d='M18 18l12 4-12 10z'/%3E%3Cpath fill='%23005e7e' d='M14 4v34l4-6V18z'/%3E%3C/svg%3E", name: "Bing" },
@@ -1469,61 +1709,147 @@
         // ==============================
         // Apps menu: toggle + accessibility
         // ==============================
-        (function appsMenuInit(){
-          const trigger = document.querySelector('#gbwa .gb_B');
-          const menu = document.getElementById('apps-menu');
-          if (!trigger || !menu) return;
+        (function appsMenusInit(){
+          const menus = [
+            { trigger: document.querySelector('#gbwa .gb_B'), menu: document.getElementById('apps-menu') },
+            { trigger: document.querySelector('#edgewa .edge_B'), menu: document.getElementById('edge-apps-menu') },
+          ].filter(m => m.trigger && m.menu);
 
-          function openMenu() {
-            menu.classList.add('open');
-            trigger.setAttribute('aria-expanded', 'true');
-            // Keep focus on trigger to avoid accidental scroll on mobile; allow Tab to reach items
+          if (!menus.length) return;
+
+          function closeAll(exceptMenu) {
+            menus.forEach(({ trigger, menu }) => {
+              if (menu !== exceptMenu) {
+                menu.classList.remove('open');
+                trigger.setAttribute('aria-expanded', 'false');
+              }
+            });
           }
 
-          function closeMenu() {
-            menu.classList.remove('open');
-            trigger.setAttribute('aria-expanded', 'false');
-          }
+          menus.forEach(({ trigger, menu }) => {
+            function openMenu() {
+              closeAll(menu);
+              menu.classList.add('open');
+              trigger.setAttribute('aria-expanded', 'true');
+            }
 
-          function toggleMenu() {
-            const isOpen = menu.classList.contains('open');
-            isOpen ? closeMenu() : openMenu();
-          }
+            function closeMenu() {
+              menu.classList.remove('open');
+              trigger.setAttribute('aria-expanded', 'false');
+            }
 
-          // Click trigger
-          trigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleMenu();
-          });
+            function toggleMenu() {
+              const isOpen = menu.classList.contains('open');
+              isOpen ? closeMenu() : openMenu();
+            }
 
-          // Keyboard support on trigger
-          trigger.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
+            trigger.addEventListener('click', (e) => {
               e.preventDefault();
               toggleMenu();
+            });
+
+            trigger.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+              }
+            });
+
+            menu.addEventListener('keydown', (e) => {
+              if (e.key === 'Escape') {
+                e.preventDefault();
+                closeMenu();
+                trigger.focus();
+              }
+            });
+
+            // Desktop hover intent: open on hover for pointer=fine devices only
+            const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+            if (isFinePointer) {
+              let hoverTimer;
+              trigger.addEventListener('mouseenter', () => {
+                hoverTimer = setTimeout(() => openMenu(), 120);
+              });
+              trigger.addEventListener('mouseleave', (e) => {
+                clearTimeout(hoverTimer);
+                // If moving into the menu, don't close immediately; menu mouseleave will handle
+              });
+              menu.addEventListener('mouseleave', () => {
+                // Small delay to allow moving back to trigger without flicker
+                setTimeout(() => {
+                  const overTrigger = trigger.matches(':hover');
+                  const overMenu = menu.matches(':hover');
+                  if (!overTrigger && !overMenu) {
+                    closeMenu();
+                  }
+                }, 100);
+              });
             }
           });
 
-          // Close on Escape and focus management inside menu
-          menu.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-              e.preventDefault();
-              closeMenu();
-              trigger.focus();
-            }
-          });
-
-          // Click outside to close
           document.addEventListener('click', (e) => {
-            if (!menu.classList.contains('open')) return;
-            if (!menu.contains(e.target) && !trigger.contains(e.target)) {
-              closeMenu();
-            }
+            const anyOpen = menus.some(({ menu }) => menu.classList.contains('open'));
+            if (!anyOpen) return;
+            const clickedInside = menus.some(({ trigger, menu }) => menu.contains(e.target) || trigger.contains(e.target));
+            if (!clickedInside) closeAll();
           });
 
-          // On resize, keep menu aligned; no special logic needed, but close to avoid odd states
-          window.addEventListener('resize', () => {
-            if (menu.classList.contains('open')) closeMenu();
+          window.addEventListener('resize', () => closeAll());
+        })();
+
+        // ==============================================
+        // Replace favicon <img> icons with inline SVGs
+        // Creates clean, fast-loading monogram icons that
+        // inherit currentColor and require no network fetch
+        // ==============================================
+        (function inlineSVGAppIcons(){
+          function makeMonogram(text) {
+            const initials = (text || '')
+              .split(/\s+/)
+              .map(w => w[0])
+              .join('')
+              .slice(0, 2)
+              .toUpperCase() || '?';
+            const svgNS = 'http://www.w3.org/2000/svg';
+            const svg = document.createElementNS(svgNS, 'svg');
+            svg.setAttribute('viewBox', '0 0 24 24');
+            svg.setAttribute('width', '24');
+            svg.setAttribute('height', '24');
+            svg.setAttribute('aria-hidden', 'true');
+
+            const rect = document.createElementNS(svgNS, 'rect');
+            rect.setAttribute('x', '2');
+            rect.setAttribute('y', '2');
+            rect.setAttribute('width', '20');
+            rect.setAttribute('height', '20');
+            rect.setAttribute('rx', '6');
+            rect.setAttribute('fill', 'currentColor');
+            rect.setAttribute('opacity', '0.15');
+            svg.appendChild(rect);
+
+            const textEl = document.createElementNS(svgNS, 'text');
+            textEl.setAttribute('x', '12');
+            // Slightly lower baseline for larger text to center visually
+            textEl.setAttribute('y', '15.5');
+            textEl.setAttribute('text-anchor', 'middle');
+            textEl.setAttribute('font-family', 'system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif');
+            textEl.setAttribute('font-size', '16');
+            textEl.setAttribute('font-weight', '900');
+            textEl.setAttribute('fill', 'currentColor');
+            if (initials.length === 2) {
+              textEl.setAttribute('class', 'two-chars');
+            }
+            textEl.textContent = initials;
+            svg.appendChild(textEl);
+            return svg;
+          }
+
+          document.querySelectorAll('#gbwa .app .icon-bg, #edgewa .app .icon-bg').forEach(iconBg => {
+            const img = iconBg.querySelector('img.app-icon');
+            if (!img) return;
+            const label = iconBg.parentElement?.querySelector('span')?.textContent?.trim() || '';
+            const svg = makeMonogram(label);
+            img.replaceWith(svg);
           });
         })();
     </script>
