@@ -437,14 +437,13 @@
           justify-content: flex-start;
         }
         /* Ensure app buttons and menus behave well on small screens */
-        #gbwa { top: calc(10px + env(safe-area-inset-top, 0px)); right: calc(10px + env(safe-area-inset-right, 0px)); }
-        #edgewa { top: calc(10px + env(safe-area-inset-top, 0px)); right: calc(48px + env(safe-area-inset-right, 0px)); }
+  #gbwa { top: calc(10px + env(safe-area-inset-top, 0px)); right: calc(10px + env(safe-area-inset-right, 0px)); }
+  #edgewa { top: calc(10px + env(safe-area-inset-top, 0px)); left: calc(10px + env(safe-area-inset-left, 0px)); }
         #gbwa .gb_B, #edgewa .edge_B { box-shadow: 0 6px 18px rgba(0,0,0,0.35), 0 0 0 1px var(--border); }
         #gbwa .apps-menu, #edgewa .apps-menu {
           width: min(94vw, 320px);
           max-height: min(70vh, 480px);
           padding: 12px;
-          right: calc(0px + env(safe-area-inset-right, 0px));
           -webkit-overflow-scrolling: touch;
           overscroll-behavior: contain;
         }
@@ -701,7 +700,7 @@
       #edgewa {
         position: fixed;
         top: calc(12px + env(safe-area-inset-top, 0px));
-        right: calc(60px + env(safe-area-inset-right, 0px));
+        left: calc(12px + env(safe-area-inset-left, 0px));
         z-index: 1000;
         pointer-events: auto;
       }
@@ -709,8 +708,8 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        width: 48px;
+        height: 48px;
         border-radius: 999px;
         background: var(--glass-bg);
         color: var(--fg);
@@ -732,8 +731,8 @@
         box-shadow: var(--ring), var(--shadow-sm);
       }
       #gbwa .gb_F {
-        width: 22px;
-        height: 22px;
+        width: 26px;
+        height: 26px;
         display: block;
       }
       #gbwa .gb_F path {
@@ -749,8 +748,8 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        width: 48px;
+        height: 48px;
         border-radius: 999px;
         background: var(--glass-bg);
         color: var(--fg);
@@ -772,24 +771,23 @@
         box-shadow: var(--ring), var(--shadow-sm);
       }
       #edgewa .edge_F {
-        width: 22px;
-        height: 22px;
+        width: 26px;
+        height: 26px;
         display: block;
       }
       #edgewa .edge_F path { fill: currentColor; }
 
       @media (max-width: 720px) {
-        #edgewa { right: calc(52px + env(safe-area-inset-right, 0px)); }
-        #edgewa .edge_B { width: 36px; height: 36px; }
-        #edgewa .edge_F { width: 20px; height: 20px; }
+        #edgewa { left: calc(12px + env(safe-area-inset-left, 0px)); }
+        #edgewa .edge_B { width: 44px; height: 44px; }
+        #edgewa .edge_F { width: 24px; height: 24px; }
       }
 
-      /* Keep Edge dropdown within mobile viewport */
+      /* Move Edge dropdown to the left on mobile */
       @media (max-width: 720px) {
         #edgewa .apps-menu {
-          /* Pull the menu back to the device's right edge */
-          right: calc(-52px - env(safe-area-inset-right, 0px));
-          /* Slightly wider allowance is okay; still constrained by min(...) above */
+          left: 0;
+          right: auto;
           width: min(94vw, 360px);
           max-height: min(70vh, 520px);
         }
@@ -797,12 +795,12 @@
 
       @media (max-width: 720px) {
         #gbwa .gb_B {
-          width: 36px;
-          height: 36px;
+          width: 44px;
+          height: 44px;
         }
         #gbwa .gb_F {
-          width: 20px;
-          height: 20px;
+          width: 24px;
+          height: 24px;
         }
       }
 
@@ -818,8 +816,8 @@
       /* ============================ */
   #gbwa .apps-menu, #edgewa .apps-menu {
         position: absolute;
-        top: 48px;
-        right: 0;
+    top: 56px;
+    right: 0;
         width: min(92vw, 360px);
         max-height: min(66vh, 520px);
         overflow-y: auto;
@@ -842,6 +840,18 @@
         transform-origin: top right;
         transition: opacity 120ms ease, transform 150ms ease;
         z-index: 1001;
+      }
+  /* When Edge button is on the left, anchor menu to left */
+  #edgewa .apps-menu { left: 0; right: auto; transform-origin: top left; }
+      /* Edge dropdown alignment when button is on the left */
+      @media (max-width: 720px) {
+        #edgewa .apps-menu {
+          left: 0;
+          right: auto;
+          transform-origin: top left;
+          transform: translateY(-6px) scale(0.98);
+        }
+        #edgewa .apps-menu.open { transform: translateY(0) scale(1); }
       }
   #gbwa .apps-menu.open, #edgewa .apps-menu.open {
         display: block;
@@ -1795,6 +1805,24 @@
           });
 
           window.addEventListener('resize', () => closeAll());
+        })();
+
+        // ======================================
+        // Alphabetize dropdown app links (A→Z)
+        // ======================================
+        (function sortAppsAlphabetically(){
+          function sortGrid(container) {
+            if (!container) return;
+            const items = Array.from(container.querySelectorAll('a.app'));
+            items.sort((a, b) => {
+              const ta = a.querySelector('span')?.textContent?.trim().toLowerCase() || '';
+              const tb = b.querySelector('span')?.textContent?.trim().toLowerCase() || '';
+              return ta.localeCompare(tb);
+            });
+            items.forEach(el => container.appendChild(el));
+          }
+          sortGrid(document.querySelector('#apps-menu .apps-grid'));
+          sortGrid(document.querySelector('#edge-apps-menu .apps-grid'));
         })();
 
         // ==============================================
