@@ -421,7 +421,7 @@
       }
 
       /* ================================================= */
-      /* MOBILE STYLES (IMPROVED)                         */
+      /* MOBILE STYLES (OPTIMIZED FOR PERFORMANCE)        */
       /* ================================================= */
       @media (max-width: 720px) {
         html {
@@ -433,8 +433,17 @@
         /* Ensure app buttons and menus behave well on small screens */
   #gbwa { top: calc(10px + env(safe-area-inset-top, 0px)); right: calc(10px + env(safe-area-inset-right, 0px)); }
   #edgewa { top: calc(10px + env(safe-area-inset-top, 0px)); left: calc(10px + env(safe-area-inset-left, 0px)); }
-        /* Disable animations and transitions on mobile */
-        * {
+        /* Disable expensive animations on mobile for better performance */
+        body::before,
+        .quicklink,
+        .quicklink .icon-bg,
+        .quicklink img,
+        #gbwa .gb_B,
+        #edgewa .edge_B,
+        #gbwa .app,
+        #edgewa .app,
+        .searchform-actions-button,
+        .theme-toggle {
           animation: none !important;
           transition: none !important;
         }
@@ -447,15 +456,29 @@
           overscroll-behavior: contain;
         }
         #gbwa .apps-grid, #edgewa .apps-grid { gap: 10px; }
-        #gbwa .app .icon-bg, #edgewa .app .icon-bg { width: 48px; height: 48px; border-radius: 14px; }
+        #gbwa .app .icon-bg, #edgewa .app .icon-bg { 
+          width: 48px; 
+          height: 48px; 
+          border-radius: 14px;
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
         #gbwa .app .app-icon, #edgewa .app .app-icon { width: 24px; height: 24px; }
         #gbwa .app span, #edgewa .app span { font-size: 0.62rem; }
+        
+        /* Remove backdrop filters from menus on mobile for performance */
+        #gbwa .apps-menu, #edgewa .apps-menu {
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+          background: var(--glass-bg);
+        }
         /* Simplified static background for mobile - no animation */
         body::before {
           background: radial-gradient(1000px 500px at 15% 25%, var(--accent-1) 0%, transparent 65%),
                       linear-gradient(180deg, rgba(0,0,0,0.3), transparent 45%);
-          filter: saturate(100%) blur(0px);
+          filter: none;
           animation: none;
+          will-change: auto;
         }
         #main {
           padding: 20px 16px;
@@ -470,11 +493,12 @@
           padding-top: 0;
           transform: none;
           margin-top: 8vh; /* Base mobile offset */
+          contain: layout style;
         }
         #searchbar-home {
           margin-top: 8vh; /* Keep base mobile offset unchanged */
           transform: translateY(5vh); /* Move section ~5% further down for mobile without changing px */
-          will-change: transform;
+          will-change: auto;
           gap: 18px !important;
           width: 100%;
         }
@@ -488,8 +512,8 @@
           max-width: 100%;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 0 1px var(--border);
           background: var(--glass-bg);
-          backdrop-filter: blur(8px) saturate(150%);
-          -webkit-backdrop-filter: blur(8px) saturate(150%);
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
         }
         .light form#searchform {
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--border);
@@ -504,9 +528,8 @@
         }
         .engine-selector-wrapper {
           padding: 5px 7px;
-          background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.04))
-                      , var(--surface);
-          backdrop-filter: blur(6px) saturate(150%);
+          background: var(--surface);
+          backdrop-filter: none;
         }
         
         /* --- Quick Links Mobile: App Icon Grid with Sliding & Pagination --- */
@@ -518,6 +541,7 @@
       gap: 14px;
       /* Keep original px spacing; overall section shift handled by translateY on #searchbar-home */
       margin-top: -8px;
+      contain: layout style;
         }
         .quicklinks {
           display: flex !important;
@@ -534,6 +558,7 @@
           -ms-overflow-style: none;
           scrollbar-width: none;
           touch-action: pan-x;
+          contain: layout style paint;
         }
         .quicklinks::-webkit-scrollbar {
             display: none;
@@ -559,6 +584,7 @@
             background: transparent;
             text-decoration: none;
             text-align: center;
+            contain: layout style paint;
             content-visibility: auto;
             contain-intrinsic-size: 62px 95px;
         }
@@ -575,8 +601,8 @@
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(120, 125, 190, 0.4);
             flex-shrink: 0;
-            backdrop-filter: blur(6px) saturate(150%);
-            -webkit-backdrop-filter: blur(6px) saturate(150%);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
         }
         .light .quicklink .icon-bg {
              background: linear-gradient(145deg, #ffffff, #f5f5f5);
@@ -585,7 +611,7 @@
         }
 
         .quicklink:active .icon-bg {
-            transform: scale(0.92); /* Touch feedback */
+            transform: scale(0.95); /* Touch feedback - less aggressive for better performance */
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
         }
 
@@ -598,7 +624,6 @@
         }
         .quicklink:active img {
             filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
-            transform: scale(0.96);
         }
 
         /* Label below the icon */
@@ -888,8 +913,8 @@
         background: linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(13, 17, 23, 0.75) 100%);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
         border: 1px solid rgba(120, 125, 190, 0.4);
-        -webkit-backdrop-filter: blur(6px) saturate(150%);
-        backdrop-filter: blur(6px) saturate(150%);
+        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(4px);
       }
   /* Larger monogram text inside inline SVG icons */
   #gbwa .app .icon-bg svg text, #edgewa .app .icon-bg svg text {
@@ -1455,7 +1480,18 @@
                 container.appendChild(fragment);
                 
                 setupPaginationDots();
-                container.addEventListener('scroll', updatePaginationDots, { passive: true });
+                
+                // Throttle scroll events for better performance
+                let scrollTimeout;
+                const throttledUpdateDots = () => {
+                    if (!scrollTimeout) {
+                        scrollTimeout = setTimeout(() => {
+                            updatePaginationDots();
+                            scrollTimeout = null;
+                        }, 100);
+                    }
+                };
+                container.addEventListener('scroll', throttledUpdateDots, { passive: true });
                 
             } else {
                 // Restore desktop grid view
@@ -1471,7 +1507,9 @@
                     container.appendChild(fragment);
                     container.style.display = 'grid';
                     paginationContainer.innerHTML = ''; // Clear dots
-                    container.removeEventListener('scroll', updatePaginationDots);
+                    // Clean up event listeners
+                    const oldContainer = container.cloneNode(true);
+                    container.parentNode.replaceChild(oldContainer, container);
                 }
             }
         }
@@ -1501,13 +1539,19 @@
             }
         }
 
+        let updateDotsRaf = null;
         function updatePaginationDots() {
             const container = document.getElementById('quicklinks');
             const paginationContainer = document.getElementById('quicklinks-pagination');
             if (!paginationContainer.children.length) return;
 
+            // Cancel pending RAF to avoid redundant updates
+            if (updateDotsRaf) {
+                cancelAnimationFrame(updateDotsRaf);
+            }
+
             // Use RAF for smoother updates
-            requestAnimationFrame(() => {
+            updateDotsRaf = requestAnimationFrame(() => {
                 const slideWidth = container.offsetWidth;
                 const currentIndex = Math.round(container.scrollLeft / slideWidth);
                 
@@ -1515,6 +1559,7 @@
                 dots.forEach((dot, index) => {
                     dot.classList.toggle('active', index === currentIndex);
                 });
+                updateDotsRaf = null;
             });
         }
         
@@ -1580,9 +1625,20 @@
         }
         updateEngineIcon(true);
         
+        let autosizeTimeout;
         function autosize() {
-            searchBox.style.height = "auto";
-            searchBox.style.height = searchBox.scrollHeight + "px";
+            // Debounce on mobile for better performance
+            const isMobile = window.matchMedia('(max-width: 720px)').matches;
+            if (isMobile) {
+                clearTimeout(autosizeTimeout);
+                autosizeTimeout = setTimeout(() => {
+                    searchBox.style.height = "auto";
+                    searchBox.style.height = searchBox.scrollHeight + "px";
+                }, 50);
+            } else {
+                searchBox.style.height = "auto";
+                searchBox.style.height = searchBox.scrollHeight + "px";
+            }
         }
         searchBox.addEventListener("input", autosize);
 
@@ -1659,7 +1715,7 @@
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(setupQuicklinkCarousel, 150);
+            resizeTimeout = setTimeout(setupQuicklinkCarousel, 250);
         }, { passive: true });
 
         // ==============================
