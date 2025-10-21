@@ -3,22 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#02060C" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F6F7FB" media="(prefers-color-scheme: light)" />
+    <meta http-equiv="Cache-Control" content="max-age=604800" />
     <link rel="dns-prefetch" href="https://cdn.search.brave.com" />
-    <link rel="dns-prefetch" href="https://imgs.search.brave.com" />
-    <link rel="dns-prefetch" href="https://tiles.search.brave.com" />
-    <link rel="dns-prefetch" href="https://brave.com" />
     <link
       href="https://cdn.search.brave.com"
-      rel="preconnect"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://imgs.search.brave.com"
-      rel="preconnect"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://tiles.search.brave.com"
       rel="preconnect"
       crossorigin="anonymous"
     />
@@ -165,8 +155,6 @@
         inset: 0;
         z-index: -1;
         background: radial-gradient(1200px 600px at 10% 20%, var(--accent-1) 0%, transparent 60%),
-                    radial-gradient(1000px 500px at 90% 30%, var(--accent-2) 0%, transparent 60%),
-                    radial-gradient(900px 700px at 50% 85%, var(--accent-3) 0%, transparent 55%),
                     linear-gradient(180deg, rgba(0,0,0,0.25), transparent 40%);
         filter: saturate(120%) blur(0px);
         transform: translateZ(0);
@@ -175,31 +163,20 @@
       }
       @keyframes auroraShift {
         0% {
-          background-position: 0% 0%, 100% 0%, 50% 100%, 50% 0%;
+          background-position: 0% 0%, 50% 0%;
           opacity: 0.9;
         }
         50% {
-          background-position: 20% 10%, 80% 15%, 45% 90%, 50% 0%;
+          background-position: 20% 10%, 50% 0%;
           opacity: 1;
         }
         100% {
-          background-position: 40% 20%, 60% 30%, 55% 80%, 50% 0%;
+          background-position: 40% 20%, 50% 0%;
           opacity: 0.95;
         }
       }
       @media (prefers-reduced-motion: reduce) {
         body::before { animation: none; }
-      }
-      
-      /* Reduce animation complexity on low-end devices */
-      @media (prefers-reduced-motion: no-preference) and (max-width: 720px) {
-        @supports (-webkit-touch-callout: none) {
-          /* iOS devices - use simpler animations */
-          body::before {
-            animation-duration: 20s;
-            filter: saturate(100%) blur(0px);
-          }
-        }
       }
       #home-wrapper {
         display: flex;
@@ -232,8 +209,8 @@
         padding: 14px 16px;
         box-shadow: var(--shadow-md), 0 0 0 1px var(--border);
         border: 1px solid var(--glass-border);
-        backdrop-filter: blur(12px) saturate(160%);
-        -webkit-backdrop-filter: blur(12px) saturate(160%);
+        backdrop-filter: blur(8px) saturate(160%);
+        -webkit-backdrop-filter: blur(8px) saturate(160%);
         transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
         transform: translateZ(0);
         will-change: transform;
@@ -260,7 +237,7 @@
         background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.02)), var(--surface);
         border: 1px solid var(--glass-border);
         transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-        backdrop-filter: blur(8px) saturate(140%);
+        backdrop-filter: blur(6px) saturate(140%);
       }
       .engine-selector-wrapper:hover {
         background: var(--surface);
@@ -396,7 +373,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        backdrop-filter: blur(6px) saturate(140%);
+        backdrop-filter: blur(4px) saturate(140%);
       }
       .quicklink:hover {
         background: var(--surface);
@@ -456,7 +433,12 @@
         /* Ensure app buttons and menus behave well on small screens */
   #gbwa { top: calc(10px + env(safe-area-inset-top, 0px)); right: calc(10px + env(safe-area-inset-right, 0px)); }
   #edgewa { top: calc(10px + env(safe-area-inset-top, 0px)); left: calc(10px + env(safe-area-inset-left, 0px)); }
-        #gbwa .gb_B, #edgewa .edge_B { box-shadow: 0 6px 18px rgba(0,0,0,0.35), 0 0 0 1px var(--border); }
+        /* Disable animations and transitions on mobile */
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+        #gbwa .gb_B, #edgewa .edge_B { box-shadow: 0 2px 8px rgba(0,0,0,0.2), 0 0 0 1px var(--border); }
         #gbwa .apps-menu, #edgewa .apps-menu {
           width: min(94vw, 320px);
           max-height: min(70vh, 480px);
@@ -468,29 +450,12 @@
         #gbwa .app .icon-bg, #edgewa .app .icon-bg { width: 48px; height: 48px; border-radius: 14px; }
         #gbwa .app .app-icon, #edgewa .app .app-icon { width: 24px; height: 24px; }
         #gbwa .app span, #edgewa .app span { font-size: 0.62rem; }
+        /* Simplified static background for mobile - no animation */
         body::before {
-          /* Enhanced mobile aurora effect */
           background: radial-gradient(1000px 500px at 15% 25%, var(--accent-1) 0%, transparent 65%),
-                      radial-gradient(800px 400px at 85% 35%, var(--accent-2) 0%, transparent 65%),
-                      radial-gradient(700px 600px at 50% 90%, var(--accent-3) 0%, transparent 60%),
                       linear-gradient(180deg, rgba(0,0,0,0.3), transparent 45%);
-          filter: saturate(140%) blur(0px);
-          will-change: transform;
-          animation: auroraShiftMobile 15s ease-in-out infinite alternate;
-        }
-        @keyframes auroraShiftMobile {
-          0% {
-            background-position: 0% 0%, 100% 0%, 50% 100%, 50% 0%;
-            opacity: 0.95;
-          }
-          50% {
-            background-position: 15% 8%, 85% 12%, 48% 92%, 50% 0%;
-            opacity: 1;
-          }
-          100% {
-            background-position: 30% 15%, 70% 25%, 52% 85%, 50% 0%;
-            opacity: 0.98;
-          }
+          filter: saturate(100%) blur(0px);
+          animation: none;
         }
         #main {
           padding: 20px 16px;
@@ -521,18 +486,17 @@
           padding: 10px 14px;
           border-radius: 16px;
           max-width: 100%;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 0 1px var(--border);
           background: var(--glass-bg);
-          backdrop-filter: blur(16px) saturate(180%);
-          -webkit-backdrop-filter: blur(16px) saturate(180%);
+          backdrop-filter: blur(8px) saturate(150%);
+          -webkit-backdrop-filter: blur(8px) saturate(150%);
         }
         .light form#searchform {
-          box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12), 0 2px 10px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--border);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--border);
           background: rgba(255, 255, 255, 0.92);
         }
         form#searchform:focus-within {
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--border-strong), var(--ring);
-          transform: translateY(-2px);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 0 0 1px var(--border-strong);
         }
         textarea#searchbox {
           font-size: 0.92rem;
@@ -542,7 +506,7 @@
           padding: 5px 7px;
           background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.04))
                       , var(--surface);
-          backdrop-filter: blur(10px) saturate(150%);
+          backdrop-filter: blur(6px) saturate(150%);
         }
         
         /* --- Quick Links Mobile: App Icon Grid with Sliding & Pagination --- */
@@ -595,7 +559,6 @@
             background: transparent;
             text-decoration: none;
             text-align: center;
-            transition: opacity 0.2s ease, transform 0.15s ease;
             content-visibility: auto;
             contain-intrinsic-size: 62px 95px;
         }
@@ -608,26 +571,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(circle at 65% 25%, rgba(255, 255, 255, 0.10), transparent 55%),
-                        linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(13, 17, 23, 0.75) 100%);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(13, 17, 23, 0.75) 100%);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(120, 125, 190, 0.4);
             flex-shrink: 0;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            backdrop-filter: blur(8px) saturate(150%);
-            -webkit-backdrop-filter: blur(8px) saturate(150%);
-            transform: translateZ(0);
-            will-change: transform;
+            backdrop-filter: blur(6px) saturate(150%);
+            -webkit-backdrop-filter: blur(6px) saturate(150%);
         }
         .light .quicklink .icon-bg {
              background: linear-gradient(145deg, #ffffff, #f5f5f5);
-             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
              border: 1px solid rgba(0, 0, 0, 0.12);
         }
 
         .quicklink:active .icon-bg {
             transform: scale(0.92); /* Touch feedback */
-            box-shadow: var(--icon-shadow-active);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
         }
 
         .quicklink img {
@@ -635,11 +594,10 @@
             height: 36px;
             margin: 0;
             object-fit: contain;
-            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.55));
-            transition: filter 0.2s ease, transform 0.2s ease;
+            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
         }
         .quicklink:active img {
-            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.65));
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
             transform: scale(0.96);
         }
 
@@ -676,8 +634,7 @@
             height: 7px;
             border-radius: 50%;
             background-color: var(--muted-2);
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
             opacity: 0.7;
             cursor: pointer;
         }
@@ -685,10 +642,10 @@
             background: linear-gradient(135deg, var(--accent-1-strong), var(--accent-2-strong));
             transform: scale(1.5);
             opacity: 1;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35), 0 0 0 2px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
         }
         .light .pagination-dot.active {
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
         }
         
         /* Mobile footer adjustments */
@@ -739,8 +696,8 @@
         border: 1px solid var(--glass-border);
         box-shadow: var(--shadow-sm), 0 0 0 1px var(--border);
         text-decoration: none;
-        -webkit-backdrop-filter: blur(10px) saturate(160%);
-        backdrop-filter: blur(10px) saturate(160%);
+        -webkit-backdrop-filter: blur(8px) saturate(160%);
+        backdrop-filter: blur(8px) saturate(160%);
         transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
       }
       #gbwa .gb_B:hover {
@@ -779,8 +736,8 @@
         border: 1px solid var(--glass-border);
         box-shadow: var(--shadow-sm), 0 0 0 1px var(--border);
         text-decoration: none;
-        -webkit-backdrop-filter: blur(10px) saturate(160%);
-        backdrop-filter: blur(10px) saturate(160%);
+        -webkit-backdrop-filter: blur(8px) saturate(160%);
+        backdrop-filter: blur(8px) saturate(160%);
         transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
       }
       #edgewa .edge_B:hover {
@@ -850,8 +807,8 @@
         background: var(--glass-bg);
         border: 1px solid var(--glass-border);
         box-shadow: var(--shadow-lg), 0 0 0 1px var(--border);
-        -webkit-backdrop-filter: blur(12px) saturate(180%);
-        backdrop-filter: blur(12px) saturate(180%);
+        -webkit-backdrop-filter: blur(8px) saturate(180%);
+        backdrop-filter: blur(8px) saturate(180%);
         /* smoother scrolling */
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
@@ -928,12 +885,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: radial-gradient(circle at 65% 25%, rgba(255, 255, 255, 0.10), transparent 55%),
-                    linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(13, 17, 23, 0.75) 100%);
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(13, 17, 23, 0.75) 100%);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
         border: 1px solid rgba(120, 125, 190, 0.4);
-        -webkit-backdrop-filter: blur(8px) saturate(150%);
-        backdrop-filter: blur(8px) saturate(150%);
+        -webkit-backdrop-filter: blur(6px) saturate(150%);
+        backdrop-filter: blur(6px) saturate(150%);
       }
   /* Larger monogram text inside inline SVG icons */
   #gbwa .app .icon-bg svg text, #edgewa .app .icon-bg svg text {
@@ -948,7 +904,7 @@
       }
   .light #gbwa .app .icon-bg, .light #edgewa .app .icon-bg {
         background: linear-gradient(145deg, #ffffff, #f5f5f5);
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
         border: 1px solid rgba(0, 0, 0, 0.12);
       }
   #gbwa .app .app-icon, #edgewa .app .app-icon {
