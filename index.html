@@ -582,7 +582,7 @@
             background: transparent;
             text-decoration: none;
             text-align: center;
-            transition: none;
+            transition: opacity 0.2s ease, transform 0.15s ease;
         }
 
         /* Icon Wrapper: The rounded square background */
@@ -659,9 +659,10 @@
             height: 7px;
             border-radius: 50%;
             background-color: var(--muted-2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
             opacity: 0.7;
+            cursor: pointer;
         }
         .pagination-dot.active {
             background: linear-gradient(135deg, var(--accent-1-strong), var(--accent-2-strong));
@@ -964,6 +965,13 @@
                     const dot = document.createElement('div');
                     dot.className = 'pagination-dot';
                     dot.dataset.index = index;
+                    dot.addEventListener('click', () => {
+                        const slideWidth = container.offsetWidth;
+                        container.scrollTo({
+                            left: slideWidth * index,
+                            behavior: 'smooth'
+                        });
+                    });
                     paginationContainer.appendChild(dot);
                 });
                 updatePaginationDots(); // Set initial active dot
