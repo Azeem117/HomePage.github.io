@@ -1,0 +1,44 @@
+{
+    
+"name": "Brave",
+"short_name": "Brave",
+"description": "Search the Web using your preferred search engine. Privately.",
+"start_url": "/",
+"display": "standalone",
+"orientation": "portrait",
+"background_color": "#2a2a48",
+"theme_color": "#2a2a48",
+"icons": [
+{
+"src": "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg",
+"sizes": "48x48 72x72 96x96 128x128 192x192 256x256 384x384 512x512 1024x1024",
+"type": "image/svg+xml",
+"purpose": "any maskable"
+},
+{
+"src": "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/favicon-16x16.nT_pLL7v.png",
+"sizes": "16x16",
+"type": "image/png"
+},
+{
+"src": "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/favicon-32x32.B2iBzfXZ.png",
+"sizes": "32x32",
+"type": "image/png"
+},
+{
+"src": "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/apple-touch-icon.Bqba6l0U.png",
+"sizes": "180x180 192x192 512x512",
+"type": "image/png",
+"purpose": "any"
+}
+],
+"shortcuts": [
+{
+"name": "Start Search",
+"short_name": "New Search",
+"description": "Jump straight to the search box.",
+"url": "/",
+"icons": [{ "src": "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/favicon-32x32.B2iBzfXZ.png", "sizes": "32x32" }]
+}
+]
+}
