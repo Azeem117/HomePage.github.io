@@ -141,6 +141,9 @@
       }
       html {
         font-size: 20px;
+        -webkit-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        text-size-adjust: 100%;
       }
       body {
         font: 400 0.8rem/1.2rem var(--main-font);
@@ -188,6 +191,11 @@
       }
       @media (prefers-reduced-motion: reduce) {
         body::before { animation: none; }
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
       }
       #home-wrapper {
         display: flex;
@@ -226,6 +234,7 @@
         transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
         transform: translateZ(0);
         will-change: transform;
+        contain: layout style;
       }
       .light form#searchform {
         box-shadow: 0 4px 24px var(--shadow), 0 2px 8px var(--shadow), 0 0 0 1px var(--border);
@@ -307,6 +316,8 @@
         white-space: nowrap;
         overflow-x: auto;
         overflow-y: hidden;
+        -webkit-appearance: none;
+        touch-action: manipulation;
       }
       textarea#searchbox::placeholder {
         color: var(--muted-2);
@@ -347,6 +358,7 @@
         color: var(--muted-2);
         font-size: 0.75rem;
         text-align: center;
+        contain: layout style;
       }
       footer .links {
         display: flex;
@@ -470,6 +482,15 @@
           animation: none !important;
           transition: none !important;
         }
+        
+        /* Mobile scroll optimization */
+        * {
+          -webkit-overflow-scrolling: touch;
+        }
+        
+        body {
+          overscroll-behavior-y: none;
+        }
         #gbwa .gb_B, #edgewa .edge_B { box-shadow: 0 2px 8px rgba(0,0,0,0.2), 0 0 0 1px var(--border); }
         #gbwa .apps-menu, #edgewa .apps-menu {
           width: min(94vw, 320px);
@@ -477,6 +498,7 @@
           padding: 12px;
           -webkit-overflow-scrolling: touch;
           overscroll-behavior: contain;
+          scroll-behavior: auto;
         }
         #gbwa .apps-grid, #edgewa .apps-grid { gap: 10px; }
         #gbwa .app .icon-bg, #edgewa .app .icon-bg { 
@@ -597,6 +619,7 @@
           gap: 8px;
           padding: 0 10px;
           box-sizing: border-box;
+          contain: layout style paint;
         }
         .quicklink {
             display: flex;
