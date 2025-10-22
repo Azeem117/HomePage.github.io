@@ -144,7 +144,9 @@
       }
       body {
         font: 400 0.8rem/1.2rem var(--main-font);
-        text-rendering: optimizeLegibility;
+        text-rendering: optimizeSpeed;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
         background: var(--bg);
         color: var(--fg);
         margin: 0;
@@ -168,6 +170,7 @@
         transform: translateZ(0);
         will-change: transform;
         animation: auroraShift 18s ease-in-out infinite alternate;
+        pointer-events: none;
       }
       @keyframes auroraShift {
         0% {
@@ -193,6 +196,7 @@
         gap: 28px;
         width: 100%;
         margin-top: 18vh; /* Desktop: Keep original spacing */
+        contain: layout style;
       }
       #logo img {
         display: block;
@@ -368,6 +372,7 @@
         gap: 10px;
         margin-top: 8px;
         margin-bottom: 24px; /* Ensure space above footer */
+        contain: layout style;
       }
       .quicklink {
         display: flex;
@@ -388,6 +393,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         backdrop-filter: blur(4px) saturate(140%);
+        contain: layout style paint;
       }
       .quicklink:hover {
         background: var(--surface);
@@ -924,6 +930,8 @@
         text-decoration: none;
         color: var(--fg);
         transition: transform 0.12s ease, background 0.12s ease;
+        contain: layout style paint;
+        touch-action: manipulation;
       }
   #gbwa .app:focus-visible, #edgewa .app:focus-visible {
         outline: none;
@@ -1602,13 +1610,23 @@
         
         // --- EXISTING SCRIPT LOGIC (Unchanged, placed below new functions) ---
 
-        // Register Service Worker (deferred)
+        // Register Service Worker (deferred and low priority)
         if ('serviceWorker' in navigator) {
-            // Defer SW registration until page is loaded
+            // Defer SW registration until page is idle
             if (document.readyState === 'complete') {
-                registerServiceWorker();
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(registerServiceWorker, { timeout: 2000 });
+                } else {
+                    setTimeout(registerServiceWorker, 1000);
+                }
             } else {
-                window.addEventListener('load', registerServiceWorker);
+                window.addEventListener('load', () => {
+                    if ('requestIdleCallback' in window) {
+                        requestIdleCallback(registerServiceWorker, { timeout: 2000 });
+                    } else {
+                        setTimeout(registerServiceWorker, 1000);
+                    }
+                });
             }
         }
         
@@ -1729,8 +1747,15 @@
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            setupQuicklinkCarousel();
-                            observer.disconnect();
+                            if ('requestIdleCallback' in window) {
+                                requestIdleCallback(() => {
+                                    setupQuicklinkCarousel();
+                                    observer.disconnect();
+                                }, { timeout: 1000 });
+                            } else {
+                                setupQuicklinkCarousel();
+                                observer.disconnect();
+                            }
                         }
                     });
                 }, { rootMargin: '50px' });
@@ -1744,8 +1769,10 @@
                 window.addEventListener('load', setupQuicklinkCarousel);
             }
         } else {
-            // Desktop: setup immediately
-            window.addEventListener('load', setupQuicklinkCarousel);
+            // Desktop: setup immediately but defer with requestAnimationFrame
+            window.addEventListener('load', () => {
+                requestAnimationFrame(setupQuicklinkCarousel);
+            });
         }
         
         // Debounced resize handler for better performance
