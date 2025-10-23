@@ -600,6 +600,10 @@
             flex-shrink: 0;
             backdrop-filter: none;
             -webkit-backdrop-filter: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .quicklink:active .icon-bg {
+            transform: scale(0.92);
         }
         .light .quicklink .icon-bg {
              background: linear-gradient(145deg, #ffffff, #f5f5f5);
@@ -607,20 +611,14 @@
              border: 1px solid rgba(0, 0, 0, 0.12);
         }
 
-        .quicklink:active .icon-bg {
-            transform: scale(0.95); /* Touch feedback - less aggressive for better performance */
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-        }
-
         .quicklink img {
             width: 36px; /* Larger icon */
             height: 36px;
             margin: 0;
             object-fit: contain;
-            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
         }
         .quicklink:active img {
-            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+            opacity: 0.9;
         }
 
         /* Label below the icon */
@@ -841,22 +839,265 @@
         border: 1px solid rgba(120, 125, 190, 0.4);
         -webkit-backdrop-filter: blur(4px);
         backdrop-filter: blur(4px);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      #gbwa .app:hover .icon-bg {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12);
       }
       /* Larger monogram text inside inline SVG icons */
       #gbwa .app .icon-bg svg text {
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 900;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
       }
       /* Slightly smaller when two letters to avoid clipping */
       #gbwa .app .icon-bg svg text.two-chars {
-        font-size: 13.5px;
+        font-size: 15px;
         font-weight: 900;
-        letter-spacing: -0.3px;
+        letter-spacing: -0.5px;
       }
       .light #gbwa .app .icon-bg {
         background: linear-gradient(145deg, #ffffff, #f5f5f5);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
         border: 1px solid rgba(0, 0, 0, 0.12);
+      }
+      .light #gbwa .app:hover .icon-bg {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      }
+      
+      /* App-specific vibrant gradient backgrounds */
+      #gbwa .app .icon-bg svg rect {
+        opacity: 0;
+      }
+      
+      /* Google Apps - Blue/Green theme */
+      #gbwa .app[href*="myaccount.google.com"] .icon-bg,
+      #gbwa .app[href*="mail.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);
+        border-color: rgba(66, 133, 244, 0.5);
+      }
+      
+      #gbwa .app[href*="maps.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #34A853 0%, #0F9D58 100%);
+        border-color: rgba(52, 168, 83, 0.5);
+      }
+      
+      #gbwa .app[href*="youtube.com"] .icon-bg {
+        background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+        border-color: rgba(255, 0, 0, 0.5);
+      }
+      
+      #gbwa .app[href*="play.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #01875f 0%, #008577 100%);
+        border-color: rgba(1, 135, 95, 0.5);
+      }
+      
+      #gbwa .app[href*="meet.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #00897B 0%, #00796B 100%);
+        border-color: rgba(0, 137, 123, 0.5);
+      }
+      
+      #gbwa .app[href*="chat.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #00897B 0%, #00695C 100%);
+        border-color: rgba(0, 137, 123, 0.5);
+      }
+      
+      #gbwa .app[href*="contacts.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #1A73E8 0%, #1557B0 100%);
+        border-color: rgba(26, 115, 232, 0.5);
+      }
+      
+      #gbwa .app[href*="drive.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #FBBC04 0%, #F9AB00 100%);
+        border-color: rgba(251, 188, 4, 0.5);
+      }
+      
+      #gbwa .app[href*="calendar.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #4285F4 0%, #1A73E8 100%);
+        border-color: rgba(66, 133, 244, 0.5);
+      }
+      
+      #gbwa .app[href*="translate.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #4285F4 0%, #1967D2 100%);
+        border-color: rgba(66, 133, 244, 0.5);
+      }
+      
+      #gbwa .app[href*="photos.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #FBBC04 0%, #EA4335 100%);
+        border-color: rgba(251, 188, 4, 0.5);
+      }
+      
+      #gbwa .app[href*="docs.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #4285F4 0%, #1967D2 100%);
+        border-color: rgba(66, 133, 244, 0.5);
+      }
+      
+      #gbwa .app[href*="sheets.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #34A853 0%, #0F9D58 100%);
+        border-color: rgba(52, 168, 83, 0.5);
+      }
+      
+      #gbwa .app[href*="slides.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #FBBC04 0%, #F29900 100%);
+        border-color: rgba(251, 188, 4, 0.5);
+      }
+      
+      #gbwa .app[href*="forms.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #673AB7 0%, #5E35B1 100%);
+        border-color: rgba(103, 58, 183, 0.5);
+      }
+      
+      #gbwa .app[href*="sites.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #E91E63 0%, #C2185B 100%);
+        border-color: rgba(233, 30, 99, 0.5);
+      }
+      
+      #gbwa .app[href*="keep.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #FBBC04 0%, #F9AB00 100%);
+        border-color: rgba(251, 188, 4, 0.5);
+      }
+      
+      #gbwa .app[href*="classroom.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #34A853 0%, #0F9D58 100%);
+        border-color: rgba(52, 168, 83, 0.5);
+      }
+      
+      #gbwa .app[href*="pay.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #5F6368 0%, #3C4043 100%);
+        border-color: rgba(95, 99, 104, 0.5);
+      }
+      
+      #gbwa .app[href*="one.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #EA4335 0%, #C5221F 100%);
+        border-color: rgba(234, 67, 53, 0.5);
+      }
+      
+      #gbwa .app[href*="voice.google.com"] .icon-bg {
+        background: linear-gradient(135deg, #34A853 0%, #0F9D58 100%);
+        border-color: rgba(52, 168, 83, 0.5);
+      }
+      
+      /* Microsoft Apps - Blue/Cyan theme */
+      #gbwa .app[href*="microsoft365.com"] .icon-bg,
+      #gbwa .app[href*="office.com"] .icon-bg {
+        background: linear-gradient(135deg, #D83B01 0%, #C43E1C 100%);
+        border-color: rgba(216, 59, 1, 0.5);
+      }
+      
+      #gbwa .app[href*="outlook.live.com"] .icon-bg {
+        background: linear-gradient(135deg, #0078D4 0%, #106EBE 100%);
+        border-color: rgba(0, 120, 212, 0.5);
+      }
+      
+      #gbwa .app[href*="onedrive.live.com"] .icon-bg {
+        background: linear-gradient(135deg, #0078D4 0%, #0364B8 100%);
+        border-color: rgba(0, 120, 212, 0.5);
+      }
+      
+      #gbwa .app[href*="teams.microsoft.com"] .icon-bg {
+        background: linear-gradient(135deg, #6264A7 0%, #464775 100%);
+        border-color: rgba(98, 100, 167, 0.5);
+      }
+      
+      #gbwa .app[href*="office.com"][title*="Word"] .icon-bg {
+        background: linear-gradient(135deg, #2B579A 0%, #1B4587 100%);
+        border-color: rgba(43, 87, 154, 0.5);
+      }
+      
+      #gbwa .app[href*="office.com"][title*="Excel"] .icon-bg {
+        background: linear-gradient(135deg, #217346 0%, #185C37 100%);
+        border-color: rgba(33, 115, 70, 0.5);
+      }
+      
+      #gbwa .app[href*="office.com"][title*="PowerPoint"] .icon-bg {
+        background: linear-gradient(135deg, #D24726 0%, #B83B1D 100%);
+        border-color: rgba(210, 71, 38, 0.5);
+      }
+      
+      #gbwa .app[href*="onenote.com"] .icon-bg {
+        background: linear-gradient(135deg, #7719AA 0%, #5A1380 100%);
+        border-color: rgba(119, 25, 170, 0.5);
+      }
+      
+      #gbwa .app[href*="copilot.microsoft.com"] .icon-bg {
+        background: linear-gradient(135deg, #00BCF2 0%, #0099D6 100%);
+        border-color: rgba(0, 188, 242, 0.5);
+      }
+      
+      #gbwa .app[href*="bing.com"] .icon-bg {
+        background: linear-gradient(135deg, #008373 0%, #006E62 100%);
+        border-color: rgba(0, 131, 115, 0.5);
+      }
+      
+      #gbwa .app[href*="apps.microsoft.com"] .icon-bg {
+        background: linear-gradient(135deg, #0078D4 0%, #106EBE 100%);
+        border-color: rgba(0, 120, 212, 0.5);
+      }
+      
+      #gbwa .app[href*="xbox.com"] .icon-bg {
+        background: linear-gradient(135deg, #107C10 0%, #0E6A0E 100%);
+        border-color: rgba(16, 124, 16, 0.5);
+      }
+      
+      #gbwa .app[href*="skype.com"] .icon-bg {
+        background: linear-gradient(135deg, #00AFF0 0%, #0099D6 100%);
+        border-color: rgba(0, 175, 240, 0.5);
+      }
+      
+      #gbwa .app[href*="todo.microsoft.com"] .icon-bg {
+        background: linear-gradient(135deg, #2564CF 0%, #1A4FB8 100%);
+        border-color: rgba(37, 100, 207, 0.5);
+      }
+      
+      #gbwa .app[href*="tasks.office.com"] .icon-bg {
+        background: linear-gradient(135deg, #31752F 0%, #276025 100%);
+        border-color: rgba(49, 117, 47, 0.5);
+      }
+      
+      #gbwa .app[href*="whiteboard.microsoft.com"] .icon-bg {
+        background: linear-gradient(135deg, #0078D4 0%, #106EBE 100%);
+        border-color: rgba(0, 120, 212, 0.5);
+      }
+      
+      #gbwa .app[href*="loop.microsoft.com"] .icon-bg {
+        background: linear-gradient(135deg, #5B5FC7 0%, #4A4FB0 100%);
+        border-color: rgba(91, 95, 199, 0.5);
+      }
+      
+      #gbwa .app[href*="forms.microsoft.com"] .icon-bg {
+        background: linear-gradient(135deg, #035A5B 0%, #024C4D 100%);
+        border-color: rgba(3, 90, 91, 0.5);
+      }
+      
+      #gbwa .app[href*="stream.microsoft.com"] .icon-bg {
+        background: linear-gradient(135deg, #CA0033 0%, #A70027 100%);
+        border-color: rgba(202, 0, 51, 0.5);
+      }
+      
+      #gbwa .app[href*="flow.microsoft.com"] .icon-bg {
+        background: linear-gradient(135deg, #0066FF 0%, #0052CC 100%);
+        border-color: rgba(0, 102, 255, 0.5);
+      }
+      
+      #gbwa .app[href*="visualstudio.microsoft.com"] .icon-bg {
+        background: linear-gradient(135deg, #5C2D91 0%, #4A2472 100%);
+        border-color: rgba(92, 45, 145, 0.5);
+      }
+      
+      #gbwa .app[href*="developer.microsoft.com"] .icon-bg {
+        background: linear-gradient(135deg, #0078D4 0%, #106EBE 100%);
+        border-color: rgba(0, 120, 212, 0.5);
+      }
+      
+      #gbwa .app[href*="learn.microsoft.com"] .icon-bg {
+        background: linear-gradient(135deg, #0078D4 0%, #106EBE 100%);
+        border-color: rgba(0, 120, 212, 0.5);
+      }
+      
+      /* Make text white for better contrast on colorful backgrounds */
+      #gbwa .app .icon-bg svg text {
+        fill: #ffffff;
       }
       #gbwa .app .app-icon {
         width: 32px;
