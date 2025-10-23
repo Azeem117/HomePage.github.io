@@ -430,44 +430,41 @@
         body {
           justify-content: flex-start;
         }
-        /* Ensure app buttons and menus behave well on small screens */
-  #gbwa { top: calc(10px + env(safe-area-inset-top, 0px)); right: calc(10px + env(safe-area-inset-right, 0px)); }
-  #edgewa { top: calc(10px + env(safe-area-inset-top, 0px)); left: calc(10px + env(safe-area-inset-left, 0px)); }
+        /* Ensure app button and menu behave well on small screens */
+        #gbwa { top: calc(10px + env(safe-area-inset-top, 0px)); right: calc(10px + env(safe-area-inset-right, 0px)); }
         /* Disable expensive animations on mobile for better performance */
         body::before,
         .quicklink,
         .quicklink .icon-bg,
         .quicklink img,
         #gbwa .gb_B,
-        #edgewa .edge_B,
         #gbwa .app,
-        #edgewa .app,
         .searchform-actions-button,
         .theme-toggle {
           animation: none !important;
           transition: none !important;
         }
-        #gbwa .gb_B, #edgewa .edge_B { box-shadow: 0 2px 8px rgba(0,0,0,0.2), 0 0 0 1px var(--border); }
-        #gbwa .apps-menu, #edgewa .apps-menu {
+        #gbwa .gb_B { box-shadow: 0 2px 8px rgba(0,0,0,0.2), 0 0 0 1px var(--border); }
+        #gbwa .apps-menu {
           width: min(94vw, 320px);
           max-height: min(70vh, 480px);
           padding: 12px;
           -webkit-overflow-scrolling: touch;
           overscroll-behavior: contain;
         }
-        #gbwa .apps-grid, #edgewa .apps-grid { gap: 10px; }
-        #gbwa .app .icon-bg, #edgewa .app .icon-bg { 
-          width: 48px; 
-          height: 48px; 
+        #gbwa .apps-grid { gap: 10px; }
+        #gbwa .app .icon-bg { 
+          width: 56px; 
+          height: 56px; 
           border-radius: 14px;
           backdrop-filter: none;
           -webkit-backdrop-filter: none;
         }
-        #gbwa .app .app-icon, #edgewa .app .app-icon { width: 24px; height: 24px; }
-        #gbwa .app span, #edgewa .app span { font-size: 0.62rem; }
+        #gbwa .app .app-icon { width: 28px; height: 28px; }
+        #gbwa .app span { font-size: 0.62rem; }
         
         /* Remove backdrop filters from menus on mobile for performance */
-        #gbwa .apps-menu, #edgewa .apps-menu {
+        #gbwa .apps-menu {
           backdrop-filter: none;
           -webkit-backdrop-filter: none;
           background: var(--glass-bg);
@@ -702,13 +699,6 @@
         z-index: 1000;
         pointer-events: auto;
       }
-      #edgewa {
-        position: fixed;
-        top: calc(12px + env(safe-area-inset-top, 0px));
-        left: calc(12px + env(safe-area-inset-left, 0px));
-        z-index: 1000;
-        pointer-events: auto;
-      }
       #gbwa .gb_B {
         display: inline-flex;
         align-items: center;
@@ -748,56 +738,6 @@
         display: none !important;
       }
 
-      /* Edge button visuals */
-      #edgewa .edge_B {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 48px;
-        height: 48px;
-        border-radius: 999px;
-        background: var(--glass-bg);
-        color: var(--fg);
-        border: 1px solid var(--glass-border);
-        box-shadow: var(--shadow-sm), 0 0 0 1px var(--border);
-        text-decoration: none;
-        -webkit-backdrop-filter: blur(8px) saturate(160%);
-        backdrop-filter: blur(8px) saturate(160%);
-        transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-      }
-      #edgewa .edge_B:hover {
-        transform: translateY(-1px) scale(1.03);
-        background: var(--surface);
-        border-color: var(--border-strong);
-        box-shadow: var(--shadow-md), 0 0 0 1px var(--border-strong);
-      }
-      #edgewa .edge_B:focus-visible {
-        outline: none;
-        box-shadow: var(--ring), var(--shadow-sm);
-      }
-      #edgewa .edge_F {
-        width: 26px;
-        height: 26px;
-        display: block;
-      }
-      #edgewa .edge_F path { fill: currentColor; }
-
-      @media (max-width: 720px) {
-        #edgewa { left: calc(12px + env(safe-area-inset-left, 0px)); }
-        #edgewa .edge_B { width: 44px; height: 44px; }
-        #edgewa .edge_F { width: 24px; height: 24px; }
-      }
-
-      /* Move Edge dropdown to the left on mobile */
-      @media (max-width: 720px) {
-        #edgewa .apps-menu {
-          left: 0;
-          right: auto;
-          width: min(94vw, 360px);
-          max-height: min(70vh, 520px);
-        }
-      }
-
       @media (max-width: 720px) {
         #gbwa .gb_B {
           width: 44px;
@@ -819,10 +759,10 @@
       /* ============================ */
       /* Apps dropdown (apps launcher)*/
       /* ============================ */
-  #gbwa .apps-menu, #edgewa .apps-menu {
+      #gbwa .apps-menu {
         position: absolute;
-    top: 56px;
-    right: 0;
+        top: 56px;
+        right: 0;
         width: min(92vw, 360px);
         max-height: min(66vh, 520px);
         overflow-y: auto;
@@ -846,44 +786,30 @@
         transition: opacity 120ms ease, transform 150ms ease;
         z-index: 1001;
       }
-  /* When Edge button is on the left, anchor menu to left */
-  #edgewa .apps-menu { left: 0; right: auto; transform-origin: top left; }
-      /* Edge dropdown alignment when button is on the left */
-      @media (max-width: 720px) {
-        #edgewa .apps-menu {
-          left: 0;
-          right: auto;
-          transform-origin: top left;
-          transform: translateY(-6px) scale(0.98);
-        }
-        #edgewa .apps-menu.open { transform: translateY(0) scale(1); }
-      }
-  #gbwa .apps-menu.open, #edgewa .apps-menu.open {
+      #gbwa .apps-menu.open {
         display: block;
         opacity: 1;
         transform: translateY(0) scale(1);
       }
-      /* Edge apps menu shares same style block via .apps-menu
-         no extra overrides required, will inherit */
-  #gbwa .apps-header, #edgewa .apps-header {
+      #gbwa .apps-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 8px;
         padding: 0 2px;
       }
-  #gbwa .apps-header h3, #edgewa .apps-header h3 {
+      #gbwa .apps-header h3 {
         margin: 0;
         font-size: 0.8rem;
         font-weight: 700;
         color: var(--muted);
       }
-  #gbwa .apps-grid, #edgewa .apps-grid {
+      #gbwa .apps-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 12px;
       }
-  #gbwa .app, #edgewa .app {
+      #gbwa .app {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -895,17 +821,17 @@
         color: var(--fg);
         transition: transform 0.12s ease, background 0.12s ease;
       }
-  #gbwa .app:focus-visible, #edgewa .app:focus-visible {
+      #gbwa .app:focus-visible {
         outline: none;
         box-shadow: var(--ring);
       }
-  #gbwa .app:hover, #edgewa .app:hover {
+      #gbwa .app:hover {
         transform: translateY(-1px);
         background: var(--surface-hover);
       }
-  #gbwa .app .icon-bg, #edgewa .app .icon-bg {
-        width: 54px;
-        height: 54px;
+      #gbwa .app .icon-bg {
+        width: 64px;
+        height: 64px;
         border-radius: 16px;
         display: flex;
         align-items: center;
@@ -916,29 +842,29 @@
         -webkit-backdrop-filter: blur(4px);
         backdrop-filter: blur(4px);
       }
-  /* Larger monogram text inside inline SVG icons */
-  #gbwa .app .icon-bg svg text, #edgewa .app .icon-bg svg text {
+      /* Larger monogram text inside inline SVG icons */
+      #gbwa .app .icon-bg svg text {
         font-size: 16px;
         font-weight: 900;
       }
-  /* Slightly smaller when two letters to avoid clipping */
-  #gbwa .app .icon-bg svg text.two-chars, #edgewa .app .icon-bg svg text.two-chars {
+      /* Slightly smaller when two letters to avoid clipping */
+      #gbwa .app .icon-bg svg text.two-chars {
         font-size: 13.5px;
         font-weight: 900;
         letter-spacing: -0.3px;
       }
-  .light #gbwa .app .icon-bg, .light #edgewa .app .icon-bg {
+      .light #gbwa .app .icon-bg {
         background: linear-gradient(145deg, #ffffff, #f5f5f5);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
         border: 1px solid rgba(0, 0, 0, 0.12);
       }
-  #gbwa .app .app-icon, #edgewa .app .app-icon {
-        width: 28px;
-        height: 28px;
+      #gbwa .app .app-icon {
+        width: 32px;
+        height: 32px;
         object-fit: contain;
         filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
       }
-  #gbwa .app span, #edgewa .app span {
+      #gbwa .app span {
         font-size: 0.65rem;
         font-weight: 600;
         text-align: center;
@@ -948,14 +874,14 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
-  #gbwa .apps-footer, #edgewa .apps-footer {
+      #gbwa .apps-footer {
         border-top: 1px solid var(--glass-border);
         margin-top: 12px;
         padding-top: 10px;
         display: flex;
         justify-content: center;
       }
-  #gbwa .apps-footer a, #edgewa .apps-footer a {
+      #gbwa .apps-footer a {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -970,28 +896,28 @@
         box-shadow: 0 4px 14px rgba(0,0,0,0.25);
         transition: transform 0.15s ease, box-shadow 0.2s ease;
       }
-  #gbwa .apps-footer a:hover, #edgewa .apps-footer a:hover {
+      #gbwa .apps-footer a:hover {
         transform: translateY(-1px);
         box-shadow: 0 8px 22px rgba(0,0,0,0.3);
       }
 
-      /* Scrollbar polish for both apps menus */
-      #gbwa .apps-menu::-webkit-scrollbar, #edgewa .apps-menu::-webkit-scrollbar {
+      /* Scrollbar polish for apps menu */
+      #gbwa .apps-menu::-webkit-scrollbar {
         width: 10px;
       }
-      #gbwa .apps-menu::-webkit-scrollbar-track, #edgewa .apps-menu::-webkit-scrollbar-track {
+      #gbwa .apps-menu::-webkit-scrollbar-track {
         background: transparent;
       }
-      #gbwa .apps-menu::-webkit-scrollbar-thumb, #edgewa .apps-menu::-webkit-scrollbar-thumb {
+      #gbwa .apps-menu::-webkit-scrollbar-thumb {
         background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
         border-radius: 999px;
         border: 2px solid transparent;
         background-clip: padding-box;
       }
-      #gbwa .apps-menu::-webkit-scrollbar-thumb:hover, #edgewa .apps-menu::-webkit-scrollbar-thumb:hover {
+      #gbwa .apps-menu::-webkit-scrollbar-thumb:hover {
         background: linear-gradient(180deg, var(--accent-1-strong), var(--accent-2-strong));
       }
-      #gbwa .apps-menu, #edgewa .apps-menu {
+      #gbwa .apps-menu {
         scrollbar-width: thin;
         scrollbar-color: var(--accent-2-strong) transparent;
       }
@@ -1019,7 +945,7 @@
         </a>
   <div class="apps-menu" id="apps-menu" role="group" aria-label="Google apps menu">
           <div class="apps-header">
-            <h3>Google apps</h3>
+            <h3>Apps</h3>
           </div>
           <div class="apps-grid" role="list">
             <a class="app" role="listitem" href="https://myaccount.google.com/" target="_self" title="Account">
@@ -1110,36 +1036,6 @@
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=voice.google.com" alt="Voice" /></div>
               <span>Voice</span>
             </a>
-          </div>
-          <div class="apps-footer">
-            <a href="https://about.google/products/" target="_blank" rel="noopener noreferrer">View all</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Edge apps button (fixed top-right, left of Google) -->
-    <div id="edgewa" class="ms_td" aria-hidden="false">
-      <div class="ms_D">
-        <a
-          class="edge_B"
-          aria-label="Edge apps"
-          href="https://microsoft365.com/apps"
-          aria-expanded="false"
-          aria-haspopup="true"
-          aria-controls="edge-apps-menu"
-          role="button"
-          tabindex="0"
-          title="Edge apps"
-        >
-          <svg class="edge_F" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z"></path>
-          </svg>
-        </a>
-  <div class="apps-menu" id="edge-apps-menu" role="group" aria-label="Edge apps menu">
-          <div class="apps-header">
-            <h3>Edge apps</h3>
-          </div>
-          <div class="apps-grid" role="list">
             <a class="app" role="listitem" href="https://www.microsoft365.com/apps" target="_self" title="Microsoft 365">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=www.microsoft365.com" alt="Microsoft 365" /></div>
               <span>M365</span>
@@ -1210,7 +1106,7 @@
             </a>
             <a class="app" role="listitem" href="https://forms.microsoft.com/" target="_self" title="Forms">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=forms.microsoft.com" alt="Forms" /></div>
-              <span>Forms</span>
+              <span>M Forms</span>
             </a>
             <a class="app" role="listitem" href="https://stream.microsoft.com/" target="_self" title="Stream">
               <div class="icon-bg"><img loading="lazy" class="app-icon" src="https://www.google.com/s2/favicons?sz=64&domain=stream.microsoft.com" alt="Stream" /></div>
@@ -1234,7 +1130,7 @@
             </a>
           </div>
           <div class="apps-footer">
-            <a href="https://www.microsoft365.com/apps" target="_self" rel="noopener">View all</a>
+            <a href="https://about.google/products/" target="_blank" rel="noopener noreferrer">View all</a>
           </div>
         </div>
       </div>
@@ -1723,8 +1619,7 @@
         // ==============================
         (function appsMenusInit(){
           const menus = [
-            { trigger: document.querySelector('#gbwa .gb_B'), menu: document.getElementById('apps-menu') },
-            { trigger: document.querySelector('#edgewa .edge_B'), menu: document.getElementById('edge-apps-menu') },
+            { trigger: document.querySelector('#gbwa .gb_B'), menu: document.getElementById('apps-menu') }
           ].filter(m => m.trigger && m.menu);
 
           if (!menus.length) return;
@@ -1824,7 +1719,6 @@
             items.forEach(el => container.appendChild(el));
           }
           sortGrid(document.querySelector('#apps-menu .apps-grid'));
-          sortGrid(document.querySelector('#edge-apps-menu .apps-grid'));
         })();
 
         // ==============================================
@@ -1874,7 +1768,7 @@
             return svg;
           }
 
-          document.querySelectorAll('#gbwa .app .icon-bg, #edgewa .app .icon-bg').forEach(iconBg => {
+          document.querySelectorAll('#gbwa .app .icon-bg').forEach(iconBg => {
             const img = iconBg.querySelector('img.app-icon');
             if (!img) return;
             const label = iconBg.parentElement?.querySelector('span')?.textContent?.trim() || '';
