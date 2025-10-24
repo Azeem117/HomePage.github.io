@@ -551,9 +551,6 @@
           overflow: visible;
           contain: layout style paint;
         }
-        .quicklinks::-webkit-scrollbar {
-            display: none;
-        }
         .quicklink-slide {
           /* No longer needed for static grid, but kept for compatibility */
           display: contents;
@@ -1607,7 +1604,6 @@
             return;
         }
 
-        let updateDotsRaf = null;
         function updatePaginationDots() {
             // No longer needed for static grid - empty function for compatibility
             return;
