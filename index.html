@@ -317,68 +317,6 @@
         box-shadow: var(--ring);
       }
 
-      /* Suggestions dropdown styling */
-      .suggestions-dropdown {
-        position: absolute;
-        top: calc(100% + 8px);
-        left: 0;
-        right: 0;
-        max-height: 400px;
-        overflow-y: auto;
-        background: var(--glass-bg);
-        border: 1px solid var(--glass-border);
-        border-radius: var(--radius-md);
-        box-shadow: var(--shadow-lg), 0 0 0 1px var(--border);
-        backdrop-filter: blur(8px) saturate(160%);
-        -webkit-backdrop-filter: blur(8px) saturate(160%);
-        display: none;
-        z-index: 1000;
-        scrollbar-width: thin;
-        scrollbar-color: var(--accent-2-strong) transparent;
-      }
-      .suggestions-dropdown.visible {
-        display: block;
-      }
-      .suggestions-dropdown::-webkit-scrollbar {
-        width: 8px;
-      }
-      .suggestions-dropdown::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      .suggestions-dropdown::-webkit-scrollbar-thumb {
-        background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
-        border-radius: 999px;
-        border: 2px solid transparent;
-        background-clip: padding-box;
-      }
-      .suggestion-item {
-        padding: 12px 16px;
-        cursor: pointer;
-        color: var(--fg);
-        font-size: 0.9rem;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        transition: background 0.15s ease;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      }
-      .suggestion-item:last-child {
-        border-bottom: none;
-      }
-      .suggestion-item:hover,
-      .suggestion-item.selected {
-        background: var(--surface-hover);
-      }
-      .suggestion-item .suggestion-icon {
-        width: 16px;
-        height: 16px;
-        flex-shrink: 0;
-        opacity: 0.6;
-      }
-      .light .suggestion-item {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      }
-
       footer {
         width: 100%;
         max-width: 980px;
@@ -589,17 +527,6 @@
           padding: 5px 7px;
           background: var(--surface);
           backdrop-filter: none;
-        }
-        
-        /* Mobile suggestions dropdown */
-        .suggestions-dropdown {
-          max-height: 300px;
-          backdrop-filter: blur(4px);
-          -webkit-backdrop-filter: blur(4px);
-        }
-        .suggestion-item {
-          padding: 10px 14px;
-          font-size: 0.88rem;
         }
         
         /* --- Quick Links Mobile: App Icon Grid (4x4 Static Grid) --- */
@@ -1542,8 +1469,6 @@
                   </button>
                 </div>
               </form>
-              <!-- Suggestions dropdown -->
-              <div id="suggestions-dropdown" class="suggestions-dropdown" role="listbox" aria-label="Search suggestions"></div>
             </div>
             
             <!-- Quick Links Container with Pagination -->
@@ -1706,248 +1631,18 @@
 
         // Search engine configuration
     const searchEngines = {
-      brave: { url: "https://search.brave.com/search?q=", icon: "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg", name: "Brave Search", suggestionAPI: "https://search.brave.com/api/suggest?q=" },
-            google: { url: "https://www.google.com/search?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%234285F4' d='M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z'/%3E%3Cpath fill='%2334A853' d='M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z'/%3E%3Cpath fill='%23FBBC05' d='M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z'/%3E%3Cpath fill='%23EA4335' d='M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z'/%3E%3C/svg%3E", name: "Google", suggestionAPI: "https://suggestqueries.google.com/complete/search?client=firefox&q=" },
-            duckduckgo: { url: "https://duckduckgo.com/?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%23de5833'/%3E%3Cpath fill='%23fff' d='M24 10c-7.73 0-14 6.27-14 14 0 1.2.15 2.36.44 3.47.55-.44 1.18-.8 1.87-1.05-.18-.78-.31-1.58-.31-2.42 0-6.63 5.37-12 12-12s12 5.37 12 12c0 .84-.13 1.64-.31 2.42.69.25 1.32.61 1.87 1.05.29-1.11.44-2.27.44-3.47 0-7.73-6.27-14-14-14zm-6 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm12 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-6 4c-2.21 0-4 1.79-4 4h8c0-2.21-1.79-4-4-4z'/%3E%3C/svg%3E", name: "DuckDuckGo", suggestionAPI: "https://duckduckgo.com/ac/?q=", suggestionFormat: "list" },
-            bing: { url: "https://www.bing.com/search?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%2300809d' d='M14 4l4 14 12 4-12 10-2 12-8-6v-34z'/%3E%3Cpath fill='%2300a8e1' d='M18 18l12 4-12 10z'/%3E%3Cpath fill='%23005e7e' d='M14 4v34l4-6V18z'/%3E%3C/svg%3E", name: "Bing", suggestionAPI: "https://api.bing.com/osjson.aspx?query=" },
-            yahoo: { url: "https://search.yahoo.com/search?p=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%235f01d1' d='M24 0C10.7 0 0 10.7 0 24s10.7 24 24 24 24-10.7 24-24S37.3 0 24 0zm8.2 14.3l-6.9 13.1v8.9h-2.6v-8.9l-6.9-13.1h3l5.2 10.1 5.2-10.1h3z'/%3E%3C/svg%3E", name: "Yahoo", suggestionAPI: "https://search.yahoo.com/sugg/gossip/gossip-us-ura/?output=sd1&command=" },
-            startpage: { url: "https://www.startpage.com/do/search?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect fill='%23206580' width='48' height='48' rx='8'/%3E%3Cpath fill='%23fff' d='M24 8c-8.8 0-16 7.2-16 16s7.2 16 16 16 16-7.2 16-16-7.2-16-16-16zm0 28c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12-5.4 12-12 12z'/%3E%3Ccircle fill='%23fff' cx='24' cy='24' r='6'/%3E%3C/svg%3E", name: "Startpage", suggestionAPI: null }
+      brave: { url: "https://search.brave.com/search?q=", icon: "https://cdn.search.brave.com/serp/v3/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg", name: "Brave Search" },
+            google: { url: "https://www.google.com/search?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%234285F4' d='M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z'/%3E%3Cpath fill='%2334A853' d='M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z'/%3E%3Cpath fill='%23FBBC05' d='M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z'/%3E%3Cpath fill='%23EA4335' d='M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z'/%3E%3C/svg%3E", name: "Google" },
+            duckduckgo: { url: "https://duckduckgo.com/?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%23de5833'/%3E%3Cpath fill='%23fff' d='M24 10c-7.73 0-14 6.27-14 14 0 1.2.15 2.36.44 3.47.55-.44 1.18-.8 1.87-1.05-.18-.78-.31-1.58-.31-2.42 0-6.63 5.37-12 12-12s12 5.37 12 12c0 .84-.13 1.64-.31 2.42.69.25 1.32.61 1.87 1.05.29-1.11.44-2.27.44-3.47 0-7.73-6.27-14-14-14zm-6 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm12 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-6 4c-2.21 0-4 1.79-4 4h8c0-2.21-1.79-4-4-4z'/%3E%3C/svg%3E", name: "DuckDuckGo" },
+            bing: { url: "https://www.bing.com/search?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%2300809d' d='M14 4l4 14 12 4-12 10-2 12-8-6v-34z'/%3E%3Cpath fill='%2300a8e1' d='M18 18l12 4-12 10z'/%3E%3Cpath fill='%23005e7e' d='M14 4v34l4-6V18z'/%3E%3C/svg%3E", name: "Bing" },
+            yahoo: { url: "https://search.yahoo.com/search?p=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%235f01d1' d='M24 0C10.7 0 0 10.7 0 24s10.7 24 24 24 24-10.7 24-24S37.3 0 24 0zm8.2 14.3l-6.9 13.1v8.9h-2.6v-8.9l-6.9-13.1h3l5.2 10.1 5.2-10.1h3z'/%3E%3C/svg%3E", name: "Yahoo" },
+            startpage: { url: "https://www.startpage.com/do/search?q=", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect fill='%23206580' width='48' height='48' rx='8'/%3E%3Cpath fill='%23fff' d='M24 8c-8.8 0-16 7.2-16 16s7.2 16 16 16 16-7.2 16-16-7.2-16-16-16zm0 28c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12-5.4 12-12 12z'/%3E%3Ccircle fill='%23fff' cx='24' cy='24' r='6'/%3E%3C/svg%3E", name: "Startpage" }
         };
 
         const engineKeys = Object.keys(searchEngines);
         let currentEngineIndex = 0;
         const searchForm = document.getElementById("searchform");
         const searchBox = document.getElementById("searchbox");
-        const suggestionsDropdown = document.getElementById("suggestions-dropdown");
-        
-        // Autocomplete functionality
-        let currentSuggestions = [];
-        let selectedSuggestionIndex = -1;
-        let fetchController = null;
-        let fetchTimeout = null;
-        
-        // Search icon SVG for suggestions
-        const searchIconSVG = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>';
-        
-        async function fetchSuggestions(query) {
-            const currentKey = engineKeys[currentEngineIndex];
-            const engine = searchEngines[currentKey];
-            
-            if (!engine.suggestionAPI || !query.trim()) {
-                hideSuggestions();
-                return;
-            }
-            
-            // Cancel previous fetch
-            if (fetchController) {
-                fetchController.abort();
-            }
-            
-            fetchController = new AbortController();
-            
-            try {
-                const url = engine.suggestionAPI + encodeURIComponent(query);
-                const response = await fetch(url, {
-                    signal: fetchController.signal,
-                    mode: 'cors',
-                    credentials: 'omit'
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                
-                const data = await response.json();
-                
-                // Parse suggestions based on engine format
-                let suggestions = [];
-                if (engine.suggestionFormat === 'list') {
-                    // DuckDuckGo format: ["query", ["suggestion1", "suggestion2"]]
-                    suggestions = Array.isArray(data) && data.length > 1 ? data[1] : [];
-                } else if (Array.isArray(data)) {
-                    // Standard format: ["query", ["suggestion1", "suggestion2"]]
-                    suggestions = data.length > 1 && Array.isArray(data[1]) ? data[1] : [];
-                } else if (data.suggestions) {
-                    // Alternative format with suggestions array
-                    suggestions = Array.isArray(data.suggestions) ? data.suggestions : [];
-                }
-                
-                displaySuggestions(suggestions, query);
-            } catch (error) {
-                if (error.name !== 'AbortError') {
-                    console.warn('Failed to fetch suggestions:', error);
-                    // Fallback: show demo suggestions for testing/demonstration
-                    if (query.length >= 2) {
-                        const demoSuggestions = generateDemoSuggestions(query);
-                        if (demoSuggestions.length > 0) {
-                            displaySuggestions(demoSuggestions, query);
-                            return;
-                        }
-                    }
-                    hideSuggestions();
-                }
-            }
-        }
-        
-        // Generate demo suggestions when API fails (for demonstration/testing)
-        function generateDemoSuggestions(query) {
-            const commonQueries = {
-                'weat': ['weather', 'weather today', 'weather forecast', 'weather radar', 'weather map'],
-                'wea': ['weather', 'weather today', 'weather forecast', 'weather radar', 'weather channel'],
-                'we': ['weather', 'weather today', 'weather forecast', 'web design', 'weather app'],
-                'w': ['weather', 'weather today', 'wikipedia', 'walmart', 'weather forecast'],
-                'pr': ['programming', 'python', 'projects', 'privacy', 'product design'],
-                'p': ['python', 'python tutorial', 'programming', 'photoshop', 'pinterest'],
-                'ja': ['javascript', 'java', 'javascript tutorial', 'java tutorial', 'japan'],
-                'j': ['javascript', 'java', 'jobs', 'jquery', 'json'],
-                'gi': ['github', 'git', 'git tutorial', 'github actions', 'gitlab'],
-                'g': ['github', 'google', 'gmail', 'games', 'git']
-            };
-            
-            const lowerQuery = query.toLowerCase();
-            
-            // Find matching suggestions (check longest matches first)
-            const keys = Object.keys(commonQueries).sort((a, b) => b.length - a.length);
-            for (let key of keys) {
-                if (lowerQuery.startsWith(key)) {
-                    return commonQueries[key].filter(s => s.toLowerCase().startsWith(lowerQuery));
-                }
-            }
-            
-            return [];
-        }
-        
-        function displaySuggestions(suggestions, query) {
-            currentSuggestions = suggestions;
-            selectedSuggestionIndex = -1;
-            
-            if (!suggestions || suggestions.length === 0) {
-                hideSuggestions();
-                return;
-            }
-            
-            suggestionsDropdown.innerHTML = suggestions.map((suggestion, index) => {
-                const text = typeof suggestion === 'string' ? suggestion : suggestion.phrase || suggestion;
-                return `
-                    <div class="suggestion-item" data-index="${index}" role="option" aria-selected="false">
-                        <span class="suggestion-icon">${searchIconSVG}</span>
-                        <span>${escapeHtml(text)}</span>
-                    </div>
-                `;
-            }).join('');
-            
-            suggestionsDropdown.classList.add('visible');
-            
-            // Add click handlers
-            suggestionsDropdown.querySelectorAll('.suggestion-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const text = item.querySelector('span:last-child').textContent;
-                    searchBox.value = text;
-                    hideSuggestions();
-                    searchForm.dispatchEvent(new Event('submit'));
-                });
-            });
-        }
-        
-        function hideSuggestions() {
-            suggestionsDropdown.classList.remove('visible');
-            currentSuggestions = [];
-            selectedSuggestionIndex = -1;
-        }
-        
-        function selectSuggestion(index) {
-            const items = suggestionsDropdown.querySelectorAll('.suggestion-item');
-            
-            // Remove previous selection
-            items.forEach(item => {
-                item.classList.remove('selected');
-                item.setAttribute('aria-selected', 'false');
-            });
-            
-            if (index >= 0 && index < items.length) {
-                selectedSuggestionIndex = index;
-                items[index].classList.add('selected');
-                items[index].setAttribute('aria-selected', 'true');
-                items[index].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-            } else {
-                selectedSuggestionIndex = -1;
-            }
-        }
-        
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-        
-        // Debounced input handler for suggestions
-        searchBox.addEventListener('input', () => {
-            clearTimeout(fetchTimeout);
-            const query = searchBox.value.trim();
-            
-            if (query.length === 0) {
-                hideSuggestions();
-                return;
-            }
-            
-            // Debounce to avoid too many requests
-            fetchTimeout = setTimeout(() => {
-                fetchSuggestions(query);
-            }, 300);
-        });
-        
-        // Handle keyboard navigation
-        searchBox.addEventListener('keydown', (e) => {
-            const items = suggestionsDropdown.querySelectorAll('.suggestion-item');
-            
-            if (items.length === 0) return;
-            
-            switch(e.key) {
-                case 'ArrowDown':
-                    e.preventDefault();
-                    const nextIndex = selectedSuggestionIndex < items.length - 1 ? selectedSuggestionIndex + 1 : 0;
-                    selectSuggestion(nextIndex);
-                    break;
-                    
-                case 'ArrowUp':
-                    e.preventDefault();
-                    const prevIndex = selectedSuggestionIndex > 0 ? selectedSuggestionIndex - 1 : items.length - 1;
-                    selectSuggestion(prevIndex);
-                    break;
-                    
-                case 'Enter':
-                    if (selectedSuggestionIndex >= 0) {
-                        e.preventDefault();
-                        const selectedText = items[selectedSuggestionIndex].querySelector('span:last-child').textContent;
-                        searchBox.value = selectedText;
-                        hideSuggestions();
-                        searchForm.dispatchEvent(new Event('submit'));
-                    }
-                    break;
-                    
-                case 'Escape':
-                    e.preventDefault();
-                    hideSuggestions();
-                    break;
-            }
-        });
-        
-        // Hide suggestions when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!searchBox.contains(e.target) && !suggestionsDropdown.contains(e.target)) {
-                hideSuggestions();
-            }
-        });
-        
-        // Hide suggestions on blur (with delay to allow clicking suggestions)
-        searchBox.addEventListener('blur', () => {
-            setTimeout(() => {
-                if (!suggestionsDropdown.matches(':hover')) {
-                    hideSuggestions();
-                }
-            }, 200);
-        });
-
         const clearButton = document.getElementById("clear-query-button");
         const engineSelect = document.getElementById("engine-select");
         const engineIcon = document.getElementById("engine-icon");
@@ -1968,14 +1663,6 @@
             const selectedKey = engineSelect.value;
             currentEngineIndex = engineKeys.indexOf(selectedKey);
             updateEngineIcon(false); // Don't update select since user just changed it
-            hideSuggestions(); // Clear suggestions when engine changes
-            // Re-fetch suggestions if there's text in the search box
-            if (searchBox.value.trim()) {
-                clearTimeout(fetchTimeout);
-                fetchTimeout = setTimeout(() => {
-                    fetchSuggestions(searchBox.value.trim());
-                }, 300);
-            }
         });
         
         const savedEngine = localStorage.getItem("preferredSearchEngine");
@@ -2012,7 +1699,6 @@
             searchBox.focus();
             autosize();
             updateClearButtonVisibility();
-            hideSuggestions(); // Clear suggestions when input is cleared
         });
 
         searchForm.addEventListener("submit", (e) => {
