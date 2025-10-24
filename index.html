@@ -529,7 +529,7 @@
           backdrop-filter: none;
         }
         
-        /* --- Quick Links Mobile: App Icon Grid with Sliding & Pagination --- */
+        /* --- Quick Links Mobile: App Icon Grid (4x4 Static Grid) --- */
         #quicklinks-container {
             width: 100%;
             display: flex;
@@ -541,35 +541,22 @@
       contain: layout style;
         }
         .quicklinks {
-          display: flex !important;
-          flex-wrap: nowrap;
-          overflow-x: scroll;
-          overflow-y: hidden;
-          scroll-snap-type: x mandatory;
-          -webkit-overflow-scrolling: touch;
-          scroll-behavior: smooth;
-          padding-bottom: 12px;
+          display: grid !important;
+          grid-template-columns: repeat(4, 1fr);
+          grid-template-rows: repeat(4, 1fr);
+          gap: 8px;
+          padding: 0 10px;
           width: 100%;
-          height: 215px;
           box-sizing: border-box;
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-          touch-action: pan-x;
+          overflow: visible;
           contain: layout style paint;
         }
         .quicklinks::-webkit-scrollbar {
             display: none;
         }
         .quicklink-slide {
-          flex-shrink: 0;
-          width: 100%;
-          scroll-snap-align: center;
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          grid-template-rows: repeat(2, 1fr);
-          gap: 8px;
-          padding: 0 10px;
-          box-sizing: border-box;
+          /* No longer needed for static grid, but kept for compatibility */
+          display: contents;
         }
         .quicklink {
             display: flex;
@@ -640,32 +627,18 @@
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
         }
 
-        /* --- NEW: Pagination dots for the carousel --- */
+        /* --- Pagination dots (hidden for static grid) --- */
         #quicklinks-pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 9px;
-            height: 12px;
-            margin-top: -4px;
+            display: none;
         }
         .pagination-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background-color: var(--muted-2);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-            opacity: 0.7;
-            cursor: pointer;
+            display: none;
         }
         .pagination-dot.active {
-            background: linear-gradient(135deg, var(--accent-1-strong), var(--accent-2-strong));
-            transform: scale(1.5);
-            opacity: 1;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+            display: none;
         }
         .light .pagination-dot.active {
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+            display: none;
         }
         
         /* Mobile footer adjustments */
@@ -1586,7 +1559,7 @@
     <script>
         // --- NEW AND IMPROVED SCRIPT ---
 
-        // Function to set up the mobile carousel and pagination
+        // Function to set up the mobile grid (now static 4x4)
         function setupQuicklinkCarousel() {
             const container = document.getElementById('quicklinks');
             const paginationContainer = document.getElementById('quicklinks-pagination');
@@ -1595,43 +1568,23 @@
             const isMobile = window.matchMedia('(max-width: 720px)').matches;
 
             if (isMobile) {
-                // Prevent re-grouping if already done
-                if (container.querySelector('.quicklink-slide')) {
-                    updatePaginationDots(); // Update dots on resize
-                    return;
+                // For mobile: Remove any slide wrappers and display all items in a 4x4 grid
+                const slides = container.querySelectorAll('.quicklink-slide');
+                if (slides.length > 0) {
+                    const fragment = document.createDocumentFragment();
+                    slides.forEach(slide => {
+                        while (slide.firstChild) {
+                            fragment.appendChild(slide.firstChild);
+                        }
+                    });
+                    container.innerHTML = '';
+                    container.appendChild(fragment);
                 }
-                
-                const links = Array.from(container.children).filter(el => el.classList.contains('quicklink'));
-                const linksPerSlide = 8;
-                const fragment = document.createDocumentFragment();
-
-                for (let i = 0; i < links.length; i += linksPerSlide) {
-                    const slide = document.createElement('div');
-                    slide.className = 'quicklink-slide';
-                    const slice = links.slice(i, i + linksPerSlide);
-                    slice.forEach(link => slide.appendChild(link));
-                    fragment.appendChild(slide);
-                }
-                
-                container.innerHTML = '';
-                container.appendChild(fragment);
-                
-                setupPaginationDots();
-                
-                // Throttle scroll events for better performance
-                let scrollTimeout;
-                const throttledUpdateDots = () => {
-                    if (!scrollTimeout) {
-                        scrollTimeout = setTimeout(() => {
-                            updatePaginationDots();
-                            scrollTimeout = null;
-                        }, 100);
-                    }
-                };
-                container.addEventListener('scroll', throttledUpdateDots, { passive: true });
-                
+                // Hide pagination
+                paginationContainer.innerHTML = '';
+                paginationContainer.style.display = 'none';
             } else {
-                // Restore desktop grid view
+                // Desktop: Keep the default grid layout
                 const slides = container.querySelectorAll('.quicklink-slide');
                 if (slides.length > 0) {
                     const fragment = document.createDocumentFragment();
@@ -1643,61 +1596,21 @@
                     container.innerHTML = '';
                     container.appendChild(fragment);
                     container.style.display = 'grid';
-                    paginationContainer.innerHTML = ''; // Clear dots
-                    // Clean up event listeners
-                    const oldContainer = container.cloneNode(true);
-                    container.parentNode.replaceChild(oldContainer, container);
                 }
+                paginationContainer.innerHTML = '';
+                paginationContainer.style.display = 'none';
             }
         }
 
         function setupPaginationDots() {
-            const container = document.getElementById('quicklinks');
-            const paginationContainer = document.getElementById('quicklinks-pagination');
-            const slides = container.querySelectorAll('.quicklink-slide');
-            
-            paginationContainer.innerHTML = ''; // Clear existing dots
-            
-            if (slides.length > 1) {
-                slides.forEach((_, index) => {
-                    const dot = document.createElement('div');
-                    dot.className = 'pagination-dot';
-                    dot.dataset.index = index;
-                    dot.addEventListener('click', () => {
-                        const slideWidth = container.offsetWidth;
-                        container.scrollTo({
-                            left: slideWidth * index,
-                            behavior: 'smooth'
-                        });
-                    });
-                    paginationContainer.appendChild(dot);
-                });
-                updatePaginationDots(); // Set initial active dot
-            }
+            // No longer needed for static grid - empty function for compatibility
+            return;
         }
 
         let updateDotsRaf = null;
         function updatePaginationDots() {
-            const container = document.getElementById('quicklinks');
-            const paginationContainer = document.getElementById('quicklinks-pagination');
-            if (!paginationContainer.children.length) return;
-
-            // Cancel pending RAF to avoid redundant updates
-            if (updateDotsRaf) {
-                cancelAnimationFrame(updateDotsRaf);
-            }
-
-            // Use RAF for smoother updates
-            updateDotsRaf = requestAnimationFrame(() => {
-                const slideWidth = container.offsetWidth;
-                const currentIndex = Math.round(container.scrollLeft / slideWidth);
-                
-                const dots = paginationContainer.querySelectorAll('.pagination-dot');
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentIndex);
-                });
-                updateDotsRaf = null;
-            });
+            // No longer needed for static grid - empty function for compatibility
+            return;
         }
         
         // --- EXISTING SCRIPT LOGIC (Unchanged, placed below new functions) ---
@@ -1823,30 +1736,7 @@
         });
 
         // Initial setup on load and resize
-        if (window.matchMedia('(max-width: 720px)').matches) {
-            // On mobile, use Intersection Observer for lazy initialization
-            if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            setupQuicklinkCarousel();
-                            observer.disconnect();
-                        }
-                    });
-                }, { rootMargin: '50px' });
-                
-                const quicklinksContainer = document.getElementById('quicklinks-container');
-                if (quicklinksContainer) {
-                    observer.observe(quicklinksContainer);
-                }
-            } else {
-                // Fallback for browsers without IntersectionObserver
-                window.addEventListener('load', setupQuicklinkCarousel);
-            }
-        } else {
-            // Desktop: setup immediately
-            window.addEventListener('load', setupQuicklinkCarousel);
-        }
+        window.addEventListener('load', setupQuicklinkCarousel);
         
         // Debounced resize handler for better performance
         let resizeTimeout;
