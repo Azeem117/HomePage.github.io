@@ -430,8 +430,8 @@
         body {
           justify-content: flex-start;
         }
-        /* Ensure app button and menu behave well on small screens */
-        #gbwa { top: calc(10px + env(safe-area-inset-top, 0px)); right: calc(10px + env(safe-area-inset-right, 0px)); }
+        /* Hide Google apps button on mobile */
+        #gbwa { display: none !important; }
         /* Disable expensive animations on mobile for better performance */
         body::before,
         .quicklink,
