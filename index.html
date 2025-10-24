@@ -489,12 +489,12 @@
           justify-content: flex-start;
           padding-top: 0;
           transform: none;
-          margin-top: 8vh; /* Base mobile offset */
+          margin-top: 3vh; /* Reduced by 5vh to move content 5% upward */
           contain: layout style;
         }
         #searchbar-home {
-          margin-top: 8vh; /* Keep base mobile offset unchanged */
-          transform: translateY(5vh); /* Move section ~5% further down for mobile without changing px */
+          margin-top: 8vh; /* Maintains internal spacing within home-wrapper */
+          transform: translateY(0); /* Removed downward translation to move content up */
           will-change: auto;
           gap: 18px !important;
           width: 100%;
