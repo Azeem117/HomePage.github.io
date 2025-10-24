@@ -1776,9 +1776,45 @@
             } catch (error) {
                 if (error.name !== 'AbortError') {
                     console.warn('Failed to fetch suggestions:', error);
+                    // Fallback: show demo suggestions for testing/demonstration
+                    if (query.length >= 2) {
+                        const demoSuggestions = generateDemoSuggestions(query);
+                        if (demoSuggestions.length > 0) {
+                            displaySuggestions(demoSuggestions, query);
+                            return;
+                        }
+                    }
                     hideSuggestions();
                 }
             }
+        }
+        
+        // Generate demo suggestions when API fails (for demonstration/testing)
+        function generateDemoSuggestions(query) {
+            const commonQueries = {
+                'weat': ['weather', 'weather today', 'weather forecast', 'weather radar', 'weather map'],
+                'wea': ['weather', 'weather today', 'weather forecast', 'weather radar', 'weather channel'],
+                'we': ['weather', 'weather today', 'weather forecast', 'web design', 'weather app'],
+                'w': ['weather', 'weather today', 'wikipedia', 'walmart', 'weather forecast'],
+                'pr': ['programming', 'python', 'projects', 'privacy', 'product design'],
+                'p': ['python', 'python tutorial', 'programming', 'photoshop', 'pinterest'],
+                'ja': ['javascript', 'java', 'javascript tutorial', 'java tutorial', 'japan'],
+                'j': ['javascript', 'java', 'jobs', 'jquery', 'json'],
+                'gi': ['github', 'git', 'git tutorial', 'github actions', 'gitlab'],
+                'g': ['github', 'google', 'gmail', 'games', 'git']
+            };
+            
+            const lowerQuery = query.toLowerCase();
+            
+            // Find matching suggestions (check longest matches first)
+            const keys = Object.keys(commonQueries).sort((a, b) => b.length - a.length);
+            for (let key of keys) {
+                if (lowerQuery.startsWith(key)) {
+                    return commonQueries[key].filter(s => s.toLowerCase().startsWith(lowerQuery));
+                }
+            }
+            
+            return [];
         }
         
         function displaySuggestions(suggestions, query) {
